@@ -67,29 +67,29 @@ Page({
     wx.getLocation({
       type: "gcj02",
       success: function (res) {
-        locationData(res,that);
+        locationData(res, that);
         login();
       },
-      fail:function(res){
+      fail: function (res) {
         wx.showModal({
           title: '提示',
-          content: '若不授权地理位置信息，无法正常使用功能，点击授权则可重新使用；若不点击，后期还是用小程序，需在微信【发现】-【小程序】-删除【电动帮】，重新授权，方可使用',
-          cancelText:"不授权",
-          confirmText:"授权",
-          success:function(res){
-            if(res.confirm){
+          content: '若不授权地理位置信息，无法正常使用功能，点击授权则可重新使用；若不点击，后续还要用小程序，需在微信【发现】-【小程序】-删除【电动帮】，重新授权，方可使用',
+          cancelText: "不授权",
+          confirmText: "授权",
+          success: function (res) {
+            if (res.confirm) {
               wx.openSetting({
-                success:function(res){
+                success: function (res) {
                   //重新获取地理位置权限
-                    wx.getLocation({
-                      success: function (res) {
-                        locationData(res, that);
-                        login();
-                      },
-                    })
+                  wx.getLocation({
+                    success: function (res) {
+                      locationData(res, that);
+                      login();
+                    },
+                  })
                 }
               })
-            }else{
+            } else {
               wx.showModal({
                 title: '提示',
                 content: '您已拒绝授权地理位置，无法正常使用程序功能，需在微信【发现】-【小程序】-删除【电动帮】，重新授权，方可使用'
@@ -101,10 +101,12 @@ Page({
     })
   },
   help: function () {
-    //请求帮助，获取最近位置的修理站
+    wx.navigateTo({
+      url: '../member/member',
+    })
   },
 })
-function login(){
+function login() {
   wx.login({
     success: function (loginRes) {
       wx.getUserInfo({
@@ -124,16 +126,16 @@ function login(){
             }
           })
         },
-        fail: function (userRes){
+        fail: function (userRes) {
           wx.showModal({
             title: '提示',
-            content: '若不授权用户信息，无法正常使用功能，点击授权则可重新使用；若不点击，后期还是用小程序，需在微信【发现】-【小程序】-删除【电动帮】，重新授权，方可使用',
+            content: '若不授权用户信息，无法正常使用功能，点击授权则可重新使用；若不点击，后续还要用小程序，需在微信【发现】-【小程序】-删除【电动帮】，重新授权，方可使用',
             cancelText: "不授权",
             confirmText: "授权",
             success: function (confirmRes) {
-              if(confirmRes.confirm){
+              if (confirmRes.confirm) {
                 wx.openSetting({
-                  success:function(){
+                  success: function () {
                     wx.getUserInfo({
                       success: function (userRes) {
                         wx.request({
@@ -154,7 +156,7 @@ function login(){
                     })
                   }
                 })
-              }else{
+              } else {
                 wx.showModal({
                   title: '提示',
                   content: '您已拒绝授权用户信息，无法正常使用程序功能，需在微信【发现】-【小程序】-删除【电动帮】，重新授权，方可使用'
@@ -165,14 +167,14 @@ function login(){
         }
       })
     },
-    fail:function(loginRes){
-     console.log("wx接口login请求错误");
-     console.log(loginRes);
+    fail: function (loginRes) {
+      console.log("wx接口login请求错误");
+      console.log(loginRes);
     }
   })
 };
 
-function locationData(res,_this){
+function locationData(res, _this) {
   var circle = {}
   circle.longitude = res.longitude
   circle.latitude = res.latitude

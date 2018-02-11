@@ -1,0 +1,23 @@
+<view class='avatar-area'>
+  <view wx:if="{{member.gender}}">
+    <image src='/img/avatar-man.png' class='avatar'></image>
+  </view>
+  <view wx:else>
+    <image src='/img/avatar-woman.png' class='avatar'></image>
+  </view>
+  <view class='nick-name'>{{member.nickName}}</view>
+</view>
+<view class='items-area'>
+  <view class='item'>
+    <view class='item-title'>帮商城</view>
+    <image src="/img/arrow.png" class='arrow'></image>
+  </view>
+  <view class='item'>
+    <view class='item-title'>我的信息</view>
+    <image src="/img/arrow.png" class='arrow'></image>
+  </view>
+  <view class='item'>
+    <view class='item-title'>账户记录</view>
+    <image src="/img/arrow.png" class='arrow'></image>
+  </view>
+</view>

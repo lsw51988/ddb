@@ -17,11 +17,11 @@
   border-radius: 40px;
   display: inline-block;
   line-height: 80px;
-  font-size: 15px;
+  font-size: 16px;
   font-family: "微软雅黑";
   color: white;
   /* background: linear-gradient(to bottom, #fc1c03, #fa3921); */
-  background: #FA2E05;
+  background: #F05B47;
 }
 
 .position {
