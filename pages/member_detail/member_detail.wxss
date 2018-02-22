@@ -1,3 +1,17 @@
 .weui-cell_input{
   height:95rpx;
 }
+.status{
+  display:inline-block;
+  background: #eee;
+  height:60rpx;
+  width:150rpx;
+  margin:0 20rpx;
+  text-align: center;
+  line-height:60rpx;
+  border-radius: 10rpx;
+}
+.active{
+  background: #F05B47;
+  color:white;
+}
