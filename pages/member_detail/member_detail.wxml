@@ -98,7 +98,7 @@
   </view>
 
 </form>
-<modal hidden="{{modalFlag}}" title="请输入验证码" confirm-text="提交" cancel-text="取消" bindcancel="model_cancel">
-  <input type='text' placeholder="请输入验证码" auto-focus class='captcha-input' type='number' />
-  <image src="{{imageUrl}}" class='captcha'></image>
+<modal hidden="{{modalFlag}}" title="请输入验证码" confirm-text="提交" cancel-text="取消" bindcancel="model_cancel" bindconfirm="model_confirm">
+  <input type='text' placeholder="请输入验证码" auto-focus class='captcha-input' type='number' bindblur="captchaBlur"/>
+  <image src="{{imageUrl}}" class='captcha' bindtap='freshCaptcha'></image>
 </modal>

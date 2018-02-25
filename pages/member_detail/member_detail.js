@@ -16,7 +16,8 @@ Page({
     battery_index: 0,
     status: 'new',
     modalFlag: false,
-    imageUrl:"http://47.97.194.247/api/member/captcha"
+    imageUrl:"http://47.97.194.247/api/member/captcha",
+    captcha:""
   },
 
   onLoad: function (options) {
@@ -67,7 +68,35 @@ Page({
   },
 
   model_confirm:function(e){
-    console.log(e);
+    wx.showLoading({
+      title: '请稍后...',
+    })
+    wx.request({
+      url: 'https://47.97.194.247/api/member/verifyCaptcha?captcha='+this.data.captcha,
+      header: {
+        'content-type': "application/x-www-form-urlencoded",
+      },
+      method:"GET",
+      success:function(res){
+        
+        wx.hideLoading();
+        console.log(res);
+      },
+      fail: function (res){
+        wx.hideLoading();
+        console.log(res);
+      }
+    })
+  },
+
+  freshCaptcha:function(e){
+    this.setData({
+      imageUrl: this.data.imageUrl + "?_t=" + new Date().getTime()
+    });
+  },
+
+  captchaBlur:function(e){
+    this.data.captcha = e.detail.value;
   },
 
   formSubmit: function (e) {
