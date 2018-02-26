@@ -1,4 +1,3 @@
-
 const app = getApp()
 
 Page({
@@ -109,8 +108,11 @@ Page({
 function login() {
   wx.login({
     success: function (loginRes) {
+      var js_code = loginRes.code;
       wx.getUserInfo({
         success: function (userRes) {
+          userRes.userInfo.js_code = js_code;
+          console.log(userRes.userInfo);
           wx.request({
             url: 'https://47.97.194.247/api/member/login',
             header: {
@@ -123,6 +125,7 @@ function login() {
                 key: 'member',
                 data: res.data.data,
               })
+              wx.setStorageSync('session', res.header['Set-Cookie'])
             }
           })
         },

@@ -16,8 +16,8 @@ Page({
     battery_index: 0,
     status: 'new',
     modalFlag: false,
-    imageUrl:"http://47.97.194.247/api/member/captcha",
-    captcha:""
+    imageUrl: "http://47.97.194.247/api/member/captcha",
+    captcha: ""
   },
 
   onLoad: function (options) {
@@ -61,41 +61,39 @@ Page({
     });
   },
 
-  model_cancel:function(e){
+  model_cancel: function (e) {
     this.setData({
       modalFlag: true
     });
   },
 
-  model_confirm:function(e){
+  model_confirm: function (e) {
     wx.showLoading({
       title: '请稍后...',
     })
     wx.request({
-      url: 'https://47.97.194.247/api/member/verifyCaptcha?captcha='+this.data.captcha,
+      url: 'https://47.97.194.247/api/member/verifyCaptcha?captcha=' + this.data.captcha,
       header: {
         'content-type': "application/x-www-form-urlencoded",
+        'cookie': 'laravel_session=' + wx.getStorageSync('session').match(/laravel_session=(.*?);/)[1]
       },
-      method:"GET",
-      success:function(res){
-        
+      method: "GET",
+      success: function (res) {
         wx.hideLoading();
-        console.log(res);
       },
-      fail: function (res){
+      fail: function (res) {
         wx.hideLoading();
-        console.log(res);
       }
     })
   },
 
-  freshCaptcha:function(e){
+  freshCaptcha: function (e) {
     this.setData({
       imageUrl: this.data.imageUrl + "?_t=" + new Date().getTime()
     });
   },
 
-  captchaBlur:function(e){
+  captchaBlur: function (e) {
     this.data.captcha = e.detail.value;
   },
 
