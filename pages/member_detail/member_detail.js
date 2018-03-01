@@ -1,11 +1,6 @@
-// pages/member_detail/member_detail.js
 const app = getApp()
 var util = require('../../utils/util.js')
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     voltage: ["48V", "60V", "72V", "其他"],
     brand: [
@@ -24,7 +19,7 @@ Page({
     cap_loading_status: false,
     mobile: "",
     buy_status: 1,
-    sms_code_flag:true
+    sms_code_flag: true
   },
 
   onLoad: function (options) {
@@ -104,7 +99,7 @@ Page({
             cap_btn_status: true,
             modalFlag: true,
             cap_loading_status: true,
-            sms_code_flag:false
+            sms_code_flag: false
           });
           var i = 0;
           var timer = setInterval(function () {
@@ -152,9 +147,9 @@ Page({
       }
     }
     data.buy_date = util.transDate(new Date(data.buy_date).getTime());
-    if (data.battery_change_date!=null){
-      data.battery_change_date = util. transDate(new Date(data.battery_change_date).getTime());
-    }else{
+    if (data.battery_change_date != null) {
+      data.battery_change_date = util.transDate(new Date(data.battery_change_date).getTime());
+    } else {
       delete data.battery_change_date;
     }
     wx.showLoading({
@@ -170,10 +165,24 @@ Page({
       data: data,
       success: function (res) {
         wx.hideLoading();
-        console.log(res);
+        if (res.data.status == true) {
+          wx.showModal({
+            title: '提示',
+            content: '操作成功',
+          })
+        } else {
+          wx.showModal({
+            title: '提示',
+            content: '操作失败',
+          })
+        }
       },
       fail: function (res) {
-
+        wx.hideLoading();
+        wx.showModal({
+          title: '提示',
+          content: '网络异常，请重新操作',
+        })
       }
     })
   }
