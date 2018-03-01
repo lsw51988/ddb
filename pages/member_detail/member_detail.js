@@ -1,11 +1,13 @@
 // pages/member_detail/member_detail.js
+const app = getApp()
+var util = require('../../utils/util.js')
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    battery_capacity: ["48V", "60V", "72V", "其他"],
+    voltage: ["48V", "60V", "72V", "其他"],
     brand: [
       "爱玛", "雅迪", "新日", "小牛",
       "E客", "台铃", "速珂", "小刀",
@@ -13,11 +15,16 @@ Page({
       "安马达", "大阳", "超威"
     ],
     brand_index: 0,
-    battery_index: 0,
-    status: 'new',
-    modalFlag: false,
-    imageUrl: "http://47.97.194.247/api/member/captcha",
-    captcha: ""
+    voltage_index: 0,
+    modalFlag: true,
+    imageUrl: app.globalData.host + "/api/member/captcha",
+    captcha: "",
+    cap_btn_text: "获取验证码",
+    cap_btn_status: false,
+    cap_loading_status: false,
+    mobile: "",
+    buy_status: 1,
+    sms_code_flag:true
   },
 
   onLoad: function (options) {
@@ -31,33 +38,44 @@ Page({
   },
   buyTimeChange: function (e) {
     this.setData({
-      buy_time: e.detail.value
+      buy_date: e.detail.value
     })
   },
-  batteryCapacityChange: function (e) {
+  voltageChange: function (e) {
     this.setData({
-      battery_index: e.detail.value
+      voltage_index: e.detail.value
     })
   },
 
   batteryChangeTime: function (e) {
     this.setData({
-      battery_change_time: e.detail.value
+      battery_change_date: e.detail.value
     })
   },
   tapNew: function () {
     this.setData({
-      status: 'new'
+      buy_status: '1'
     })
   },
   tapOld: function () {
     this.setData({
-      status: 'old'
+      buy_status: '2'
     })
   },
+  getMobile: function (e) {
+    this.data.mobile = e.detail.value;
+  },
   getCaptcha: function (e) {
+    if (!(/^1\d{10}$/.test(this.data.mobile))) {
+      wx.showModal({
+        title: '提示',
+        content: '请输入正确的手机号码',
+      });
+      return false;
+    }
     this.setData({
-      modalFlag: false
+      modalFlag: false,
+      imageUrl: this.data.imageUrl + "?_t=" + new Date().getTime() + "&token=" + wx.getStorageSync("member").token
     });
   },
 
@@ -68,17 +86,42 @@ Page({
   },
 
   model_confirm: function (e) {
+    var that = this;
     wx.showLoading({
       title: '请稍后...',
     })
     wx.request({
-      url: 'https://47.97.194.247/api/member/verifyCaptcha?captcha=' + this.data.captcha,
+      url: app.globalData.host + '/api/member/verifyCaptcha?captcha=' + this.data.captcha,
       header: {
         'content-type': "application/x-www-form-urlencoded",
-        'cookie': 'laravel_session=' + wx.getStorageSync('session').match(/laravel_session=(.*?);/)[1]
+        'token': wx.getStorageSync("member").token
       },
       method: "GET",
       success: function (res) {
+        if (res.data.status == true) {
+          //请求短信接口
+          that.setData({
+            cap_btn_status: true,
+            modalFlag: true,
+            cap_loading_status: true,
+            sms_code_flag:false
+          });
+          var i = 0;
+          var timer = setInterval(function () {
+            that.setData({
+              cap_btn_text: (59 - i) + "秒"
+            });
+            i++;
+            if (i == 60) {
+              clearInterval(timer);
+              that.setData({
+                cap_btn_status: false,
+                cap_btn_text: "获取验证码",
+                cap_loading_status: false
+              });
+            }
+          }, 1000);
+        }
         wx.hideLoading();
       },
       fail: function (res) {
@@ -89,7 +132,7 @@ Page({
 
   freshCaptcha: function (e) {
     this.setData({
-      imageUrl: this.data.imageUrl + "?_t=" + new Date().getTime()
+      imageUrl: this.data.imageUrl + "?token=" + wx.getStorageSync("member").token + "&_t=" + new Date().getTime()
     });
   },
 
@@ -98,9 +141,40 @@ Page({
   },
 
   formSubmit: function (e) {
-    console.log('form发生了submit事件，携带数据为：', e.detail.value)
-  },
-  formReset: function () {
-    console.log('form发生了reset事件')
+    var data = e.detail.value;
+    for (var key in data) {
+      if (key != 'battery_change_date' && (data[key] === "" || data[key] === null)) {
+        wx.showModal({
+          title: '提示',
+          content: '请填写必填项',
+        })
+        return false;
+      }
+    }
+    data.buy_date = util.transDate(new Date(data.buy_date).getTime());
+    if (data.battery_change_date!=null){
+      data.battery_change_date = util. transDate(new Date(data.battery_change_date).getTime());
+    }else{
+      delete data.battery_change_date;
+    }
+    wx.showLoading({
+      title: '请稍后...',
+    })
+    wx.request({
+      url: app.globalData.host + '/api/info',
+      method: "POST",
+      header: {
+        'content-type': "application/x-www-form-urlencoded",
+        'token': wx.getStorageSync("member").token
+      },
+      data: data,
+      success: function (res) {
+        wx.hideLoading();
+        console.log(res);
+      },
+      fail: function (res) {
+
+      }
+    })
   }
 })

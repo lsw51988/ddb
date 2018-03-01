@@ -114,13 +114,14 @@ function login() {
           userRes.userInfo.js_code = js_code;
           console.log(userRes.userInfo);
           wx.request({
-            url: 'https://47.97.194.247/api/member/login',
+            url: app.globalData.host+'/api/member/login',
             header: {
               'content-type': "application/x-www-form-urlencoded",
             },
             method: "POST",
             data: userRes.userInfo,
             success: function (res) {
+              wx.clearStorageSync('member');
               wx.setStorage({
                 key: 'member',
                 data: res.data.data,
@@ -142,13 +143,14 @@ function login() {
                     wx.getUserInfo({
                       success: function (userRes) {
                         wx.request({
-                          url: 'https://47.97.194.247/api/member/login',
+                          url: app.globalData.host+'/api/member/login',
                           header: {
                             'content-type': "application/x-www-form-urlencoded",
                           },
                           method: "POST",
                           data: userRes.userInfo,
                           success: function (res) {
+                            wx.clearStorageSync('member');
                             wx.setStorage({
                               key: 'member',
                               data: res.data.data,

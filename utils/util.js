@@ -13,7 +13,12 @@ const formatNumber = n => {
   n = n.toString()
   return n[1] ? n : '0' + n
 }
+function transDate(msec) {
+  var date = new Date(msec);
+  return date.getFullYear() + '-' + date.getMonth() + '-' + date.getDay()
+}
 
 module.exports = {
-  formatTime: formatTime
+  formatTime: formatTime,
+  transDate: transDate
 }

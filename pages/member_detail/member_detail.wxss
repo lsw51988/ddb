@@ -29,40 +29,32 @@ page {
   border-radius: 10rpx;
 }
 
-.btn-area {
+.submit {
   position: fixed;
   bottom: 0;
+  color: white;
   width: 100%;
-}
-
-.submit {
-  display: inline-block;
-  color: white;
-  width: 50%;
   background: #3367d6;
-  border-radius: 0;
-}
-
-.reset {
-  display: inline-block;
-  color: white;
-  width: 50%;
-  background: red;
   border-radius: 0;
 }
 
 .captcha {
   width: 420rpx;
   height: 120rpx;
-  margin-top:10rpx;
-  margin-left:10%;
+  margin-top: 10rpx;
+  margin-left: 10%;
 }
 
 .captcha-input {
   width: 80%;
-  height:80rpx;
-  border:4rpx solid #eee;
-   margin-left:10%;
-   border-radius:10rpx;
-   font-size:34rpx;
+  height: 80rpx;
+  border: 4rpx solid #eee;
+  margin-left: 10%;
+  border-radius: 10rpx;
+  font-size: 34rpx;
+}
+
+.get-capture::after {
+  border: none;
+  height: 90%;
 }

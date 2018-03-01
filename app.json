@@ -1,8 +1,9 @@
 {
   "pages": [
+
     "pages/member_detail/member_detail",
-    "pages/member/member",
     "pages/index/index",
+    "pages/member/member",
     "pages/logs/logs"
   ],
   "window": {
