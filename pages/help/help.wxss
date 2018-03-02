@@ -1,1 +1,7 @@
-/* pages/help/help.wxss */
+.des {
+  margin-left: 30rpx;
+}
+
+.des::after {
+  border: none;
+}
