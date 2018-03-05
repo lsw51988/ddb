@@ -1,7 +1,7 @@
 const app = getApp()
 Page({
   data: {
-    problem:[
+    problem: [
       "爆胎",
       "漏气",
       "电机不转",
@@ -11,18 +11,52 @@ Page({
       "骑行费力，速度慢",
       "其他",
     ],
-    problem_index:0,
-    cap_btn_text:"获取验证码",
-    cap_loading_status:false,
-    cap_btn_status:false,
-    modalFlag:true,
+    problem_index: 0,
+    cap_btn_text: "获取验证码",
+    cap_loading_status: false,
+    cap_btn_status: false,
+    modalFlag: true,
     imageUrl: app.globalData.host + "/api/member/captcha",
+    latitude: "",
+    longitude: "",
+    mapCtx: ""
   },
 
   onLoad: function (options) {
-  
+    var that = this;
+    wx.getSystemInfo({
+      success: function (res) {
+        that.setData({
+          controls: [
+            {
+              id: 0,
+              iconPath: '/img/re-position.png',
+              position: {
+                left: res.windowWidth - 60,
+                top: res.windowHeight * 0.4 - 40,
+                width: 40,
+                height: 40
+              },
+              clickable: true
+            }
+          ]
+        });
+      },
+    })
+    wx.getLocation({
+      type: "gcj02",
+      success: function (res) {
+        that.data.longitude = res.longitude;
+        that.data.latitude = res.latitude;
+        that.setData({
+          longitude: res.longitude,
+          latitude: res.latitude
+        });
+      },
+    })
+    this.data.mapCtx = wx.createMapContext("map", this);
   },
-  problemChange:function(e){
+  problemChange: function (e) {
     this.setData({
       problem_index: e.detail.value
     })
@@ -39,6 +73,11 @@ Page({
   freshCaptcha: function (e) {
     this.setData({
       imageUrl: this.data.imageUrl + "?token=" + wx.getStorageSync("member").token + "&_t=" + new Date().getTime()
+    });
+  },
+  model_cancel: function (e) {
+    this.setData({
+      modalFlag: true
     });
   },
   model_confirm: function (e) {
@@ -84,5 +123,18 @@ Page({
       }
     })
   },
-
+  regionChange: function (e) {
+    var that = this;
+    that.data.mapCtx.getCenterLocation({
+      success: function (res) {
+        that.data.longitude = res.longitude;
+        that.data.latitude = res.latitude;
+      }
+    });
+  },
+  controltap:function(e){
+    //重新定位
+    console.log("重新定位");
+    this.data.mapCtx.moveToLocation();
+  }
 })

@@ -1,9 +1,9 @@
 {
   "pages": [
-    
+   
     "pages/help/help",
     "pages/index/index",
-   "pages/member_detail/member_detail",
+    "pages/member_detail/member_detail",
     "pages/member/member",
     
     "pages/logs/logs"

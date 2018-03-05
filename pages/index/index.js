@@ -104,6 +104,13 @@ Page({
       url: '../member/member',
     })
   },
+  controltap: function (e) {
+    switch (e.controlId) {
+      case 0:
+
+        break;
+    }
+  }
 })
 function login() {
   wx.login({
@@ -112,7 +119,6 @@ function login() {
       wx.getUserInfo({
         success: function (userRes) {
           userRes.userInfo.js_code = js_code;
-          console.log(userRes.userInfo);
           wx.request({
             url: app.globalData.host+'/api/member/login',
             header: {
@@ -126,7 +132,6 @@ function login() {
                 key: 'member',
                 data: res.data.data,
               })
-              wx.setStorageSync('session', res.header['Set-Cookie'])
             }
           })
         },
