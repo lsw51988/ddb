@@ -1,5 +1,5 @@
-<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" class='map' markers="{{markers}}"  bindregionchange="regionChange" controls='{{controls}}' bindcontroltap="controltap" show-location>
-<cover-image class='position-ab' src='/img/person-position.png' ></cover-image>
+<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" class='map' markers="{{markers}}" bindregionchange="regionChange" controls='{{controls}}' bindcontroltap="controltap" show-location>
+  <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
 </map>
 
 <form bindsubmit="formSubmit">
@@ -16,18 +16,24 @@
       </view>
     </view>
 
-    <view class="weui-cell weui-cell_input weui-cell_vcode">
-      <view class="weui-cell__hd" style='height:95rpx;line-height:95rpx;'>
-        <view class="weui-label">问题描述</view>
+    <view class="weui-cells weui-cells_after-title des">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" placeholder="请稍微具体描述您遇到的问题" style="height: 3.3em;" name="pro_des" />
+          
+        </view>
       </view>
     </view>
 
-    <view class="weui-cells weui-cells_after-title des">
-      <view class="weui-cell ">
-        <view class="weui-cell__bd ">
-          <textarea class="weui-textarea" placeholder="请稍微具体描述您遇到的问题" style="height: 3.3em;" />
-          <view class="weui-textarea-counter">0/200</view>
-        </view>
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+      <view class="weui-cell__hd">
+        <view class="weui-label">验证码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input type='number' class="weui-input" placeholder="请输入图形验证码" bindblur='captchaBlur'/>
+      </view>
+      <view class="weui-cell__ft">
+        <image src="{{imageUrl}}" class='captcha' bindtap='freshCaptcha'></image>
       </view>
     </view>
 
@@ -42,24 +48,19 @@
         <button class="weui-vcode-btn get-capture" name="captcha" bindtap='getCaptcha' disabled='{{cap_btn_status}}' loading='{{cap_loading_status}}'>{{cap_btn_text}}</button>
       </view>
     </view>
-    
+
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
         <view class="weui-label">短信验证码</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
+        <input type='number' class="weui-input" disabled='{{sms_code_flag}}' placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
       </view>
     </view>
 
     <view class="weui-btn-area">
-      <button formType="submit" class='near-mt'>查看附近维修点</button>
-      <button formType="submit" class='search-help'>寻求帮助</button>
+      <button formType="submit" class='near-mt' data-id="near-mt">查看附近维修点</button>
+      <button formType="submit" class='search-help' data-id="search-help">寻求帮助</button>
     </view>
-
   </view>
 </form>
-<modal hidden="{{modalFlag}}" title="请输入验证码" confirm-text="提交" cancel-text="取消" bindcancel="model_cancel" bindconfirm="model_confirm">
-  <input type='text' placeholder="请输入验证码" class='captcha-input' type='number ' bindblur="captchaBlur" />
-  <image src="{{imageUrl}}" class='captcha ' bindtap='freshCaptcha '></image>
-</modal>

@@ -1,5 +1,10 @@
 .des {
   margin-left: 30rpx;
+  height:190rpx;
+}
+
+.weui-cell_input {
+  height: 95rpx;
 }
 
 .des::after {
@@ -7,10 +12,9 @@
 }
 
 .captcha {
-  width: 420rpx;
-  height: 120rpx;
+  width: 200rpx;
+  height: 75rpx;
   margin-top: 10rpx;
-  margin-left: 10%;
 }
 
 .captcha-input {
@@ -57,4 +61,13 @@
   left:46%;
   width:60rpx;
   height:60rpx;
+}
+.modal-cap{
+  z-index:99999;
+  position:relative;
+  top:200px;
+}
+
+.get-capture{
+  height:95rpx;
 }
