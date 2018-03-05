@@ -5,3 +5,43 @@
 .des::after {
   border: none;
 }
+
+.captcha {
+  width: 420rpx;
+  height: 120rpx;
+  margin-top: 10rpx;
+  margin-left: 10%;
+}
+
+.captcha-input {
+  width: 80%;
+  height: 80rpx;
+  border: 4rpx solid #eee;
+  margin-left: 10%;
+  border-radius: 10rpx;
+  font-size: 34rpx;
+}
+
+.weui-btn-area {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  padding:0;
+  margin:0;
+}
+
+.near-mt {
+  width: 50%;
+  display: inline-block;
+  background: #3367d6;
+  color: white;
+  border-radius: 0;
+}
+
+.search-help {
+  width: 50%;
+  display: inline-block;
+  background: #F05B47;
+  color: white;
+  border-radius: 0;
+}

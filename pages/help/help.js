@@ -1,5 +1,5 @@
+const app = getApp()
 Page({
-
   data: {
     problem:[
       "爆胎",
@@ -11,7 +11,12 @@ Page({
       "骑行费力，速度慢",
       "其他",
     ],
-    problem_index:0
+    problem_index:0,
+    cap_btn_text:"获取验证码",
+    cap_loading_status:false,
+    cap_btn_status:false,
+    modalFlag:true,
+    imageUrl: app.globalData.host + "/api/member/captcha",
   },
 
   onLoad: function (options) {
@@ -21,5 +26,63 @@ Page({
     this.setData({
       problem_index: e.detail.value
     })
-  }
+  },
+  getCaptcha: function (e) {
+    this.setData({
+      modalFlag: false,
+      imageUrl: this.data.imageUrl + "?_t=" + new Date().getTime() + "&token=" + wx.getStorageSync("member").token
+    });
+  },
+  captchaBlur: function (e) {
+    this.data.captcha = e.detail.value;
+  },
+  freshCaptcha: function (e) {
+    this.setData({
+      imageUrl: this.data.imageUrl + "?token=" + wx.getStorageSync("member").token + "&_t=" + new Date().getTime()
+    });
+  },
+  model_confirm: function (e) {
+    var that = this;
+    wx.showLoading({
+      title: '请稍后...',
+    })
+    wx.request({
+      url: app.globalData.host + '/api/member/verifyCaptcha?captcha=' + this.data.captcha,
+      header: {
+        'content-type': "application/x-www-form-urlencoded",
+        'token': wx.getStorageSync("member").token
+      },
+      method: "GET",
+      success: function (res) {
+        if (res.data.status == true) {
+          //请求短信接口
+          that.setData({
+            cap_btn_status: true,
+            modalFlag: true,
+            cap_loading_status: true
+          });
+          var i = 0;
+          var timer = setInterval(function () {
+            that.setData({
+              cap_btn_text: (59 - i) + "秒"
+            });
+            i++;
+            if (i == 60) {
+              clearInterval(timer);
+              that.setData({
+                cap_btn_status: false,
+                cap_btn_text: "获取验证码",
+                cap_loading_status: false
+              });
+            }
+          }, 1000);
+        }
+        wx.hideLoading();
+      },
+      fail: function (res) {
+        wx.hideLoading();
+      }
+    })
+  },
+
 })
