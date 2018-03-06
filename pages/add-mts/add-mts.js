@@ -1,17 +1,6 @@
 const app = getApp()
 Page({
   data: {
-    problem: [
-      "爆胎",
-      "漏气",
-      "电机不转",
-      "断电",
-      "无法启动",
-      "莫名异响",
-      "骑行费力，速度慢",
-      "其他",
-    ],
-    problem_index: 0,
     cap_btn_text: "获取验证码",
     cap_loading_status: false,
     cap_btn_status: false,
@@ -20,7 +9,8 @@ Page({
     longitude: "",
     mapCtx: "",
     captcha: "",
-    noNeedCaptcha:false
+    noNeedCaptcha: false,
+    img:[]
   },
 
   onLoad: function (options) {
@@ -57,17 +47,13 @@ Page({
     })
     this.data.mapCtx = wx.createMapContext("map", this);
   },
-  problemChange: function (e) {
-    this.setData({
-      problem_index: e.detail.value
-    })
-  },
+
   getCaptcha: function (e) {
     var that = this;
     wx.showLoading({
       title: '请稍后...',
     })
-    if (!that.data.noNeedCaptcha){
+    if (!that.data.noNeedCaptcha) {
       wx.request({
         url: app.globalData.host + '/api/member/verifyCaptcha?captcha=' + that.data.captcha,
         header: {
@@ -97,7 +83,7 @@ Page({
           wx.hideLoading();
         }
       })
-    }else{
+    } else {
       sendCaptcha(that);
     }
   },
@@ -107,20 +93,11 @@ Page({
       imageUrl: this.data.imageUrl + "?token=" + wx.getStorageSync("member").token + "&_t=" + new Date().getTime()
     });
   },
-  captchaBlur:function(e){
+  captchaBlur: function (e) {
     console.log(e.detail.value);
     this.data.captcha = e.detail.value;
   },
 
-  regionChange: function (e) {
-    var that = this;
-    that.data.mapCtx.getCenterLocation({
-      success: function (res) {
-        that.data.longitude = res.longitude;
-        that.data.latitude = res.latitude;
-      }
-    });
-  },
   controltap: function (e) {
     //重新定位
     var that = this;
@@ -131,6 +108,44 @@ Page({
         that.data.longitude = e.longitude;
       }
     })
+  },
+
+  chooseImage: function (e) {
+    var that = this;
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+      success: function (res) {
+        console.log(res)
+        if (res.tempFiles[0].size >= 5 * 1024 * 1024) {
+          wx.showModal({
+            title: ' 提示',
+            content: '上传图片大小不得超过5M',
+          })
+          return;
+        }
+        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+        that.data.img.concat(res.tempFilePaths[0]);
+        that.setData({
+          img: that.data.img.concat(res.tempFilePaths[0])
+        });
+      }
+    })
+  },
+
+  previewImage: function (e) {
+    wx.previewImage({
+      current: e.currentTarget.id, // 当前显示图片的http链接
+      urls: this.data.img // 需要预览的图片http链接列表
+    })
+  },
+
+  delImg: function (e) {
+    var index = e.currentTarget.id;
+    this.data.img.splice(index, 1);
+    this.setData({
+      img: this.data.img
+    });
   },
 
   formSubmit: function (e) {
@@ -148,7 +163,7 @@ Page({
   }
 })
 
-function sendCaptcha(that){
+function sendCaptcha(that) {
   that.setData({
     cap_btn_status: true,
     cap_loading_status: true,

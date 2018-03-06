@@ -54,7 +54,7 @@
         <view class="weui-label">短信验证码</view>
       </view>
       <view class="weui-cell__bd">
-        <input type='number' class="weui-input" disabled='{{sms_code_flag}}' placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
+        <input type='number' class="weui-input" placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
       </view>
     </view>
 
