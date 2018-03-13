@@ -39,7 +39,7 @@
     <view class="weui-cell__bd">
       <view class="weui-uploader">
         <view class="weui-uploader__hd">
-          <view class="weui-uploader__title">上传任务书</view>
+          <view class="weui-uploader__title">上传店铺照片</view>
           <view class="weui-uploader__info">{{img.length}}/3</view>
         </view>
         <view class="weui-uploader__bd">

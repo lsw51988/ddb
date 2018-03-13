@@ -1,10 +1,12 @@
 {
   "pages": [
+    "pages/socket/socket",
    "pages/add-mts/add-mts",
     "pages/help/help",
     "pages/index/index",
     "pages/member_detail/member_detail",
     "pages/member/member",
+   
     
     "pages/logs/logs"
   ],
