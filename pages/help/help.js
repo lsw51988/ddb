@@ -22,7 +22,6 @@ Page({
     captcha: "",
     noNeedCaptcha:false
   },
-
   onLoad: function (options) {
     var that = this;
     wx.getSystemInfo({

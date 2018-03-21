@@ -1,11 +1,11 @@
 {
   "pages": [
-   "pages/add-mts/add-mts",
-    "pages/help/help",
     "pages/index/index",
-    "pages/member_detail/member_detail",
-    "pages/member/member",
+    "pages/help/help",
     
+    "pages/member/member",
+    "pages/add-mts/add-mts",
+    "pages/member_detail/member_detail",
     "pages/logs/logs"
   ],
   "window": {

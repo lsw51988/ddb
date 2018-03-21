@@ -1,9 +1,9 @@
 //app.js
 
 App({
-  onLaunch: function () {
+  onLaunch: function (res) {
     // 展示本地存储能力
-    var logs = wx.getStorageSync('logs') || []
+    /*var logs = wx.getStorageSync('logs') || []
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
@@ -32,7 +32,8 @@ App({
           })
         }
       }
-    })
+    })*/
+    console.log(res);
   },
   globalData: {
     userInfo: null,

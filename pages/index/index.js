@@ -7,6 +7,28 @@ Page({
     longitude: "",
     latitude: ""
   },
+  onShareAppMessage: function (res) {
+    if (res.from === 'button') {
+      // 来自页面内转发按钮
+      console.log(res.target)
+    }
+    return {
+      title: '电动帮',
+      path: '/pages/index/index',
+      success: function (res) {
+        wx.showModal({
+          title: '提示',
+          content: '转发成功',
+        })
+      },
+      fail: function (res) {
+        wx.showModal({
+          title: '提示',
+          content: '转发失败',
+        })
+      }
+    }
+  },
   onLoad: function () {
     var that = this;
     var marker = {}

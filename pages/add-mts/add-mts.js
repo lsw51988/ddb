@@ -88,6 +88,16 @@ Page({
     }
   },
 
+  regionChange:function(e){
+    var that = this;
+    that.data.mapCtx.getCenterLocation({
+      success: function (res) {
+        that.data.longitude = res.longitude;
+        that.data.latitude = res.latitude;
+      }
+    });
+  },
+
   freshCaptcha: function (e) {
     this.setData({
       imageUrl: this.data.imageUrl + "?token=" + wx.getStorageSync("member").token + "&_t=" + new Date().getTime()
