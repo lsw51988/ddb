@@ -1,8 +1,8 @@
 {
   "pages": [
     "pages/index/index",
+    "pages/socket/socket",
     "pages/help/help",
-    
     "pages/member/member",
     "pages/add-mts/add-mts",
     "pages/member_detail/member_detail",
