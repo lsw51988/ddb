@@ -13,7 +13,7 @@ Page({
     img:[]
   },
 
-  onLoad: function (options) {
+  onLoad: function () {
     var that = this;
     wx.getSystemInfo({
       success: function (res) {

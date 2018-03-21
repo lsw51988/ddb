@@ -1,10 +1,14 @@
 {
   "pages": [
+    
+    "pages/near-mts/near-mts",
+    
     "pages/index/index",
+    "pages/add-mts/add-mts",
     "pages/socket/socket",
     "pages/help/help",
     "pages/member/member",
-    "pages/add-mts/add-mts",
+    
     "pages/member_detail/member_detail",
     "pages/logs/logs"
   ],

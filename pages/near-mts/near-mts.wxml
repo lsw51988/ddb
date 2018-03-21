@@ -1,0 +1,10 @@
+<map id="near_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" class='map' markers="{{markers}}" controls='{{controls}}' bindcontroltap="controltap">
+  <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
+</map>
+<scroll-view scroll-y class='mts'>
+  <view class='item'></view>
+  <view class='item'></view>
+  <view class='item'></view>
+  <view class='item'></view>
+  <view class='item'></view>
+</scroll-view>

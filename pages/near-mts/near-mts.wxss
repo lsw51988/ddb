@@ -1,0 +1,23 @@
+.position-ab {
+  position: absolute;
+  top: 40%;
+  left: 46%;
+  width: 60rpx;
+  height: 60rpx;
+}
+.map {
+  width: 100%;
+  height: 42vh;
+}
+.mts{
+  width: 100%;
+  height: 58vh;
+  background:red;
+}
+.item{
+  width:100%;
+  height:200rpx;
+  background:green;
+  border:1px solid #eee;
+  margin-bottom:10rpx;
+}
