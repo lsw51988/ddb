@@ -1,9 +1,10 @@
-//附近维修点
+// 相应帮助页面
 Page({
   data: {
     mapCtx: "",
     longitude: "",
-    latitude: ""
+    latitude: "",
+    active:0
   },
 
   onLoad: function (options) {
@@ -67,4 +68,7 @@ Page({
     var that = this;
     console.log(e)
   },
+  changetab:function(opt){
+    this.setData({ "active": opt.target.dataset.active});
+  }
 })

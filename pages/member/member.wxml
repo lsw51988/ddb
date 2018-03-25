@@ -1,23 +1,30 @@
 <view class='avatar-area'>
-  <view wx:if="{{member.gender}}">
-    <image src='/img/avatar-man.png' class='avatar'></image>
-  </view>
-  <view wx:else>
-    <image src='/img/avatar-woman.png' class='avatar'></image>
-  </view>
+  <image src="{{member.avatarUrl}}" class='avatar'>
+  </image>
   <view class='nick-name'>{{member.nickName}}</view>
 </view>
-<view class='items-area'>
-  <view class='item'>
-    <view class='item-title'>帮商城</view>
-    <image src="/img/arrow.png" class='arrow'></image>
+<view class='detail'>
+  <view class='wx-pub'>
+    <image src='{{imgUrl}}' id="{{imgUrl}}" class='qr-code' bindtap='previewImage'></image>
+    <view class='follow'>关注微信公众号：电动帮</view>
   </view>
-  <view class='item'>
-    <view class='item-title'>我的信息</view>
-    <image src="/img/arrow.png" class='arrow'></image>
-  </view>
-  <view class='item'>
-    <view class='item-title'>账户记录</view>
-    <image src="/img/arrow.png" class='arrow'></image>
+  <view class='member'>
+    <view class='line'>
+      <label>积分：</label>
+      <view>100分</view>
+    </view>
+     <view class='line'>
+      <label>会员等级：</label>
+      <view>铜牌会员</view>
+    </view>
+    <view class='line'>
+      <label>交易记录：</label>
+      <view>2次</view>
+    </view>
+    <view class='line'>
+      <label>求助记录：</label>
+      <view>2次</view>
+    </view> 
+
   </view>
 </view>

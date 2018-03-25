@@ -4,11 +4,11 @@
 }
 .bottom-bar {
   position: fixed;
-  width: 80%;
+  width: 30%;
   text-align: center;
   height: 80px;
   bottom: 20px;
-  margin-left: 10%;
+  margin-left: 35%;
 }
 
 .help {

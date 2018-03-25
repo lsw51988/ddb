@@ -33,10 +33,9 @@ App({
         }
       }
     })*/
-    console.log(res);
   },
   globalData: {
     userInfo: null,
-    host:"http://local.ddb.com"
+    host:"https://www.ebikea.com"
   }
 })

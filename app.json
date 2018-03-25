@@ -1,16 +1,14 @@
 {
   "pages": [
-    
-    "pages/near-mts/near-mts",
-    
+    "pages/member/member",
     "pages/index/index",
+    "pages/ans-help/ans-help",
+    "pages/pay-help/pay-help",
+    "pages/near-mts/near-mts",
     "pages/add-mts/add-mts",
     "pages/socket/socket",
     "pages/help/help",
-    "pages/member/member",
-    
-    "pages/member_detail/member_detail",
-    "pages/logs/logs"
+    "pages/member_detail/member_detail"
   ],
   "window": {
     "backgroundTextStyle": "light",

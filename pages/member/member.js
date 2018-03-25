@@ -1,3 +1,4 @@
+const app = getApp();
 Page({
   data: {
 
@@ -35,7 +36,15 @@ Page({
       withShareTicket: true
     })
     that.setData({
-      'member': wx.getStorageSync("member")
+      'member': wx.getStorageSync('member'),
+      'imgUrl': app.globalData.host +"/api/member/qr_code"
     });
+  },
+  previewImage:function(e){
+    console.log(e);
+    wx.previewImage({
+      current: "https://www.ebikea.com/api/member/qr_code", // 当前显示图片的http链接
+      urls: ["https://www.ebikea.com/api/member/qr_code"] // 需要预览的图片http链接列表
+    })
   }
 })

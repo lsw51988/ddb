@@ -60,9 +60,9 @@ Page({
             },
             {
               id: 3,
-              iconPath: '/img/re-position.png',
+              iconPath: '/img/home.png',
               position: {
-                left: 60,
+                left: 50,
                 top: res.windowHeight - 70,
                 width: 40,
                 height: 40
@@ -120,7 +120,10 @@ Page({
         })
       }
     })
+
+    wx.setStorageSync("test", "ceshi");
   },
+
   help: function () {
     wx.navigateTo({
       url: '../member/member',
@@ -128,7 +131,18 @@ Page({
   },
   controltap: function (e) {
     switch (e.controlId) {
-      case 0:
+      case 1:
+
+        break;
+      case 2:
+
+        break;
+      case 3:
+        wx.navigateTo({
+          url: '../member/member',
+        })
+        break;
+      case 4:
 
         break;
     }
@@ -142,18 +156,14 @@ function login() {
         success: function (userRes) {
           userRes.userInfo.js_code = js_code;
           wx.request({
-            url: app.globalData.host+'/api/member/login',
+            url: app.globalData.host + '/api/member/login',
             header: {
               'content-type': "application/x-www-form-urlencoded",
             },
             method: "POST",
             data: userRes.userInfo,
             success: function (res) {
-              wx.clearStorageSync('member');
-              wx.setStorage({
-                key: 'member',
-                data: res.data.data,
-              })
+              wx.setStorageSync('member', res.data.data);
             }
           })
         },
@@ -170,18 +180,14 @@ function login() {
                     wx.getUserInfo({
                       success: function (userRes) {
                         wx.request({
-                          url: app.globalData.host+'/api/member/login',
+                          url: app.globalData.host + '/api/member/login',
                           header: {
                             'content-type': "application/x-www-form-urlencoded",
                           },
                           method: "POST",
                           data: userRes.userInfo,
                           success: function (res) {
-                            wx.clearStorageSync('member');
-                            wx.setStorage({
-                              key: 'member',
-                              data: res.data.data,
-                            })
+                            wx.setStorageSync('member', res.data.data);
                           }
                         })
                       },

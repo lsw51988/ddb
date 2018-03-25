@@ -1,0 +1,83 @@
+.position-ab {
+  position: absolute;
+  top: 40%;
+  left: 46%;
+  width: 60rpx;
+  height: 60rpx;
+}
+
+.map {
+  width: 100%;
+  height: 42vh;
+}
+
+.content {
+  width: 100%;
+  height: 58vh;
+}
+
+.intro {
+  width: 100%;
+  height: 16vh;
+  padding: 20rpx;
+  background: #eee;
+}
+
+.title {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+
+.items {
+  font-size: 24rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  width: 96%;
+}
+
+.score {
+  width: 100%;
+  height: 80rpx;
+  line-height: 80rpx;
+  margin-left: 60rpx;
+  margin-top: 30rpx;
+  padding: 0;
+}
+
+.score label {
+  display: inline-block;
+  font-size: 28rpx;
+  width: 170rpx;
+}
+
+.score_input {
+  display: inline-block;
+  border: 4rpx solid black;
+  text-align: center;
+  width: 120rpx;
+  height: 60rpx;
+}
+
+.points {
+  font-size: 28rpx;
+  display: inline-block;
+  padding-left: 20rpx;
+}
+
+.hint {
+  font-size: 24rpx;
+  display: inline-block;
+  padding-left: 80rpx;
+}
+.cost-hint{
+  margin:20rpx 0 0 60rpx;
+  font-size: 28rpx;
+}
+.submit{
+  position: absolute;
+  width:100%;
+  bottom:0;
+  background: #3367d6;
+  color:white;
+  border-radius: 0;
+}

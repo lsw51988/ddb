@@ -2,9 +2,41 @@
   <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
 </map>
 <scroll-view scroll-y class='mts'>
-  <view class='item'></view>
-  <view class='item'></view>
-  <view class='item'></view>
-  <view class='item'></view>
-  <view class='item'></view>
+  <view class='title'>选择附近的维修点</view>
+
+  <view class='item'>
+    <view class='line'>
+      <view class='line-item-1'>名称: 小李电动车维修</view>
+      <view class='line-item-2'>评分: 4.5/5</view>
+    </view>
+    <view class='line'>
+      <view class='line-item-1'>地址: 洪武北路131号</view>
+      <view class='line-item-2'>距离: 约400米</view>
+    </view>
+    <view class='btn'>去这</view>
+  </view>
+
+  <view class='item'>
+    <view class='line'>
+      <view class='line-item-1'>名称: 小李电动车维修</view>
+      <view class='line-item-2'>评分: 4.5/5</view>
+    </view>
+    <view class='line'>
+      <view class='line-item-1'>地址: 洪武北路131号</view>
+      <view class='line-item-2'>距离: 约400米</view>
+    </view>
+    <view class='btn'>去这</view>
+  </view>
+
+  <view class='item'>
+    <view class='line'>
+      <view class='line-item-1'>名称: 小李电动车维修</view>
+      <view class='line-item-2'>评分: 4.5/5</view>
+    </view>
+    <view class='line'>
+      <view class='line-item-1'>地址: 洪武北路131号</view>
+      <view class='line-item-2'>距离: 约400米</view>
+    </view>
+    <view class='btn'>去这</view>
+  </view>
 </scroll-view>

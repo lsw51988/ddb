@@ -1,4 +1,4 @@
-//附近维修点
+//拖车帮助请求
 Page({
   data: {
     mapCtx: "",
@@ -67,4 +67,5 @@ Page({
     var that = this;
     console.log(e)
   },
+
 })

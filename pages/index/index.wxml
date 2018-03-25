@@ -1,4 +1,4 @@
-<map id="map" longitude="{{longitude}}" latitude="{{latitude}}" show-location markers="{{markers}}" circles="{{circles}}" scale="15" class='map' controls="{{controls}}"  bindcontroltap="controltap">
+<map id="index-map" longitude="{{longitude}}" latitude="{{latitude}}" show-location markers="{{markers}}" circles="{{circles}}" scale="15" class='map' controls="{{controls}}"  bindcontroltap="controltap">
   <cover-view class="bottom-bar">
     <cover-view class='help' bindtap='help'>请求帮助</cover-view>
   </cover-view>
