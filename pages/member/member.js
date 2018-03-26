@@ -43,8 +43,8 @@ Page({
   previewImage:function(e){
     console.log(e);
     wx.previewImage({
-      current: "https://www.ebikea.com/api/member/qr_code", // 当前显示图片的http链接
-      urls: ["https://www.ebikea.com/api/member/qr_code"] // 需要预览的图片http链接列表
+      current: "https://www.ebikea.com/api/member/qr_code?_t=" + Date.parse(new Date()), // 当前显示图片的http链接
+      urls: ["https://www.ebikea.com/api/member/qr_code?_t=" + Date.parse(new Date())] // 需要预览的图片http链接列表
     })
   }
 })

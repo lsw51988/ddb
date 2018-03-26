@@ -22,7 +22,7 @@ page {
 
 .detail {
   width: 100%;
-  height: 25%;
+  height: 25vh;
   background: #eee;
 }
 
@@ -73,4 +73,20 @@ page {
   width:50%;
   display:inline-blcok;
   float:right;
+}
+.nine-blocks{
+  height:600rpx;
+  width:100%;
+  position:absolute;
+  bottom: 14rpx;
+}
+.block-item{
+  width:246rpx;
+  height:200rpx;
+  border:1px solid black;
+  display:inline-block;
+  float:left;
+  text-align:center;
+  font-size:28rpx;
+  line-height:200rpx;
 }

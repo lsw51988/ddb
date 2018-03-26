@@ -13,7 +13,7 @@
       <label>积分：</label>
       <view>100分</view>
     </view>
-     <view class='line'>
+    <view class='line'>
       <label>会员等级：</label>
       <view>铜牌会员</view>
     </view>
@@ -24,7 +24,19 @@
     <view class='line'>
       <label>求助记录：</label>
       <view>2次</view>
-    </view> 
-
+    </view>
   </view>
+</view>
+<view class='nine-blocks'>
+  <view class='block-item'>我的资料</view>
+  <view class='block-item'>我的商城</view>
+  <view class='block-item'>我的保险</view>
+
+  <view class='block-item'>我的建议</view>
+  <view class='block-item'>二手车市</view>
+  <view class='block-item'>用户使用须知</view>
+
+  <view class='block-item'>关于电动帮</view>
+  <view class='block-item'>推荐有奖</view>
+  <view class='block-item'>我的记录</view>
 </view>
