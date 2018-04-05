@@ -69,15 +69,17 @@
   display: inline-block;
   padding-left: 80rpx;
 }
-.cost-hint{
-  margin:20rpx 0 0 60rpx;
+
+.cost-hint {
+  margin: 20rpx 0 0 60rpx;
   font-size: 28rpx;
 }
-.submit{
+
+.submit {
   position: absolute;
-  width:100%;
-  bottom:0;
+  width: 100%;
+  bottom: 0;
   background: #3367d6;
-  color:white;
+  color: white;
   border-radius: 0;
 }

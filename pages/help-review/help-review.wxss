@@ -1,0 +1,47 @@
+.title {
+  font-size: 30rpx;
+  height: 40rpx;
+  line-height: 40rpx;
+  text-indent: 20rpx;
+}
+
+.list {
+  font-size: 30rpx;
+  padding-left: 20rpx;
+}
+
+radio-group {
+  width: 100%;
+  padding-left:70rpx;
+}
+
+radio {
+  width: 50%;
+}
+
+.item{
+  margin-top:20rpx;
+}
+.i-title{
+  padding-left:30rpx;
+}
+input{
+  display: inline-block;
+  width:120rpx;
+  height:60rpx;
+  border:1px solid black;
+  margin:0 10rpx;
+}
+textarea{
+  border:2rpx solid #d1d1d1;
+  width:80%;
+  margin:10rpx 0 0 70rpx;
+}
+.submit {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  background: #3367d6;
+  color: white;
+  border-radius: 0;
+}

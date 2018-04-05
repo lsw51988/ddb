@@ -1,0 +1,14 @@
+.submit {
+  color: white;
+  width: 100%;
+  background: #3367d6;
+  border-radius: 0;
+}
+
+.hint {
+  text-indent: 50rpx;
+  font-size: 24rpx;
+  line-height: 40rpx;
+  padding: 20rpx 20rpx;
+  color: #2ba245;
+}

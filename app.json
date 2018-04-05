@@ -1,5 +1,14 @@
 {
   "pages": [
+    "pages/help-review/help-review",
+    "pages/about/about",
+    "pages/shb-list/shb-list",
+    "pages/shb-detail/shb-detail",
+    "pages/shb-sell/shb-sell",
+    "pages/shb-index/shb-index",
+    "pages/recommend/recommend",
+    "pages/suggestion/suggestion",
+    "pages/member_detail/member_detail",
     "pages/member/member",
     "pages/index/index",
     "pages/ans-help/ans-help",
@@ -7,8 +16,7 @@
     "pages/near-mts/near-mts",
     "pages/add-mts/add-mts",
     "pages/socket/socket",
-    "pages/help/help",
-    "pages/member_detail/member_detail"
+    "pages/help/help"
   ],
   "window": {
     "backgroundTextStyle": "light",

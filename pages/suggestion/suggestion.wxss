@@ -1,0 +1,26 @@
+.title {
+  font-size: 30rpx;
+  padding: 5px 10px;
+}
+
+.s_type {
+  margin-top: 30rpx;
+  padding: 0 60rpx;
+}
+
+.s_type checkbox {
+  margin-left: 20rpx;
+}
+
+.s_type textarea {
+  border: 1px solid #d1d1d1;
+  border-radius: 10rpx;
+}
+button{
+  position: absolute;
+  width:100%;
+  bottom:0;
+  background: #3367d6;
+  color:white;
+  border-radius: 0;
+}

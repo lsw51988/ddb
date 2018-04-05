@@ -1,0 +1,24 @@
+.title {
+  text-align: center;
+  font-size: 30rpx;
+  padding: 5px 10px;
+}
+
+.area {
+  width: 100%;
+  text-align: center;
+  height: 400rpx;
+  line-height: 400rpx;
+  margin-top: 200rpx;
+}
+
+button {
+  width: 200rpx;
+  height: 120rpx;
+  line-height: 120rpx;
+  display: inline-block;
+}
+
+.sell {
+  margin-right: 40rpx;
+}
