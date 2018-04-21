@@ -1,64 +1,64 @@
 <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" class='map' markers="{{markers}}" bindregionchange="regionChange" controls='{{controls}}' bindcontroltap="controltap" show-location>
-  <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
+        <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
 </map>
 
 <form bindsubmit="formSubmit">
-  <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cells weui-cells_after-title">
 
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">店名</view>
-      </view>
-      <view class="weui-cell__bd">
-        <input class="weui-input" placeholder="请输入维修点名称" name="name" />
-      </view>
-    </view>
+                <view class="weui-cell weui-cell_input">
+                        <view class="weui-cell__hd">
+                                <view class="weui-label">店名</view>
+                        </view>
+                        <view class="weui-cell__bd">
+                                <input class="weui-input" placeholder="请输入维修点名称" name="name" />
+                        </view>
+                </view>
 
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">店铺电话</view>
-      </view>
-      <view class="weui-cell__bd">
-        <input class="weui-input" placeholder="请输入维修点电话" name="name" />
-      </view>
-    </view>
+                <view class="weui-cell weui-cell_input">
+                        <view class="weui-cell__hd">
+                                <view class="weui-label">店铺电话</view>
+                        </view>
+                        <view class="weui-cell__bd">
+                                <input class="weui-input" placeholder="请输入维修点电话" name="name" />
+                        </view>
+                </view>
 
-    <view class="weui-cell weui-cell_input weui-cell_vcode">
-      <view class="weui-cell__hd">
-        <view class="weui-label">验证码</view>
-      </view>
-      <view class="weui-cell__bd">
-        <input type='number' class="weui-input" placeholder="请输入图形验证码" bindblur='captchaBlur' />
-      </view>
-      <view class="weui-cell__ft">
-        <image src="{{imageUrl}}" class='captcha' bindtap='freshCaptcha'></image>
-      </view>
-    </view>
+                <view class="weui-cell weui-cell_input weui-cell_vcode">
+                        <view class="weui-cell__hd">
+                                <view class="weui-label">验证码</view>
+                        </view>
+                        <view class="weui-cell__bd">
+                                <input type='number' class="weui-input" placeholder="请输入图形验证码" bindblur='captchaBlur' />
+                        </view>
+                        <view class="weui-cell__ft">
+                                <image src="{{imageUrl}}" class='captcha' bindtap='freshCaptcha'></image>
+                        </view>
+                </view>
 
-     <view class="weui-cell">
-    <view class="weui-cell__bd">
-      <view class="weui-uploader">
-        <view class="weui-uploader__hd">
-          <view class="weui-uploader__title">上传店铺照片</view>
-          <view class="weui-uploader__info">{{img.length}}/3</view>
+                <view class="weui-cell">
+                        <view class="weui-cell__bd">
+                                <view class="weui-uploader">
+                                        <view class="weui-uploader__hd">
+                                                <view class="weui-uploader__title">上传店铺照片</view>
+                                                <view class="weui-uploader__info">{{img.length}}/3</view>
+                                        </view>
+                                        <view class="weui-uploader__bd">
+                                                <view class="weui-uploader__files">
+                                                        <block wx:for="{{img}}" wx:key="*this">
+                                                                <view class="weui-uploader__file">
+                                                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" bindtap="previewImage" id="{{item}}" />
+                                                                        <view href="#" style="padding-left:20px" bindtap="delImg" id="{{item}}">删除</view>
+                                                                </view>
+                                                        </block>
+                                                </view>
+                                                <view class="weui-uploader__input-box">
+                                                        <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                                                </view>
+                                        </view>
+                                </view>
+                        </view>
+                </view>
+
+                <button formType="submit" class='submit'>提交</button>
         </view>
-        <view class="weui-uploader__bd">
-          <view class="weui-uploader__files">
-            <block wx:for="{{img}}" wx:key="*this">
-              <view class="weui-uploader__file">
-                <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" bindtap="previewImage" id="{{item}}" />
-                <view href="#" style="padding-left:20px" bindtap="delImg" id="{{item}}">删除</view>
-              </view>
-            </block>
-          </view>
-          <view class="weui-uploader__input-box">
-            <view class="weui-uploader__input" bindtap="chooseImage"></view>
-          </view>
-        </view>
-      </view>
-    </view>
-  </view>
-
-    <button formType="submit" class='submit'>提交</button>
-  </view>
 </form>

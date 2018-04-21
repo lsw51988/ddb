@@ -37,7 +37,7 @@ Page({
     })
     that.setData({
       'member': wx.getStorageSync('member'),
-      'imgUrl': app.globalData.host +"/api/member/qr_code"
+      'imgUrl': app.globalData.host +"/wechat/qr_code"
     });
   },
   previewImage:function(e){

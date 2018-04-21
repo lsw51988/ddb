@@ -36,6 +36,6 @@ App({
   },
   globalData: {
     userInfo: null,
-    host:"https://www.ebikea.com"
+    host:"http://local.ddb.com"
   }
 })

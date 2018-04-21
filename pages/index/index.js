@@ -88,8 +88,9 @@ Page({
     wx.getLocation({
       type: "gcj02",
       success: function (res) {
+        console.log(res);
         locationData(res, that);
-        login();
+        login(res.latitude,res.longitude);
       },
       fail: function (res) {
         wx.showModal({
@@ -104,8 +105,9 @@ Page({
                   //重新获取地理位置权限
                   wx.getLocation({
                     success: function (res) {
+                      console.log(res);
                       locationData(res, that);
-                      login();
+                      login(res.latitude, res.longitude);
                     },
                   })
                 }
@@ -120,14 +122,25 @@ Page({
         })
       }
     })
-
-    wx.setStorageSync("test", "ceshi");
   },
 
   help: function () {
-    wx.navigateTo({
-      url: '../member/member',
-    })
+    console.log(wx.getStorageSync("member").auth_time);
+    if(wx.getStorageSync("member").auth_time == null){
+      wx.showModal({
+        title: '提示',
+        content: '您需要先认证',
+        success:function(){
+          wx.navigateTo({
+            url: '../member_detail/member_detail',
+          })
+        }
+      })
+    }else{
+      wx.navigateTo({
+        url: '../help/help',
+      })
+    }
   },
   controltap: function (e) {
     switch (e.controlId) {
@@ -148,21 +161,25 @@ Page({
     }
   }
 })
-function login() {
+
+function login(latitude, longitude) {
   wx.login({
     success: function (loginRes) {
       var js_code = loginRes.code;
       wx.getUserInfo({
         success: function (userRes) {
           userRes.userInfo.js_code = js_code;
+          userRes.userInfo.latitude = latitude;
+          userRes.userInfo.longitude = longitude;
           wx.request({
-            url: app.globalData.host + '/api/member/login',
+            url: app.globalData.host + '/wechat/index',
             header: {
-              'content-type': "application/x-www-form-urlencoded",
+              "Content-Type": "application/x-www-form-urlencoded",
             },
             method: "POST",
             data: userRes.userInfo,
             success: function (res) {
+              console.log(userRes);
               wx.setStorageSync('member', res.data.data);
             }
           })
@@ -179,10 +196,13 @@ function login() {
                   success: function () {
                     wx.getUserInfo({
                       success: function (userRes) {
+                        userRes.userInfo.js_code = js_code;
+                        userRes.userInfo.latitude = latitude;
+                        userRes.userInfo.longitude = longitude;
                         wx.request({
-                          url: app.globalData.host + '/api/member/login',
+                          url: app.globalData.host + '/wechat/index',
                           header: {
-                            'content-type': "application/x-www-form-urlencoded",
+                            "Content-Type": "application/x-www-form-urlencoded",
                           },
                           method: "POST",
                           data: userRes.userInfo,
