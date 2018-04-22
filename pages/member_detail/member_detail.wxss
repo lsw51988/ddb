@@ -1,58 +1,63 @@
 page {
-        width: 100%;
+    width: 100%;
 }
 
 .weui-cell_input {
-        height: 95rpx;
+    height: 95rpx;
 }
 
 .status_false {
-        display: inline-block;
-        background: #eee;
-        height: 60rpx;
-        width: 150rpx;
-        margin: 0 20rpx;
-        text-align: center;
-        line-height: 60rpx;
-        border-radius: 10rpx;
+    display: inline-block;
+    background: #eee;
+    height: 60rpx;
+    width: 150rpx;
+    margin: 0 20rpx;
+    text-align: center;
+    line-height: 60rpx;
+    border-radius: 10rpx;
 }
 
 .status_true {
-        display: inline-block;
-        background: #f05b47;
-        color: white;
-        height: 60rpx;
-        width: 150rpx;
-        margin: 0 20rpx;
-        text-align: center;
-        line-height: 60rpx;
-        border-radius: 10rpx;
+    display: inline-block;
+    background: #f05b47;
+    color: white;
+    height: 60rpx;
+    width: 150rpx;
+    margin: 0 20rpx;
+    text-align: center;
+    line-height: 60rpx;
+    border-radius: 10rpx;
 }
 
 .submit {
-        color: white;
-        width: 100%;
-        background: #3367d6;
-        border-radius: 0;
+    color: white;
+    width: 100%;
+    background: #3367d6;
+    border-radius: 0;
 }
 
 .captcha {
-        width: 420rpx;
-        height: 120rpx;
-        margin-top: 10rpx;
-        margin-left: 10%;
+    width: 420rpx;
+    height: 120rpx;
+    margin-top: 10rpx;
+    margin-left: 10%;
 }
 
 .captcha-input {
-        width: 80%;
-        height: 80rpx;
-        border: 4rpx solid #eee;
-        margin-left: 10%;
-        border-radius: 10rpx;
-        font-size: 34rpx;
+    width: 80%;
+    height: 80rpx;
+    border: 4rpx solid #eee;
+    margin-left: 10%;
+    border-radius: 10rpx;
+    font-size: 34rpx;
 }
 
 .get-capture::after {
-        border: none;
-        height: 90%;
+    border: none;
+    height: 90%;
+}
+
+.title_extend {
+    height: 50rpx;
+    line-height: 50rpx;
 }

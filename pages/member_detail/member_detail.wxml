@@ -1,125 +1,131 @@
 <form bindsubmit="formSubmit">
-        <view class="weui-cells weui-cells_after-title">
-                <view class="weui-cell weui-cell_input">
-                        <view class="weui-cell__hd">
-                                <view class="weui-label">姓名</view>
-                        </view>
-                        <view class="weui-cell__bd">
-                                <input class="weui-input" placeholder="请输入您的姓名" name="realName" />
-                        </view>
-                </view>
-                <view class="weui-cell weui-cell_input weui-cell_vcode">
-                        <view class="weui-cell__hd">
-                                <view class="weui-label">手机号</view>
-                        </view>
-                        <view class="weui-cell__bd">
-                                <input type='number' class="weui-input" placeholder="请输入手机号" name="mobile" bindblur='getMobile' />
-                        </view>
-                        <view class="weui-cell__ft">
-                                <button class="weui-vcode-btn get-capture" name="captcha" bindtap='getCaptcha' disabled='{{cap_btn_status}}' loading='{{cap_loading_status}}'>{{cap_btn_text}}</button>
-                        </view>
-                </view>
-                <view class="weui-cell weui-cell_input">
-                        <view class="weui-cell__hd">
-                                <view class="weui-label">短信验证码</view>
-                        </view>
-                        <view class="weui-cell__bd">
-                                <input class="weui-input" placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
-                        </view>
-                </view>
-                <view class="weui-cell weui-cell_input">
-                        <view class="weui-cell__hd">
-                                <view class="weui-label">购买时间</view>
-                        </view>
-                        <view class="weui-cell__bd">
-                                <picker mode="date" value="{{date}}" fields="month" start="2010-01" bindchange="buyTimeChange" name="buy_date">
-                                        <view class="weui-input">{{buy_date}}</view>
-                                </picker>
-                        </view>
-                </view>
-
-                <view class="weui-cell weui-cell_input weui-cell_vcode">
-                        <view class="weui-cell__hd">
-                                <view class="weui-label">电池容量</view>
-                        </view>
-                        <view class="weui-cell__bd">
-                                <picker mode="selector" range="{{voltage}}" value='{{voltage_index}}' bindchange="voltageChange" name="voltage">
-                                        <view class="weui-input">{{voltage[voltage_index]}}</view>
-                                </picker>
-                        </view>
-                </view>
-
-                <view class="weui-cell weui-cell_input weui-cell_vcode">
-                        <view class="weui-cell__hd">
-                                <view class="weui-label">品牌</view>
-                        </view>
-                        <view class="weui-cell__bd">
-                                <picker mode="selector" range="{{brand}}" value='{{brand_index}}' bindchange="brandChange" name="brand">
-                                        <view class="weui-input">{{brand[brand_index]}}</view>
-                                </picker>
-                        </view>
-                </view>
-
-                <view class="weui-cell weui-cell_input">
-                        <view class="weui-cell__hd">
-                                <view class="weui-label">价格</view>
-                        </view>
-                        <view class="weui-cell__bd">
-                                <input type='number' class="weui-input" placeholder="请输入购买时价格" name="price" />
-                        </view>
-                </view>
-
-                <view class="weui-cell weui-cell_input">
-                        <view class="weui-cell__hd">
-                                <view class="weui-label">购买时状态</view>
-                        </view>
-                        <view class="weui-cell__bd">
-                                <view class="status_{{buy_status==1}}" bindtap='tapNew'>全新</view>
-                                <view class="status_{{buy_status==2}}" bindtap='tapOld'>二手</view>
-                                <input style='display:none' name="buy_status" value="{{buy_status}}" />
-                        </view>
-                </view>
-
-                <view class="weui-cell weui-cell_input">
-                        <view class="weui-cell__hd">
-                                <view class="weui-label" style='width:400rpx'>电瓶最近更换时间</view>
-                        </view>
-                        <view class="weui-cell__bd">
-                                <picker mode="date" value="{{battery_change_date}}" fields="month" start="2010-01" bindchange="batteryChangeTime" name="battery_change_date">
-                                        <view class="weui-input">{{battery_change_date}}</view>
-                                </picker>
-                        </view>
-                </view>
-                 <view class="weui-cell">
-                        <view class="weui-cell__bd">
-                                <view class="weui-uploader">
-                                        <view class="weui-uploader__hd">
-                                                <view class="weui-uploader__title">上传店铺照片</view>
-                                                <view class="weui-uploader__info">{{img.length}}/3</view>
-                                        </view>
-                                        <view class="weui-uploader__bd">
-                                                <view class="weui-uploader__files">
-                                                        <block wx:for="{{img}}" wx:key="*this">
-                                                                <view class="weui-uploader__file">
-                                                                        <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" bindtap="previewImage" id="{{item}}" />
-                                                                        <view href="#" style="padding-left:20px" bindtap="delImg" id="{{item}}">删除</view>
-                                                                </view>
-                                                        </block>
-                                                </view>
-                                                <view class="weui-uploader__input-box">
-                                                        <view class="weui-uploader__input" bindtap="chooseImage"></view>
-                                                </view>
-                                        </view>
-                                </view>
-                        </view>
-                </view>
-                <view class="weui-cells__tips">温馨提示：请准确填写您的信息,照片清晰,以防万一您的电动车丢失作为寻找的根据.</view>
-                <button formType="submit" class='submit'>提交</button>
+    <view class="weui-cells__title title_extend">用户信息</view>
+    <view class="weui-cells weui-cells_after-title">
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">姓名</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入您的姓名" name="realName" />
+            </view>
         </view>
-        
-        
+        <view class="weui-cell weui-cell_input weui-cell_vcode">
+            <view class="weui-cell__hd">
+                <view class="weui-label">手机号</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input type='number' class="weui-input" placeholder="请输入手机号" name="mobile" bindblur='getMobile' />
+            </view>
+            <view class="weui-cell__ft">
+                <button class="weui-vcode-btn get-capture" name="captcha" bindtap='getCaptcha' disabled='{{cap_btn_status}}' loading='{{cap_loading_status}}'>{{cap_btn_text}}</button>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input" style='border-bottom:1px solid #D9D9D9;'>
+            <view class="weui-cell__hd">
+                <view class="weui-label">短信验证码</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
+            </view>
+        </view>
+        <view class="weui-cells__title title_extend">电动车信息</view>
+        <view class="weui-cell weui-cell_input weui-cell_vcode">
+            <view class="weui-cell__hd">
+                <view class="weui-label">品牌</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入品牌" name="brands" />
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">购买时间</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker mode="date" value="{{date}}" fields="month" start="2010-01" bindchange="buyTimeChange" name="buy_date">
+                    <view class="weui-input">{{buy_date}}</view>
+                </picker>
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input weui-cell_vcode">
+            <view class="weui-cell__hd">
+                <view class="weui-label">车牌号</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input class="weui-input" placeholder="请输入车牌号" name="number" />
+            </view>
+        </view>
+        <view class="weui-cell weui-cell_input weui-cell_vcode">
+            <view class="weui-cell__hd">
+                <view class="weui-label">电池容量</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker mode="selector" range="{{voltage}}" value='{{voltage_index}}' bindchange="voltageChange" name="voltage">
+                    <view class="weui-input">{{voltage[voltage_index]}}</view>
+                </picker>
+            </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">价格</view>
+            </view>
+            <view class="weui-cell__bd">
+                <input type='number' class="weui-input" placeholder="请输入购买时价格" name="price" />
+            </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label">购买时状态</view>
+            </view>
+            <view class="weui-cell__bd">
+                <view class="status_{{buy_status==1}}" bindtap='tapNew'>全新</view>
+                <view class="status_{{buy_status==2}}" bindtap='tapOld'>二手</view>
+                <input style='display:none' name="buy_status" value="{{buy_status}}" />
+            </view>
+        </view>
+
+        <view class="weui-cell weui-cell_input">
+            <view class="weui-cell__hd">
+                <view class="weui-label" style='width:400rpx'>电瓶最近更换时间</view>
+            </view>
+            <view class="weui-cell__bd">
+                <picker mode="date" value="{{battery_change_date}}" fields="month" start="2010-01" bindchange="batteryChangeTime" name="battery_change_date">
+                    <view class="weui-input">{{battery_change_date}}</view>
+                </picker>
+            </view>
+        </view>
+        <view class="weui-cell">
+            <view class="weui-cell__bd">
+                <view class="weui-uploader">
+                    <view class="weui-uploader__hd">
+                        <view class="weui-uploader__title">上传电车照片</view>
+                        <view class="weui-uploader__info">{{img.length}}/3</view>
+                    </view>
+                    <view class="weui-uploader__bd">
+                        <view class="weui-uploader__files">
+                            <block wx:for="{{img}}" wx:key="*this">
+                                <view class="weui-uploader__file">
+                                    <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" bindtap="previewImage" id="{{item}}" />
+                                    <view href="#" style="padding-left:20px" bindtap="delImg" id="{{item}}">删除</view>
+                                </view>
+                            </block>
+                        </view>
+                        <view class="weui-uploader__input-box">
+                            <view class="weui-uploader__input" bindtap="chooseImage"></view>
+                        </view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view class="weui-cells__tips">温馨提示：请准确填写您的信息,照片清晰,以防万一您的电动车丢失作为寻找的根据.</view>
+        <button formType="submit" class='submit'>提交</button>
+    </view>
+
+
 </form>
 <modal hidden="{{modalFlag}}" title="请输入验证码" confirm-text="提交" cancel-text="取消" bindcancel="model_cancel" bindconfirm="model_confirm">
-        <input type='text' placeholder="请输入验证码" class='captcha-input' type='number' bindblur="captchaBlur" />
-        <image src="{{imageUrl}}" class='captcha' bindtap='freshCaptcha'></image>
+    <input type='text' placeholder="请输入验证码" class='captcha-input' type='number' bindblur="captchaBlur" />
+    <image src="{{imageUrl}}" class='captcha' bindtap='freshCaptcha'></image>
 </modal>

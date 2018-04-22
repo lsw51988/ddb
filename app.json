@@ -1,5 +1,6 @@
 {
         "pages": [
+            
                 "pages/member_detail/member_detail",
                 "pages/index/index",
                 "pages/help-review/help-review",
@@ -10,7 +11,7 @@
                 "pages/shb-index/shb-index",
                 "pages/recommend/recommend",
                 "pages/suggestion/suggestion",
-                
+               
                 "pages/member/member",
                 "pages/ans-help/ans-help",
                 "pages/pay-help/pay-help",
