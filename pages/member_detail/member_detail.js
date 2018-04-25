@@ -2,28 +2,50 @@ const app = getApp()
 var util = require('../../utils/util.js')
 Page({
   data: {
-    voltage: ["48V", "60V", "72V","96V", "其他"],
-    brand: [
-      "爱玛", "雅迪", "绿源", "新日",
-      "台铃", "比德文", "新蕾", "小刀",
-      "绿能", "捷安特", "杰宝", "新大洲",
-      "安马达", "大阳", "超威"
-    ],
-    brand_index: 0,
+    voltage: ["48V", "60V", "72V", "96V", "其他"],
     voltage_index: 0,
     modalFlag: true,
-    imageUrl: app.globalData.host + "/member/captcha",
+    imageUrl: app.globalData.host + "/wechat/captcha",
     captcha: "",
     cap_btn_text: "获取验证码",
     cap_btn_status: false,
     cap_loading_status: false,
     mobile: "",
-    buy_status: 1,
+    status: 1,
     sms_code_flag: true
   },
 
   onLoad: function (options) {
-
+    var that = this;
+    wx.request({
+      url: app.globalData.host + '/wechat/homePage/memberData',
+      method: 'GET',
+      header: {
+        "content-type": "application/x-www-form-urlencoded",
+        "token": wx.getStorageSync("member").token
+      },
+      success: function (res) {
+        var data = res.data.data;
+        that.setData({
+          "memberData": data
+        });
+        console.log(data['real_name']);
+        that.data.real_name = data['real_name'];
+        that.setData({
+          "real_name": data['real_name']
+        })
+        that.data.mobile = data['mobile'];
+        that.data.brand_name = data['brand_name'];
+        that.data.buy_date = data['buy_date'];
+        that.data.number = data['number'];
+        that.data.voltage = data['voltage'];
+        that.data.price = data['price'];
+        that.data.status = data['status'];
+        that.data.last_change_time = data['last_change_time'];
+        console.log(that.data);
+      },
+      fail: function (res) { }
+    })
   },
 
   brandChange: function (e) {
@@ -61,19 +83,18 @@ Page({
     this.data.mobile = e.detail.value;
   },
   getCaptcha: function (e) {
-      var that = this;
-      if (!(/^1\d{10}$/.test(that.data.mobile))) {
-      wx.showModal({
-        title: '提示',
-        content: '请输入正确的手机号码',
-      });
-      return false;
-    }
+    var that = this;
+    // if (!(/^1\d{10}$/.test(that.data.mobile))) {
+    //   wx.showModal({
+    //     title: '提示',
+    //     content: '请输入正确的手机号码',
+    //   });
+    //   return false;
+    // }
     that.setData({
       modalFlag: false,
       imageUrl: that.data.imageUrl + "?_t=" + new Date().getTime() + "&token=" + wx.getStorageSync("member").token
     });
-    console.log(1111);
   },
 
   model_cancel: function (e) {
@@ -88,7 +109,7 @@ Page({
       title: '请稍后...',
     })
     wx.request({
-      url: app.globalData.host + '/api/member/verifyCaptcha?captcha=' + this.data.captcha,
+      url: app.globalData.host + '/wechat/verifyCaptcha?captcha=' + this.data.captcha,
       header: {
         'content-type': "application/x-www-form-urlencoded",
         'token': wx.getStorageSync("member").token

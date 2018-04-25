@@ -46,5 +46,10 @@ Page({
             current: "https://www.ebikea.com/api/member/qr_code?_t=" + Date.parse(new Date()), // 当前显示图片的http链接
             urls: ["https://www.ebikea.com/api/member/qr_code?_t=" + Date.parse(new Date())] // 需要预览的图片http链接列表
         })
+    },
+    memberMaterial:function(){
+      wx.navigateTo({
+        url: '../member_detail/member_detail',
+      })
     }
 })

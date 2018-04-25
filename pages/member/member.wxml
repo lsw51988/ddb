@@ -28,7 +28,7 @@
   </view>
 </view>
 <view class='nine-blocks'>
-  <view class='block-item'>我的资料</view>
+  <view class='block-item' bindtap='memberMaterial'>我的资料</view>
   <view class='block-item'>我的商城</view>
   <view class='block-item'>我的保险</view>
 
