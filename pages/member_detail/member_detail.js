@@ -1,63 +1,9 @@
 const app = getApp()
 var util = require('../../utils/util.js')
 Page({
-<<<<<<< HEAD
-  data: {
-    voltage: ["48V", "60V", "72V", "96V", "其他"],
-    voltage_index: 0,
-    modalFlag: true,
-    imageUrl: app.globalData.host + "/wechat/captcha",
-    captcha: "",
-    cap_btn_text: "获取验证码",
-    cap_btn_status: false,
-    cap_loading_status: false,
-    mobile: "",
-    status: 1,
-    sms_code_flag: true
-  },
 
-  onLoad: function (options) {
-    var that = this;
-    wx.request({
-      url: app.globalData.host + '/wechat/homePage/memberData',
-      method: 'GET',
-      header: {
-        "content-type": "application/x-www-form-urlencoded",
-        "token": wx.getStorageSync("member").token
-      },
-      success: function (res) {
-        var data = res.data.data;
-        that.setData({
-          "memberData": data
-        });
-        console.log(data['real_name']);
-        that.data.real_name = data['real_name'];
-        that.setData({
-          "real_name": data['real_name']
-        })
-        that.data.mobile = data['mobile'];
-        that.data.brand_name = data['brand_name'];
-        that.data.buy_date = data['buy_date'];
-        that.data.number = data['number'];
-        that.data.voltage = data['voltage'];
-        that.data.price = data['price'];
-        that.data.status = data['status'];
-        that.data.last_change_time = data['last_change_time'];
-        console.log(that.data);
-      },
-      fail: function (res) { }
-    })
-  },
-=======
     data: {
         voltage: ["48V", "60V", "72V", "96V", "其他"],
-        brand: [
-            "爱玛", "雅迪", "绿源", "新日",
-            "台铃", "比德文", "新蕾", "小刀",
-            "绿能", "捷安特", "杰宝", "新大洲",
-            "安马达", "大阳", "超威"
-        ],
-        brand_index: 0,
         voltage_index: 0,
         modalFlag: true,
         imageUrl: app.globalData.host + "/wechat/captcha",
@@ -66,14 +12,43 @@ Page({
         cap_btn_status: false,
         cap_loading_status: false,
         mobile: "",
-        buy_status: 1,
+        status: 1,
         sms_code_flag: true
     },
 
     onLoad: function (options) {
-
+        var that = this;
+        wx.request({
+            url: app.globalData.host + '/wechat/homePage/memberData',
+            method: 'GET',
+            header: {
+                "content-type": "application/x-www-form-urlencoded",
+                "token": wx.getStorageSync("member").token
+            },
+            success: function (res) {
+                var data = res.data.data;
+                that.setData({
+                    "memberData": data
+                });
+                console.log(data['real_name']);
+                that.data.real_name = data['real_name'];
+                that.setData({
+                    "real_name": data['real_name']
+                })
+                that.data.mobile = data['mobile'];
+                that.data.brand_name = data['brand_name'];
+                that.data.buy_date = data['buy_date'];
+                that.data.number = data['number'];
+                that.data.voltage = data['voltage'];
+                that.data.price = data['price'];
+                that.data.status = data['status'];
+                that.data.last_change_time = data['last_change_time'];
+                console.log(that.data);
+            },
+            fail: function (res) { }
+        })
     },
->>>>>>> fa07601aadcd8da4998240ecf1ad3c0336565ba5
+
 
     brandChange: function (e) {
         this.setData({
@@ -91,40 +66,6 @@ Page({
         })
     },
 
-<<<<<<< HEAD
-  batteryChangeTime: function (e) {
-    this.setData({
-      battery_change_date: e.detail.value
-    })
-  },
-  tapNew: function () {
-    this.setData({
-      buy_status: '1'
-    })
-  },
-  tapOld: function () {
-    this.setData({
-      buy_status: '2'
-    })
-  },
-  getMobile: function (e) {
-    this.data.mobile = e.detail.value;
-  },
-  getCaptcha: function (e) {
-    var that = this;
-    // if (!(/^1\d{10}$/.test(that.data.mobile))) {
-    //   wx.showModal({
-    //     title: '提示',
-    //     content: '请输入正确的手机号码',
-    //   });
-    //   return false;
-    // }
-    that.setData({
-      modalFlag: false,
-      imageUrl: that.data.imageUrl + "?_t=" + new Date().getTime() + "&token=" + wx.getStorageSync("member").token
-    });
-  },
-=======
     batteryChangeTime: function (e) {
         this.setData({
             battery_change_date: e.detail.value
@@ -145,19 +86,19 @@ Page({
     },
     getCaptcha: function (e) {
         var that = this;
-        if (!(/^1\d{10}$/.test(that.data.mobile))) {
-            wx.showModal({
-                title: '提示',
-                content: '请输入正确的手机号码',
-            });
-            return false;
-        }
+        // if (!(/^1\d{10}$/.test(that.data.mobile))) {
+        //   wx.showModal({
+        //     title: '提示',
+        //     content: '请输入正确的手机号码',
+        //   });
+        //   return false;
+        // }
         that.setData({
             modalFlag: false,
             imageUrl: that.data.imageUrl + "?_t=" + new Date().getTime() + "&token=" + wx.getStorageSync("member").token
         });
     },
->>>>>>> fa07601aadcd8da4998240ecf1ad3c0336565ba5
+
 
     model_cancel: function (e) {
         this.setData({
@@ -165,42 +106,6 @@ Page({
         });
     },
 
-<<<<<<< HEAD
-  model_confirm: function (e) {
-    var that = this;
-    wx.showLoading({
-      title: '请稍后...',
-    })
-    wx.request({
-      url: app.globalData.host + '/wechat/verifyCaptcha?captcha=' + this.data.captcha,
-      header: {
-        'content-type': "application/x-www-form-urlencoded",
-        'token': wx.getStorageSync("member").token
-      },
-      method: "GET",
-      success: function (res) {
-        if (res.data.status == true) {
-          //请求短信接口
-          that.setData({
-            cap_btn_status: true,
-            modalFlag: true,
-            cap_loading_status: true,
-            sms_code_flag: false
-          });
-          var i = 0;
-          var timer = setInterval(function () {
-            that.setData({
-              cap_btn_text: (59 - i) + "秒"
-            });
-            i++;
-            if (i == 60) {
-              clearInterval(timer);
-              that.setData({
-                cap_btn_status: false,
-                cap_btn_text: "获取验证码",
-                cap_loading_status: false
-              });
-=======
     model_confirm: function (e) {
         var that = this;
         wx.showLoading({
@@ -242,7 +147,6 @@ Page({
             },
             fail: function (res) {
                 wx.hideLoading();
->>>>>>> fa07601aadcd8da4998240ecf1ad3c0336565ba5
             }
         })
     },
