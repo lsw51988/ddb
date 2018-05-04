@@ -86,19 +86,18 @@ Page({
     },
     getCaptcha: function (e) {
         var that = this;
-        // if (!(/^1\d{10}$/.test(that.data.mobile))) {
-        //   wx.showModal({
-        //     title: '提示',
-        //     content: '请输入正确的手机号码',
-        //   });
-        //   return false;
-        // }
+        if (!(/^1\d{10}$/.test(that.data.mobile))) {
+            wx.showModal({
+                title: '提示',
+                content: '请输入正确的手机号码',
+            });
+            return false;
+        }
         that.setData({
             modalFlag: false,
             imageUrl: that.data.imageUrl + "?_t=" + new Date().getTime() + "&token=" + wx.getStorageSync("member").token
         });
     },
-
 
     model_cancel: function (e) {
         this.setData({
@@ -112,15 +111,44 @@ Page({
             title: '请稍后...',
         })
         wx.request({
-            url: app.globalData.host + '/wechat/verifyCaptcha?captcha=' + this.data.captcha,
+            url: app.globalData.host + '/wechat/verifyCaptcha',
             header: {
                 'content-type': "application/x-www-form-urlencoded",
                 'token': wx.getStorageSync("member").token
             },
-            method: "GET",
+            data: {
+                "captcha": that.data.captcha
+            },
+            method: "POST",
             success: function (res) {
                 if (res.data.status == true) {
                     //请求短信接口
+                    wx.request({
+                        url: app.globalData.host + '/wechat/member/smsCode',
+                        header: {
+                            'content-type': "application/x-www-form-urlencoded",
+                            'token': wx.getStorageSync("member").token
+                        },
+                        data: {
+                            "mobile": that.data.mobile
+                        },
+                        method: "POST",
+                        success: function (res) {
+                            if (res.data.status == true) {
+                                wx.showModal({
+                                    title: '提示',
+                                    content: '短信发送成功',
+                                })
+                            }
+                        },
+                        fail: function (res) {
+                            wx.showModal({
+                                title: '提示',
+                                content: '短信发送失败',
+                            })
+                        }
+                    })
+
                     that.setData({
                         cap_btn_status: true,
                         modalFlag: true,
