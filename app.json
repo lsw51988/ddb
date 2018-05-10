@@ -1,8 +1,10 @@
 {
   "pages": [
-    "pages/member/member",
-    "pages/index/index",
+   
     "pages/member_detail/member_detail",
+    "pages/member/member",
+"pages/index/index",
+ 
     "pages/help-review/help-review",
     "pages/about/about",
     "pages/shb-list/shb-list",

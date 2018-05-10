@@ -1,7 +1,5 @@
 const app = getApp()
-var util = require('../../utils/util.js')
 Page({
-
     data: {
         voltage: ["48V", "60V", "72V", "96V", "其他"],
         voltage_index: 0,
@@ -13,13 +11,14 @@ Page({
         cap_loading_status: false,
         mobile: "",
         status: 1,
-        sms_code_flag: true
+        sms_code_flag: true,
+        bikeImgs: []
     },
 
     onLoad: function (options) {
         var that = this;
         wx.request({
-            url: app.globalData.host + '/wechat/homePage/memberData',
+            url: app.globalData.host + '/wechat/member/auth',
             method: 'GET',
             header: {
                 "content-type": "application/x-www-form-urlencoded",
@@ -30,36 +29,41 @@ Page({
                 that.setData({
                     "memberData": data
                 });
-                console.log(data['real_name']);
                 that.data.real_name = data['real_name'];
+                var index = 0;
+                for (var i = 0; i < that.data.voltage.length; i++) {
+                    if (data['voltage'] == that.data.voltage[i])
+                        index = i;
+                    break;
+                }
                 that.setData({
-                    "real_name": data['real_name']
+                    "real_name": data['real_name'],
+                    "mobile": data['mobile'],
+                    "brand_name": data['brand_name'],
+                    "buy_date": data['buy_date'].substring(0, 7),
+                    "number": data['number'],
+                    "voltage_index": index,
+                    "price": data['price'],
+                    "status": data['status'],
+                    "last_change_time": data['last_change_time'].substring(0, 7)
                 })
-                that.data.mobile = data['mobile'];
-                that.data.brand_name = data['brand_name'];
-                that.data.buy_date = data['buy_date'];
-                that.data.number = data['number'];
-                that.data.voltage = data['voltage'];
-                that.data.price = data['price'];
-                that.data.status = data['status'];
-                that.data.last_change_time = data['last_change_time'];
-                console.log(that.data);
             },
             fail: function (res) { }
         })
     },
-
 
     brandChange: function (e) {
         this.setData({
             brand_index: e.detail.value
         })
     },
+
     buyTimeChange: function (e) {
         this.setData({
             buy_date: e.detail.value
         })
     },
+
     voltageChange: function (e) {
         this.setData({
             voltage_index: e.detail.value
@@ -68,22 +72,26 @@ Page({
 
     batteryChangeTime: function (e) {
         this.setData({
-            battery_change_date: e.detail.value
+            last_change_time: e.detail.value
         })
     },
+
     tapNew: function () {
         this.setData({
             buy_status: '1'
         })
     },
+
     tapOld: function () {
         this.setData({
             buy_status: '2'
         })
     },
+
     getMobile: function (e) {
         this.data.mobile = e.detail.value;
     },
+
     getCaptcha: function (e) {
         var that = this;
         if (!(/^1\d{10}$/.test(that.data.mobile))) {
@@ -190,9 +198,17 @@ Page({
     },
 
     formSubmit: function (e) {
+        var that = this;
+        if (that.data.bikeImgs.length < 3) {
+            wx.showModal({
+                title: '提示',
+                content: '电动车照片至少上传3张',
+            });
+            return;
+        }
         var data = e.detail.value;
         for (var key in data) {
-            if (key != 'battery_change_date' && (data[key] === "" || data[key] === null)) {
+            if (key != 'last_change_time' && (data[key] === "" || data[key] === null)) {
                 wx.showModal({
                     title: '提示',
                     content: '请填写必填项',
@@ -200,17 +216,11 @@ Page({
                 return false;
             }
         }
-        data.buy_date = util.transDate(new Date(data.buy_date).getTime());
-        if (data.battery_change_date != null) {
-            data.battery_change_date = util.transDate(new Date(data.battery_change_date).getTime());
-        } else {
-            delete data.battery_change_date;
-        }
         wx.showLoading({
             title: '请稍后...',
         })
         wx.request({
-            url: app.globalData.host + '/api/info',
+            url: app.globalData.host + '/wechat/member/auth',
             method: "POST",
             header: {
                 'content-type': "application/x-www-form-urlencoded",
@@ -220,14 +230,22 @@ Page({
             success: function (res) {
                 wx.hideLoading();
                 if (res.data.status == true) {
+                    wx.hideLoading();
                     wx.showModal({
                         title: '提示',
                         content: '操作成功',
                     })
+                    //上传文件
+                    console.log(res.data);
+                    var member_bike_id = res.data.data.member_bike_id;
+                    for (var i = 0; i < that.data.bikeImgs.length; i++) {
+                        uploadFile(member_bike_id, that.data.bikeImgs[i]);
+                    }
                 } else {
+                    wx.hideLoading();
                     wx.showModal({
                         title: '提示',
-                        content: '操作失败',
+                        content: res.data.msg,
                     })
                 }
             },
@@ -239,5 +257,73 @@ Page({
                 })
             }
         })
-    }
+    },
+
+    chooseImage: function () {
+        var that = this;
+        wx.chooseImage({
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                console.log(res);
+                // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+                that.setData({
+                    bikeImgs: that.data.bikeImgs.concat(res.tempFilePaths)
+                });
+            }
+        })
+    },
+
+    previewImage: function (e) {
+        wx.previewImage({
+            current: e.currentTarget.id, // 当前显示图片的http链接
+            urls: this.data.bikeImgs // 需要预览的图片http链接列表
+        })
+    },
+
+    delImg: function (e) {
+        var that = this;
+        var bikeImgs = that.data.bikeImgs;
+        var bikeImg = e.currentTarget.id;
+        for (var i = 0; i < that.data.bikeImgs.length; i++) {
+            if (bikeImg == that.data.bikeImgs[i]) {
+                delete (that.data.bikeImgs[i]);
+                break;
+            }
+        }
+        var newImgs = [];
+        for (var i = 0; i < that.data.bikeImgs.length; i++) {
+            if (that.data.bikeImgs[i] != undefined) {
+                newImgs.push(that.data.bikeImgs[i]);
+            }
+        }
+        that.setData({
+            bikeImgs: newImgs
+        });
+    },
 })
+function uploadFile(member_bike_id, img) {
+    wx.uploadFile({
+        url: app.globalData.host + '/wechat/member/upload',
+        filePath: img,
+        name:"file",
+        header: {
+            'content-type': "multipart/form-data",
+            'token': wx.getStorageSync("member").token
+        },
+        formData: {
+            member_bike_id: member_bike_id
+        },
+        success: function (res) {
+            var data = JSON.parse(res.data);
+            if(data.status==true){
+                console.log("上图片上传成功");
+            }else{
+                console.log("图片上传失败");
+            }
+        },
+        fail: function (res) {
+            console.log("图片上传失败");
+        }
+    })
+}
