@@ -45,7 +45,8 @@ Page({
                     "voltage_index": index,
                     "price": data['price'],
                     "status": data['status'],
-                    "last_change_time": data['last_change_time'].substring(0, 7)
+                    "last_change_time": data['last_change_time'].substring(0, 7),
+                    "bikeImgs": data['bikeImgs']
                 })
             },
             fail: function (res) { }
@@ -101,6 +102,7 @@ Page({
             });
             return false;
         }
+        that.data.imageUrl = app.globalData.host + "/wechat/captcha";
         that.setData({
             modalFlag: false,
             imageUrl: that.data.imageUrl + "?_t=" + new Date().getTime() + "&token=" + wx.getStorageSync("member").token
@@ -178,6 +180,12 @@ Page({
                             });
                         }
                     }, 1000);
+                }else{
+                    wx.showModal({
+                        title: '提示',
+                        content: '验证码输入错误',
+                    })
+                    that.freshCaptcha()
                 }
                 wx.hideLoading();
             },
@@ -188,6 +196,7 @@ Page({
     },
 
     freshCaptcha: function (e) {
+        this.data.imageUrl = app.globalData.host + "/wechat/captcha";
         this.setData({
             imageUrl: this.data.imageUrl + "?token=" + wx.getStorageSync("member").token + "&_t=" + new Date().getTime()
         });
@@ -203,6 +212,14 @@ Page({
             wx.showModal({
                 title: '提示',
                 content: '电动车照片至少上传3张',
+            });
+            return;
+        }
+
+        if (that.data.bikeImgs.length > 5) {
+            wx.showModal({
+                title: '提示',
+                content: '电动车照片最多上传5张',
             });
             return;
         }
@@ -239,7 +256,9 @@ Page({
                     console.log(res.data);
                     var member_bike_id = res.data.data.member_bike_id;
                     for (var i = 0; i < that.data.bikeImgs.length; i++) {
-                        uploadFile(member_bike_id, that.data.bikeImgs[i]);
+                        if (that.data.bikeImg[i].indexOf("ddb.com") == -1) {
+                            uploadFile(member_bike_id, that.data.bikeImgs[i]);
+                        }
                     }
                 } else {
                     wx.hideLoading();
@@ -288,6 +307,42 @@ Page({
         for (var i = 0; i < that.data.bikeImgs.length; i++) {
             if (bikeImg == that.data.bikeImgs[i]) {
                 delete (that.data.bikeImgs[i]);
+                //远程图片也需要删除
+                if (bikeImg.indexOf("ddb.com")!=-1){
+                    var id = bikeImg.substr(bikeImg.lastIndexOf("/") + 1);
+                    wx.showLoading({
+                        title: '请稍后...',
+                    })
+                    wx.request({
+                        url: app.globalData.host + '/wechat/member/bikeImg/'+id,
+                        method: "DELETE",
+                        header: {
+                            'content-type': "application/x-www-form-urlencoded",
+                            'token': wx.getStorageSync("member").token
+                        },
+                        success:function(res){
+                            wx.hideLoading();
+                            if(res.data.status==true){
+                                wx.showModal({
+                                    title: '提示',
+                                    content: '删除成功',
+                                })
+                            }else{
+                                wx.showModal({
+                                    title: '提示',
+                                    content: res.data.msg
+                                })
+                            }
+                        },
+                        fail:function(){
+                            wx.hideLoading();
+                            wx.showModal({
+                                title: '提示',
+                                content: '服务器错误,请重试',
+                            })
+                        }
+                    })
+                }
                 break;
             }
         }
@@ -306,7 +361,7 @@ function uploadFile(member_bike_id, img) {
     wx.uploadFile({
         url: app.globalData.host + '/wechat/member/upload',
         filePath: img,
-        name:"file",
+        name: "file",
         header: {
             'content-type': "multipart/form-data",
             'token': wx.getStorageSync("member").token
@@ -316,9 +371,9 @@ function uploadFile(member_bike_id, img) {
         },
         success: function (res) {
             var data = JSON.parse(res.data);
-            if(data.status==true){
+            if (data.status == true) {
                 console.log("上图片上传成功");
-            }else{
+            } else {
                 console.log("图片上传失败");
             }
         },
