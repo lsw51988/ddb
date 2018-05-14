@@ -12,9 +12,10 @@
 }
 
 .captcha {
-  width: 200rpx;
-  height: 75rpx;
-  margin-top: 10rpx;
+  width: 420rpx;
+    height: 120rpx;
+    margin-top: 10rpx;
+    margin-left: 10%;
 }
 
 .captcha-input {

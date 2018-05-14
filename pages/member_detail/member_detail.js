@@ -1,3 +1,4 @@
+var util = require("../../utils/util.js");
 const app = getApp()
 Page({
     data: {
@@ -20,10 +21,7 @@ Page({
         wx.request({
             url: app.globalData.host + '/wechat/member/auth',
             method: 'GET',
-            header: {
-                "content-type": "application/x-www-form-urlencoded",
-                "token": wx.getStorageSync("member").token
-            },
+            header: util.header(),
             success: function (res) {
                 var data = res.data.data;
                 that.setData({
@@ -49,7 +47,9 @@ Page({
                     "bikeImgs": data['bikeImgs']
                 })
             },
-            fail: function (res) { }
+            fail: function (res) { 
+                util.failHint();
+            }
         })
     },
 
@@ -102,11 +102,7 @@ Page({
             });
             return false;
         }
-        that.data.imageUrl = app.globalData.host + "/wechat/captcha";
-        that.setData({
-            modalFlag: false,
-            imageUrl: that.data.imageUrl + "?_t=" + new Date().getTime() + "&token=" + wx.getStorageSync("member").token
-        });
+        util.getCaptcha(that);
     },
 
     model_cancel: function (e) {
@@ -116,90 +112,11 @@ Page({
     },
 
     model_confirm: function (e) {
-        var that = this;
-        wx.showLoading({
-            title: '请稍后...',
-        })
-        wx.request({
-            url: app.globalData.host + '/wechat/verifyCaptcha',
-            header: {
-                'content-type': "application/x-www-form-urlencoded",
-                'token': wx.getStorageSync("member").token
-            },
-            data: {
-                "captcha": that.data.captcha
-            },
-            method: "POST",
-            success: function (res) {
-                if (res.data.status == true) {
-                    //请求短信接口
-                    wx.request({
-                        url: app.globalData.host + '/wechat/member/smsCode',
-                        header: {
-                            'content-type': "application/x-www-form-urlencoded",
-                            'token': wx.getStorageSync("member").token
-                        },
-                        data: {
-                            "mobile": that.data.mobile
-                        },
-                        method: "POST",
-                        success: function (res) {
-                            if (res.data.status == true) {
-                                wx.showModal({
-                                    title: '提示',
-                                    content: '短信发送成功',
-                                })
-                            }
-                        },
-                        fail: function (res) {
-                            wx.showModal({
-                                title: '提示',
-                                content: '短信发送失败',
-                            })
-                        }
-                    })
-
-                    that.setData({
-                        cap_btn_status: true,
-                        modalFlag: true,
-                        cap_loading_status: true,
-                        sms_code_flag: false
-                    });
-                    var i = 0;
-                    var timer = setInterval(function () {
-                        that.setData({
-                            cap_btn_text: (59 - i) + "秒"
-                        });
-                        i++;
-                        if (i == 60) {
-                            clearInterval(timer);
-                            that.setData({
-                                cap_btn_status: false,
-                                cap_btn_text: "获取验证码",
-                                cap_loading_status: false
-                            });
-                        }
-                    }, 1000);
-                }else{
-                    wx.showModal({
-                        title: '提示',
-                        content: '验证码输入错误',
-                    })
-                    that.freshCaptcha()
-                }
-                wx.hideLoading();
-            },
-            fail: function (res) {
-                wx.hideLoading();
-            }
-        })
+        util.verifyCaptcha(this);
     },
 
-    freshCaptcha: function (e) {
-        this.data.imageUrl = app.globalData.host + "/wechat/captcha";
-        this.setData({
-            imageUrl: this.data.imageUrl + "?token=" + wx.getStorageSync("member").token + "&_t=" + new Date().getTime()
-        });
+    freshCaptcha: function () {
+        util.freshCaptcha(this);
     },
 
     captchaBlur: function (e) {
@@ -239,10 +156,7 @@ Page({
         wx.request({
             url: app.globalData.host + '/wechat/member/auth',
             method: "POST",
-            header: {
-                'content-type': "application/x-www-form-urlencoded",
-                'token': wx.getStorageSync("member").token
-            },
+            header: util.header(),
             data: data,
             success: function (res) {
                 wx.hideLoading();
@@ -261,19 +175,11 @@ Page({
                         }
                     }
                 } else {
-                    wx.hideLoading();
-                    wx.showModal({
-                        title: '提示',
-                        content: res.data.msg,
-                    })
+                    util.falseHint(res.data.msg);
                 }
             },
             fail: function (res) {
-                wx.hideLoading();
-                wx.showModal({
-                    title: '提示',
-                    content: '网络异常，请重新操作',
-                })
+                util.failHint();
             }
         })
     },
@@ -316,30 +222,20 @@ Page({
                     wx.request({
                         url: app.globalData.host + '/wechat/member/bikeImg/'+id,
                         method: "DELETE",
-                        header: {
-                            'content-type': "application/x-www-form-urlencoded",
-                            'token': wx.getStorageSync("member").token
-                        },
+                        header: util.header(),
                         success:function(res){
-                            wx.hideLoading();
                             if(res.data.status==true){
+                                wx.hideLoading();
                                 wx.showModal({
                                     title: '提示',
                                     content: '删除成功',
                                 })
                             }else{
-                                wx.showModal({
-                                    title: '提示',
-                                    content: res.data.msg
-                                })
+                                util.falseHint(res.data.msg);
                             }
                         },
                         fail:function(){
-                            wx.hideLoading();
-                            wx.showModal({
-                                title: '提示',
-                                content: '服务器错误,请重试',
-                            })
+                            util.failHint()
                         }
                     })
                 }

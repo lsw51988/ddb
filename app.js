@@ -2,7 +2,6 @@
 
 App({
     onLaunch: function (res) {
-        console.log(res);
         wx.setStorageSync("scene_code", res.scene);
         // 展示本地存储能力
         /*var logs = wx.getStorageSync('logs') || []

@@ -37,7 +37,7 @@ page {
 }
 
 .captcha {
-    width: 420rpx;
+    width: 440rpx;
     height: 120rpx;
     margin-top: 10rpx;
     margin-left: 10%;
