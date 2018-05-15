@@ -1,30 +1,27 @@
 {
-  "pages": [
-    "pages/help/help",
-   "pages/index/index",
-    "pages/member_detail/member_detail",
-    "pages/member/member",
-
- 
-    "pages/help-review/help-review",
-    "pages/about/about",
-    "pages/shb-list/shb-list",
-    "pages/shb-detail/shb-detail",
-    "pages/shb-sell/shb-sell",
-    "pages/shb-index/shb-index",
-    "pages/recommend/recommend",
-    "pages/suggestion/suggestion",
-    "pages/ans-help/ans-help",
-    "pages/pay-help/pay-help",
-    "pages/near-mts/near-mts",
-    "pages/add-mts/add-mts",
-    "pages/socket/socket"
-   
-  ],
-  "window": {
-    "backgroundTextStyle": "light",
-    "navigationBarBackgroundColor": "#fff",
-    "navigationBarTitleText": "WeChat",
-    "navigationBarTextStyle": "black"
-  }
+    "pages": [
+        "pages/add-mts/add-mts",
+        "pages/help/help",
+        "pages/index/index",
+        "pages/member_detail/member_detail",
+        "pages/member/member",
+        "pages/help-review/help-review",
+        "pages/about/about",
+        "pages/shb-list/shb-list",
+        "pages/shb-detail/shb-detail",
+        "pages/shb-sell/shb-sell",
+        "pages/shb-index/shb-index",
+        "pages/recommend/recommend",
+        "pages/suggestion/suggestion",
+        "pages/ans-help/ans-help",
+        "pages/pay-help/pay-help",
+        "pages/near-mts/near-mts",
+        "pages/socket/socket"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "WeChat",
+        "navigationBarTextStyle": "black"
+    }
 }

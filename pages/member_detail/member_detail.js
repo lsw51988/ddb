@@ -93,16 +93,8 @@ Page({
         this.data.mobile = e.detail.value;
     },
 
-    getCaptcha: function (e) {
-        var that = this;
-        if (!(/^1\d{10}$/.test(that.data.mobile))) {
-            wx.showModal({
-                title: '提示',
-                content: '请输入正确的手机号码',
-            });
-            return false;
-        }
-        util.getCaptcha(that);
+    getCaptcha: function () {
+        util.getCaptcha(this);
     },
 
     model_cancel: function (e) {

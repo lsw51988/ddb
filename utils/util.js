@@ -21,6 +21,13 @@ function transDate(msec) {
 
 //获取验证码
 function getCaptcha(_this) {
+    if (!(/^1\d{10}$/.test(_this.data.mobile))) {
+        wx.showModal({
+            title: '提示',
+            content: '请输入正确的手机号码',
+        });
+        return false;
+    }
     _this.data.imageUrl = host + "/wechat/captcha";
     _this.setData({
         modalFlag: false,

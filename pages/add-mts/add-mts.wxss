@@ -12,23 +12,22 @@
 }
 
 .captcha {
-  width: 200rpx;
-  height: 75rpx;
-  margin-top: 10rpx;
+    width: 440rpx;
+    height: 120rpx;
+    margin-top: 10rpx;
+    margin-left: 10%;
 }
 
 .captcha-input {
-  width: 80%;
-  height: 80rpx;
-  border: 4rpx solid #eee;
-  margin-left: 10%;
-  border-radius: 10rpx;
-  font-size: 34rpx;
+    width: 80%;
+    height: 80rpx;
+    border: 4rpx solid #eee;
+    margin-left: 10%;
+    border-radius: 10rpx;
+    font-size: 34rpx;
 }
 
 .submit {
-  position: fixed;
-  bottom: 0;
   width: 100%;
   padding: 0;
   margin: 0;
@@ -66,4 +65,37 @@
 
 .get-capture {
   height: 95rpx;
+}
+
+.belong_creator_false {
+    display: inline-block;
+    background: #eee;
+    height: 60rpx;
+    width: 150rpx;
+    margin: 0 20rpx;
+    text-align: center;
+    line-height: 60rpx;
+    border-radius: 10rpx;
+}
+
+.belong_creator_true {
+    display: inline-block;
+    background: #3367d6;
+    color: white;
+    height: 60rpx;
+    width: 150rpx;
+    margin: 0 20rpx;
+    text-align: center;
+    line-height: 60rpx;
+    border-radius: 10rpx;
+}
+.get-capture{
+    line-height:95rpx;
+}
+.des {
+  margin-left: 30rpx;
+  height:190rpx;
+}
+.des::after {
+  border: none;
 }

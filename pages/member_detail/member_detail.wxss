@@ -19,7 +19,7 @@ page {
 
 .status_true {
     display: inline-block;
-    background: #f05b47;
+    background: #3367d6;
     color: white;
     height: 60rpx;
     width: 150rpx;

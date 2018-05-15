@@ -119,11 +119,9 @@
         </view>
       </view>
     </view>
-    <view class="weui-cells__tips">温馨提示：请准确填写您的信息,照片清晰,以防万一您的电动车丢失作为寻找的根据.</view>
+    <view class="weui-cells__tips"  style='margin-bottom:10rpx;'>温馨提示：请准确填写您的信息,照片清晰,以防万一您的电动车丢失作为寻找的根据.</view>
     <button formType="submit" class='submit'>提交</button>
   </view>
-
-
 </form>
 <modal hidden="{{modalFlag}}" title="请输入验证码" confirm-text="提交" cancel-text="取消" bindcancel="model_cancel" bindconfirm="model_confirm">
   <input type='text' placeholder="请输入验证码" class='captcha-input' type='number' bindblur="captchaBlur" />

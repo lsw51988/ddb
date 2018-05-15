@@ -1,201 +1,252 @@
+var util = require("../../utils/util.js");
 const app = getApp()
 Page({
-  data: {
-    cap_btn_text: "获取验证码",
-    cap_loading_status: false,
-    cap_btn_status: false,
-    imageUrl: app.globalData.host + "/api/member/captcha",
-    latitude: "",
-    longitude: "",
-    mapCtx: "",
-    captcha: "",
-    noNeedCaptcha: false,
-    img:[]
-  },
+    data: {
+        cap_btn_text: "获取验证码",
+        cap_loading_status: false,
+        cap_btn_status: false,
+        imageUrl: app.globalData.host + "/api/member/captcha",
+        latitude: "",
+        longitude: "",
+        mapCtx: "",
+        mobile: "",
+        captcha: "",
+        img: [],
+        sms_code_flag: true,
+        modalFlag: true,
+        type: ["电动车维修点", "电动车维修兼销售点", "便民开锁点"],
+        type_index: 0,
+        belong_creator: 0
+    },
 
-  onLoad: function () {
-    var that = this;
-    wx.getSystemInfo({
-      success: function (res) {
-        that.setData({
-          controls: [
-            {
-              id: 0,
-              iconPath: '/img/re-position.png',
-              position: {
-                left: res.windowWidth - 60,
-                top: res.windowHeight * 0.4 - 40,
-                width: 40,
-                height: 40
-              },
-              clickable: true
-            }
-          ]
-        });
-      },
-    })
-    wx.getLocation({
-      type: "gcj02",
-      success: function (res) {
-        that.data.longitude = res.longitude;
-        that.data.latitude = res.latitude;
-        that.setData({
-          longitude: res.longitude,
-          latitude: res.latitude
-        });
-      },
-    })
-    this.data.mapCtx = wx.createMapContext("map", this);
-  },
-
-  getCaptcha: function (e) {
-    var that = this;
-    wx.showLoading({
-      title: '请稍后...',
-    })
-    if (!that.data.noNeedCaptcha) {
-      wx.request({
-        url: app.globalData.host + '/api/member/verifyCaptcha?captcha=' + that.data.captcha,
-        header: {
-          'content-type': "application/x-www-form-urlencoded",
-          'token': wx.getStorageSync("member").token
-        },
-        method: "GET",
-        success: function (res) {
-          wx.hideLoading();
-          if (res.data.status == true) {
-            //请求短信接口
-            sendCaptcha(that);
-          } else {
-            wx.showModal({
-              title: '提示',
-              showCancel: false,
-              content: '验证码填写错误',
-              success: function () {
+    onLoad: function () {
+        var that = this;
+        wx.getSystemInfo({
+            success: function (res) {
                 that.setData({
-                  imageUrl: that.data.imageUrl + "?token=" + wx.getStorageSync("member").token + "&_t=" + new Date().getTime()
+                    controls: [
+                        {
+                            id: 0,
+                            iconPath: '/img/re-position.png',
+                            position: {
+                                left: res.windowWidth - 60,
+                                top: res.windowHeight * 0.4 - 40,
+                                width: 40,
+                                height: 40
+                            },
+                            clickable: true
+                        }
+                    ]
                 });
-              }
-            })
-          }
-        },
-        fail: function (res) {
-          wx.hideLoading();
-        }
-      })
-    } else {
-      sendCaptcha(that);
-    }
-  },
-
-  regionChange:function(e){
-    var that = this;
-    that.data.mapCtx.getCenterLocation({
-      success: function (res) {
-        that.data.longitude = res.longitude;
-        that.data.latitude = res.latitude;
-      }
-    });
-  },
-
-  freshCaptcha: function (e) {
-    this.setData({
-      imageUrl: this.data.imageUrl + "?token=" + wx.getStorageSync("member").token + "&_t=" + new Date().getTime()
-    });
-  },
-  captchaBlur: function (e) {
-    console.log(e.detail.value);
-    this.data.captcha = e.detail.value;
-  },
-
-  controltap: function (e) {
-    //重新定位
-    var that = this;
-    this.data.mapCtx.moveToLocation();
-    this.data.mapCtx.getCenterLocation({
-      success: function (e) {
-        that.data.latitude = e.latitude;
-        that.data.longitude = e.longitude;
-      }
-    })
-  },
-
-  chooseImage: function (e) {
-    var that = this;
-    wx.chooseImage({
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-      sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function (res) {
-        console.log(res)
-        if (res.tempFiles[0].size >= 5 * 1024 * 1024) {
-          wx.showModal({
-            title: ' 提示',
-            content: '上传图片大小不得超过5M',
-          })
-          return;
-        }
-        // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
-        that.data.img.concat(res.tempFilePaths[0]);
-        that.setData({
-          img: that.data.img.concat(res.tempFilePaths[0])
-        });
-      }
-    })
-  },
-
-  previewImage: function (e) {
-    wx.previewImage({
-      current: e.currentTarget.id, // 当前显示图片的http链接
-      urls: this.data.img // 需要预览的图片http链接列表
-    })
-  },
-
-  delImg: function (e) {
-    var index = e.currentTarget.id;
-    this.data.img.splice(index, 1);
-    this.setData({
-      img: this.data.img
-    });
-  },
-
-  formSubmit: function (e) {
-    var formData = e.detail.value;
-    formData.type = e.detail.target.dataset.id;
-    for (var key in formData) {
-      if (formData[key] === "" || formData[key] === null) {
-        wx.showModal({
-          title: '提示',
-          content: '请填写必填项',
+            },
         })
-        return false;
-      }
+        wx.getLocation({
+            type: "gcj02",
+            success: function (res) {
+                that.data.longitude = res.longitude;
+                that.data.latitude = res.latitude;
+                that.setData({
+                    longitude: res.longitude,
+                    latitude: res.latitude
+                });
+            },
+        })
+        this.data.mapCtx = wx.createMapContext("map", this);
+    },
+
+    getMobile: function (e) {
+        this.data.mobile = e.detail.value;
+    },
+
+    getCaptcha: function (e) {
+        util.getCaptcha(this);
+    },
+
+    model_cancel: function (e) {
+        this.setData({
+            modalFlag: true
+        });
+    },
+
+    model_confirm: function (e) {
+        util.verifyCaptcha(this);
+    },
+
+    captchaBlur: function (e) {
+        this.data.captcha = e.detail.value;
+    },
+
+    freshCaptcha: function () {
+        util.freshCaptcha(this);
+    },
+
+    regionChange: function (e) {
+        var that = this;
+        that.data.mapCtx.getCenterLocation({
+            success: function (res) {
+                that.data.longitude = res.longitude;
+                that.data.latitude = res.latitude;
+            }
+        });
+    },
+
+    controltap: function (e) {
+        //重新定位
+        var that = this;
+        this.data.mapCtx.moveToLocation();
+        this.data.mapCtx.getCenterLocation({
+            success: function (e) {
+                that.data.latitude = e.latitude;
+                that.data.longitude = e.longitude;
+            }
+        })
+    },
+
+    chooseImage: function (e) {
+        var that = this;
+        wx.chooseImage({
+            sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+            sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
+            success: function (res) {
+                console.log(res)
+                if (res.tempFiles[0].size >= 5 * 1024 * 1024) {
+                    wx.showModal({
+                        title: ' 提示',
+                        content: '上传图片大小不得超过5M',
+                    })
+                    return;
+                }
+                // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
+                that.data.img.concat(res.tempFilePaths[0]);
+                that.setData({
+                    img: that.data.img.concat(res.tempFilePaths[0])
+                });
+            }
+        })
+    },
+
+    previewImage: function (e) {
+        wx.previewImage({
+            current: e.currentTarget.id, // 当前显示图片的http链接
+            urls: this.data.img // 需要预览的图片http链接列表
+        })
+    },
+
+    delImg: function (e) {
+        var that = this;
+        var index = e.currentTarget.id;
+        for (var i = 0; i < that.data.img.length; i++) {
+            if (index == that.data.img[i]) {
+                delete (that.data.img[i]);
+            }
+        }
+        var newImgs = [];
+        for (var i = 0; i < that.data.img.length; i++) {
+            if (that.data.img[i] != undefined) {
+                newImgs.push(that.data.img[i]);
+            }
+        }
+        that.setData({
+            img: newImgs
+        });
+    },
+
+    tapYes: function () {
+        this.setData({
+            belong_creator: 1
+        })
+    },
+
+    tapNo: function () {
+        this.setData({
+            belong_creator: 0
+        })
+    },
+
+    formSubmit: function (e) {
+        var that = this;
+        var formData = e.detail.value;
+        formData.longitude = that.data.longitude;
+        formData.latitude = that.data.latitude;
+        console.log(util.header());
+        if (that.data.img.length == 0) {
+            wx.showModal({
+                title: '提示',
+                content: '您尚未上传维修点照片',
+            })
+            return;
+        }
+        if (that.data.img.length > 3) {
+            wx.showModal({
+                title: '提示',
+                content: '最多只能上传3张照片',
+            })
+            return;
+        }
+        console.log(formData);
+        for (var key in formData) {
+            if (formData[key] === "" || formData[key] === null) {
+                wx.showModal({
+                    title: '提示',
+                    content: '请填写必填项',
+                })
+                return false;
+            }
+        }
+        wx.showLoading({
+            title: '请稍后...',
+        })
+        
+        wx.request({
+            url: app.globalData.host + '/wechat/repair/create',
+            method: "POST",
+            header: util.header(),
+            data:formData,
+            success: function (res) {
+                if (res.data.status) {
+                    wx.hideLoading();
+                    wx.showModal({
+                        title: '提示',
+                        content: '添加成功,后台审核通过之后,您将获取10个积分',
+                        success:function(res){
+                            for (var i = 0; i < that.data.img.length; i++) {
+                                uploadFile(res.data.data.repair_id, that.data.img[i]);
+                            }
+                            wx.navigateTo({
+                                url: '../member/member',
+                            })
+                        }
+                    })
+                } else {
+                    util.falseHint(res.data.msg);
+                }
+            },
+            fail: function () {
+                util.failHint();
+            }
+        })
     }
-  }
 })
 
-function sendCaptcha(that) {
-  that.setData({
-    cap_btn_status: true,
-    cap_loading_status: true,
-  });
-  wx.showModal({
-    title: '提示',
-    content: '已经发送验证码',
-    showCancel: false
-  })
-  var i = 0;
-  var timer = setInterval(function () {
-    that.setData({
-      cap_btn_text: (59 - i) + "秒"
-    });
-    i++;
-    if (i == 60) {
-      clearInterval(timer);
-      that.setData({
-        cap_btn_status: false,
-        cap_btn_text: "获取验证码",
-        cap_loading_status: false
-      });
-    }
-  }, 1000);
+function uploadFile(repair_id, img) {
+    wx.uploadFile({
+        url: app.globalData.host + '/wechat/repair/upload',
+        filePath: img,
+        name: "file",
+        header: util.header(),
+        formData: {
+            repair_id: repair_id
+        },
+        success: function (res) {
+            var data = JSON.parse(res.data);
+            if (data.status == true) {
+                console.log("上图片上传成功");
+            } else {
+                console.log("图片上传失败");
+            }
+        },
+        fail: function (res) {
+            console.log("图片上传失败");
+        }
+    })
 }
