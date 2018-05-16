@@ -141,12 +141,52 @@ function failHint() {
 }
 
 //ajax 回调success 错误处理
-function falseHint(msg){
+function falseHint(msg) {
     wx.hideLoading();
     wx.showModal({
         title: '提示',
         content: msg,
     })
+}
+
+//判断图片数量
+function validateImgCount(img) {
+    if (img.length < 3) {
+        wx.showModal({
+            title: '提示',
+            content: '电动车照片至少上传3张',
+        });
+        return false;
+    }
+
+    if (img.length > 5) {
+        wx.showModal({
+            title: '提示',
+            content: '电动车照片最多上传5张',
+        });
+        return false;
+    }
+    return true;
+}
+/**
+ * imgs:原来的所有图片数组
+ * del_key:要删除的那个图片的url
+ * 返回删除之后的新的数组
+ */
+function delImg(imgs, del_key) {
+    for (var i = 0; i < imgs.length; i++) {
+        if (del_key == imgs[i]) {
+            delete (imgs[i]);
+            break;
+        }
+    }
+    var newImgs = [];
+    for (var i = 0; i < imgs.length; i++) {
+        if (imgs[i] != undefined) {
+            newImgs.push(imgs[i]);
+        }
+    }
+    return newImgs;
 }
 
 module.exports = {
@@ -157,5 +197,7 @@ module.exports = {
     header: header,
     freshCaptcha: freshCaptcha,
     failHint: failHint,
-    falseHint: falseHint
+    falseHint: falseHint,
+    validateImgCount: validateImgCount,
+    delImg: delImg
 }

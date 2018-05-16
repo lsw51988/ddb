@@ -1,15 +1,17 @@
 {
     "pages": [
+"pages/shb-sell/shb-sell",
+        "pages/index/index",
         "pages/add-mts/add-mts",
         "pages/help/help",
-        "pages/index/index",
+      "pages/member/member",
         "pages/member_detail/member_detail",
-        "pages/member/member",
+       
         "pages/help-review/help-review",
         "pages/about/about",
         "pages/shb-list/shb-list",
         "pages/shb-detail/shb-detail",
-        "pages/shb-sell/shb-sell",
+        
         "pages/shb-index/shb-index",
         "pages/recommend/recommend",
         "pages/suggestion/suggestion",

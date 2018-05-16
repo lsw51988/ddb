@@ -117,19 +117,7 @@ Page({
 
     formSubmit: function (e) {
         var that = this;
-        if (that.data.bikeImgs.length < 3) {
-            wx.showModal({
-                title: '提示',
-                content: '电动车照片至少上传3张',
-            });
-            return;
-        }
-
-        if (that.data.bikeImgs.length > 5) {
-            wx.showModal({
-                title: '提示',
-                content: '电动车照片最多上传5张',
-            });
+        if (!util.validateImgCount(that.data.bikeImgs)) {
             return;
         }
         var data = e.detail.value;

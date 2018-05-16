@@ -1,6 +1,6 @@
 <!--二手车首页-->
 <view class='title'>二手车信息</view>
 <view class='area'>
-  <button class='sell'>我要出售</button>
-  <button>我要购买</button>
+    <button class='sell' bindtap='goto_sell'>我要出售</button>
+    <button class='buy' bindtap='goto_buy'>我要购买</button>
 </view>

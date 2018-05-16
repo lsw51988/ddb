@@ -133,20 +133,10 @@ Page({
     },
 
     delImg: function (e) {
-        var that = this;
         var index = e.currentTarget.id;
-        for (var i = 0; i < that.data.img.length; i++) {
-            if (index == that.data.img[i]) {
-                delete (that.data.img[i]);
-            }
-        }
-        var newImgs = [];
-        for (var i = 0; i < that.data.img.length; i++) {
-            if (that.data.img[i] != undefined) {
-                newImgs.push(that.data.img[i]);
-            }
-        }
-        that.setData({
+        var imgs = this.data.img;
+        var newImgs = util.delImg(imgs, index);
+        this.setData({
             img: newImgs
         });
     },
@@ -196,23 +186,24 @@ Page({
         wx.showLoading({
             title: '请稍后...',
         })
-        
+
         wx.request({
             url: app.globalData.host + '/wechat/repair/create',
             method: "POST",
             header: util.header(),
-            data:formData,
+            data: formData,
             success: function (res) {
                 if (res.data.status) {
+                    var repair_id = res.data.data.repair_id;
                     wx.hideLoading();
                     wx.showModal({
                         title: '提示',
                         content: '添加成功,后台审核通过之后,您将获取10个积分',
-                        success:function(res){
+                        success: function (res) {
                             for (var i = 0; i < that.data.img.length; i++) {
-                                uploadFile(res.data.data.repair_id, that.data.img[i]);
+                                uploadFile(repair_id, that.data.img[i]);
                             }
-                            wx.navigateTo({
+                            wx.redirectTo({
                                 url: '../member/member',
                             })
                         }

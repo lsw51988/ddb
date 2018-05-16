@@ -51,5 +51,10 @@ Page({
       wx.navigateTo({
         url: '../member_detail/member_detail',
       })
+    },
+    shb:function(){
+        wx.navigateTo({
+            url: '../shb-index/shb-index',
+        })
     }
 })

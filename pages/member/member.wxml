@@ -33,7 +33,7 @@
   <view class='block-item'>我的保险</view>
 
   <view class='block-item'>我的建议</view>
-  <view class='block-item'>二手车市</view>
+  <view class='block-item' bindtap='shb'>二手车市</view>
   <view class='block-item'>用户使用须知</view>
 
   <view class='block-item'>关于电动帮</view>
