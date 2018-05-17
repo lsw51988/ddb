@@ -150,7 +150,7 @@ Page({
                     console.log(res.data);
                     var member_bike_id = res.data.data.member_bike_id;
                     for (var i = 0; i < that.data.bikeImgs.length; i++) {
-                        if (that.data.bikeImg[i].indexOf("ddb.com") == -1) {
+                        if (that.data.bikeImgs[i].indexOf("ddb.com") == -1) {
                             uploadFile(member_bike_id, that.data.bikeImgs[i]);
                         }
                     }

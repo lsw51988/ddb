@@ -157,7 +157,7 @@ Page({
                     wx.hideLoading();
                     var shb_id = res.data.data.shb_id;
                     for (var i = 0; i < that.data.bikeImgs.length; i++) {
-                        if (that.data.bikeImg[i].indexOf("ddb.com") == -1) {
+                        if (that.data.bikeImgs[i].indexOf("ddb.com") == -1) {
                             uploadFile(shb_id, that.data.bikeImgs[i]);
                         }
                     }
