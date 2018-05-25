@@ -27,6 +27,39 @@ Page({
     },
     onLoad: function (options) {
         var that = this;
+        if (wx.getStorageSync("member").mobile == undefined) {
+            wx.showLoading({
+                title: '请稍后...',
+            })
+            wx.request({
+                url: app.globalData.host + '/wechat/appeal/mobile',
+                method: "GET",
+                header: util.header(),
+                success: function (res) {
+                    if (res.data.status == true) {
+                        wx.hideLoading();
+                        that.setData({
+                            "mobile": res.data.data.mobile,
+                            "mobile_show": res.data.data.mobile.replace(/(\d{3})\d{4}(\d{3})/, '$1****$2')
+                        })
+                    } else {
+                        wx.hideLoading();
+                        wx.showModal({
+                            title: '提示',
+                            content: '您尚未认证,请先去认证',
+                            success: function (res) {
+                                wx.redirectTo({
+                                    url: '../member_detail/member_detail',
+                                })
+                            }
+                        })
+                    }
+                },
+                fail: function (res) {
+                    util.failHint();
+                }
+            })
+        }
         wx.getSystemInfo({
             success: function (res) {
                 that.setData({
@@ -58,39 +91,7 @@ Page({
             },
         })
         that.data.mapCtx = wx.createMapContext("map", that);
-        if (wx.getStorageSync("member").mobile == undefined) {
-            wx.showLoading({
-                title: '请稍后...',
-            })
-            wx.request({
-                url: app.globalData.host + '/wechat/appeal/mobile',
-                method: "GET",
-                header: util.header(),
-                success: function (res) {
-                    if (res.data.status == true) {
-                        wx.hideLoading();
-                        that.setData({
-                            "mobile": res.data.data.mobile,
-                            "mobile_show": res.data.data.mobile.replace(/(\d{3})\d{4}(\d{3})/, '$1****$2')
-                        })
-                    } else {
-                        wx.hideLoading();
-                        wx.showModal({
-                            title: '提示',
-                            content: '您尚未认证,请先去认证',
-                            success: function (res) {
-                                wx.navigateTo({
-                                    url: '../member_detail/member_detail',
-                                })
-                            }
-                        })
-                    }
-                },
-                fail: function (res) {
-                    util.failHint();
-                }
-            })
-        }
+        
     },
 
     problemChange: function (e) {

@@ -1,0 +1,9 @@
+<!--我要-->
+<view class='row-0'>
+    <button class='mr-40' open-type='getUserInfo' bindgetuserinfo="onGotUserInfo" >完善资料</button>
+    <button bindtap='goto_fix_auth'>修理者认证</button>
+</view>
+<view class='row-1'>
+    <button class='mr-40' bindtap='goto_help'>求助</button>
+    <button bindtap='goto_lost_help'>丢失求助</button>
+</view>

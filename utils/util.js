@@ -168,6 +168,7 @@ function validateImgCount(img) {
     }
     return true;
 }
+
 /**
  * imgs:原来的所有图片数组
  * del_key:要删除的那个图片的url

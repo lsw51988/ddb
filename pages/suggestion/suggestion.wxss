@@ -1,11 +1,12 @@
 .title {
-  font-size: 30rpx;
+  font-size: 32rpx;
   padding: 5px 10px;
 }
 
 .s_type {
   margin-top: 30rpx;
   padding: 0 60rpx;
+   font-size: 30rpx;
 }
 
 .s_type checkbox {

@@ -1,54 +1,53 @@
 <!-- 二手车详情 -->
-<swiper indicator-dots="{{indicatorDots}}"
-  autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-  <block wx:for="{{imgUrls}}">
-    <swiper-item>
-      <image src="{{item}}" class="slide-image" width="355" height="150" style='width:{{windowWidth}}px'/>
-    </swiper-item>
-  </block>
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}">
+        <swiper-item>
+            <image src="{{item}}" class="slide-image" width="355" height="150" style='width:{{windowWidth}}px' />
+        </swiper-item>
+    </block>
 </swiper>
 <view class='title'>电动车信息</view>
 <view class='content'>
-  <view class='item'>
-    <view class='label'>标价</view>
-    <view class='val'>1000元</view>
-  </view>
-  <view class='item'>
-    <view class='label'>挂牌时间</view>
-    <view class='val'>2011-10-10</view>
-  </view>
-  <view class='item'>
-    <view class='label'>品牌</view>
-    <view class='val'>阿迪</view>
-  </view>
-  <view class='item'>
-    <view class='label'>电压</view>
-    <view class='val'>60V</view>
-  </view>
-  <view class='item'>
-    <view class='label'>购买时间</view>
-    <view class='val'>全新/二手</view>
-  </view>
-  <view class='item'>
-    <view class='label'>电瓶最近更换时间</view>
-    <view class='val'>2011-10-10</view>
-  </view>
-  <view class='item'>
-    <view class='label'>所在区域</view>
-    <view class='val'>南京秦淮区</view>
-  </view>
-  <view class='item'>
-    <view class='label'>车牌号</view>
-    <view class='val'>AABB</view>
-  </view>
-  <view class='item'>
-    <view class='label'>出售人</view>
-    <view class='val'>李阿德</view>
-  </view>
-  <view class='item'>
-    <view class='label'>成功交易次数</view>
-    <view class='val'>1次</view>
-  </view>
+    <view class='item'>
+        <view class='label'>标价</view>
+        <view class='val'>1000元</view>
+    </view>
+    <view class='item'>
+        <view class='label'>挂牌时间</view>
+        <view class='val'>2011-10-10</view>
+    </view>
+    <view class='item'>
+        <view class='label'>品牌</view>
+        <view class='val'>阿迪</view>
+    </view>
+    <view class='item'>
+        <view class='label'>电压</view>
+        <view class='val'>60V</view>
+    </view>
+    <view class='item'>
+        <view class='label'>购买时间</view>
+        <view class='val'>全新/二手</view>
+    </view>
+    <view class='item'>
+        <view class='label'>电瓶最近更换时间</view>
+        <view class='val'>2011-10-10</view>
+    </view>
+    <view class='item'>
+        <view class='label'>所在区域</view>
+        <view class='val'>南京秦淮区</view>
+    </view>
+    <view class='item'>
+        <view class='label'>车牌号</view>
+        <view class='val'>AABB</view>
+    </view>
+    <view class='item'>
+        <view class='label'>出售人</view>
+        <view class='val'>李阿德</view>
+    </view>
+    <view class='item'>
+        <view class='label'>成功交易次数</view>
+        <view class='val'>1次</view>
+    </view>
 </view>
 <view class='hint'>温馨提示：联系时可告知对方您是从电动帮看到的。</view>
 <button class='submit'>立即联系</button>

@@ -1,42 +1,52 @@
 <view class='avatar-area'>
-  <image src="{{member.avatarUrl}}" class='avatar'>
-  </image>
-  <view class='nick-name'>{{member.nickName}}</view>
+    <view wx:if="{{member.avatarUrl==''}}">
+        <image src="/img/default_avatar.jpg" class='avatar' bindtap='goto_member_avatar'></image>
+    </view>
+    <view wx:else>
+        <image src="{{avatarUrl}}" class='avatar' bindtap='goto_member_avatar'></image>
+    </view>
+    <view wx:if="{{member.nickName==''}}">
+        <view class='nick-name'>骑行侠</view>
+    </view>
+    <view wx:else>
+        <view class='nick-name'>{{member.nickName}}</view>
+    </view>
+    
 </view>
 <view class='detail'>
-  <view class='wx-pub'>
-    <image src='{{imgUrl}}' id="{{imgUrl}}" class='qr-code' bindtap='previewImage'></image>
-    <view class='follow'>关注微信公众号：电动帮</view>
-  </view>
-  <view class='member'>
-    <view class='line'>
-      <label>积分：</label>
-      <view>100分</view>
+    <view class='wx-pub'>
+        <image src='{{imgUrl}}' id="{{imgUrl}}" class='qr-code' bindtap='previewImage'></image>
+        <view class='follow'>关注微信公众号：电动帮</view>
     </view>
-    <view class='line'>
-      <label>会员等级：</label>
-      <view>铜牌会员</view>
+    <view class='member'>
+        <view class='line'>
+            <label>积分：</label>
+            <view>100分</view>
+        </view>
+        <view class='line'>
+            <label>会员等级：</label>
+            <view>铜牌会员</view>
+        </view>
+        <view class='line'>
+            <label>交易记录：</label>
+            <view>2次</view>
+        </view>
+        <view class='line'>
+            <label>求助记录：</label>
+            <view>2次</view>
+        </view>
     </view>
-    <view class='line'>
-      <label>交易记录：</label>
-      <view>2次</view>
-    </view>
-    <view class='line'>
-      <label>求助记录：</label>
-      <view>2次</view>
-    </view>
-  </view>
 </view>
 <view class='nine-blocks'>
-  <view class='block-item' bindtap='memberMaterial'>我的资料</view>
-  <view class='block-item'>我的商城</view>
-  <view class='block-item'>我的保险</view>
+    <view class='block-item' bindtap='goto_member_want'>我要</view>
+    <view class='block-item'>我的商城</view>
+    <view class='block-item'>我的保险</view>
 
-  <view class='block-item'>我的建议</view>
-  <view class='block-item' bindtap='shb'>二手车市</view>
-  <view class='block-item'>用户使用须知</view>
+    <view class='block-item' bindtap='goto_suggestions'>我的建议</view>
+    <view class='block-item' bindtap='goto_shb_index'>二手车市</view>
+    <view class='block-item' bindtap='goto_lost_list'>丢失求助</view>
 
-  <view class='block-item'>关于电动帮</view>
-  <view class='block-item'>推荐有奖</view>
-  <view class='block-item'>我的记录</view>
+    <view class='block-item' bindtap='goto_about'>关于电动帮</view>
+    <view class='block-item' bindtap='goto_recommend'>推荐有奖</view>
+    <view class='block-item' bindtap='goto_member_log'>我的记录</view>
 </view>

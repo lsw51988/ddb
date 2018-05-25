@@ -30,7 +30,6 @@ Page({
         }
     },
     onLoad: function (opts) {
-        console.log(opts);
         var that = this;
         var marker = {}
         wx.getSystemInfo({
@@ -89,7 +88,8 @@ Page({
         wx.getLocation({
             type: "gcj02",
             success: function (res) {
-                console.log(res);
+                wx.setStorageSync("latitude", res.latitude)
+                wx.setStorageSync("longitude", res.longitude)
                 locationData(res, that);
                 login(res.latitude, res.longitude);
             },
@@ -106,7 +106,8 @@ Page({
                                     //重新获取地理位置权限
                                     wx.getLocation({
                                         success: function (res) {
-                                            console.log(res);
+                                            wx.setStorageSync("latitude", res.latitude)
+                                            wx.setStorageSync("longitude", res.longitude)
                                             locationData(res, that);
                                             login(res.latitude, res.longitude);
                                         },
@@ -169,70 +170,27 @@ function login(latitude, longitude) {
     wx.login({
         success: function (loginRes) {
             var js_code = loginRes.code;
-            wx.getUserInfo({
-                success: function (userRes) {
-                    userRes.userInfo.js_code = js_code;
-                    userRes.userInfo.latitude = latitude;
-                    userRes.userInfo.longitude = longitude;
-                    userRes.userInfo.scene_code = wx.getStorageSync("scene_code");
-                    wx.request({
-                        url: app.globalData.host + '/wechat/index',
-                        header: {
-                            "Content-Type": "application/x-www-form-urlencoded",
-                        },
-                        method: "POST",
-                        data: userRes.userInfo,
-                        success: function (res) {
-                            console.log(userRes);
-                            wx.setStorageSync('member', res.data.data);
-                        }
-                    })
+            loginRes.js_code = js_code;
+            loginRes.latitude = latitude;
+            loginRes.longitude = longitude;
+            loginRes.scene_code = wx.getStorageSync("scene_code");
+            wx.request({
+                url: app.globalData.host + '/wechat/index',
+                header: {
+                    "Content-Type": "application/x-www-form-urlencoded",
                 },
-                fail: function (userRes) {
-                    wx.showModal({
-                        title: '提示',
-                        content: '若不授权用户信息，无法正常使用功能，点击授权则可重新使用；若不点击，后续还要用小程序，需在微信【发现】-【小程序】-删除【电动帮】，重新授权，方可使用',
-                        cancelText: "不授权",
-                        confirmText: "授权",
-                        success: function (confirmRes) {
-                            if (confirmRes.confirm) {
-                                wx.openSetting({
-                                    success: function () {
-                                        wx.getUserInfo({
-                                            success: function (userRes) {
-                                                userRes.userInfo.js_code = js_code;
-                                                userRes.userInfo.latitude = latitude;
-                                                userRes.userInfo.longitude = longitude;
-                                                userRes.userInfo.scene_code = wx.getStorageSync("scene_code");
-                                                wx.request({
-                                                    url: app.globalData.host + '/wechat/index',
-                                                    header: {
-                                                        "Content-Type": "application/x-www-form-urlencoded",
-                                                    },
-                                                    method: "POST",
-                                                    data: userRes.userInfo,
-                                                    success: function (res) {
-                                                        wx.setStorageSync('member', res.data.data);
-                                                    }
-                                                })
-                                            },
-                                        })
-                                    }
-                                })
-                            } else {
-                                wx.showModal({
-                                    title: '提示',
-                                    content: '您已拒绝授权用户信息，无法正常使用程序功能，需在微信【发现】-【小程序】-删除【电动帮】，重新授权，方可使用'
-                                })
-                            }
-                        }
-                    })
+                method: "POST",
+                data: loginRes,
+                success: function (res) {
+                    wx.setStorageSync('member', res.data.data);
                 }
             })
         },
         fail: function (loginRes) {
-            console.log("wx接口login请求错误");
-            console.log(loginRes);
+            wx.showModal({
+                title: '提示',
+                content: '微信登录异常,请重新打开小程序尝试',
+            })
         }
     })
 };

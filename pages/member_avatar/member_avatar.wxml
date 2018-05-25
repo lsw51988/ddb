@@ -1,0 +1,14 @@
+<view class='avatar-area'>
+    <view wx:if="{{avatar_url==''}}">
+        <image src="/img/default_avatar.jpg" class='avatar' bindtap='uploadAvatar'></image>
+    </view>
+    <view wx:else>
+        <image src="{{avatar_url}}" class='avatar' bindtap='uploadAvatar'></image>
+    </view>
+</view>
+<view class='nick-name-area'>
+    <input type='text' name="nick_name" value="{{nick_name}}" placeholder='请输入您的昵称' bindblur='getNickName'></input>
+</view>
+<view class='btn-area'>
+    <button bindtap='submit'>提交</button>
+</view>

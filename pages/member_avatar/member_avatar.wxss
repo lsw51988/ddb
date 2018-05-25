@@ -1,0 +1,35 @@
+.avatar-area {
+    width: 100vw;
+    height: 380rpx;
+    text-align: center;
+}
+
+.avatar {
+    max-width: 200rpx;
+    max-height: 200rpx;
+    margin-top: 100rpx;
+    display: inline-block;
+    border-radius:100rpx;
+}
+
+.nick-name-area {
+    width: 100vw;
+    text-align: center;
+}
+
+input {
+    display: inline-block;
+    width: 400rpx;
+    height: 80rpx;
+    line-height: 80rpx;
+    border: 1px solid #bcbcbc;
+    border-radius: 10rpx;
+}
+
+button {
+    margin-top: 150rpx;
+    color: white;
+    width: 70%;
+    background: #3367d6;
+    border-radius: 0;
+}

@@ -1,0 +1,71 @@
+.content {
+    width: 80%;
+    margin-left: 10%;
+}
+
+.title {
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 32rpx;
+    text-align: center;
+    background: #fa9d3b;
+    color: white;
+}
+
+.item {
+    width: 100%;
+    height: 60rpx;
+    line-height: 60rpx;
+    font-size: 30rpx;
+}
+
+.label {
+    width: 40%;
+    height: 100%;
+    float: left;
+    text-align: right;
+}
+
+.val {
+    width: 40%;
+    height: 100%;
+    float: right;
+    text-align: left;
+}
+
+.area {
+    height: 95rpx;
+    line-height: 95rpx;
+}
+
+.offer {
+    height: 95rpx;
+    line-height: 95rpx;
+    text-align: center;
+}
+
+.offer-input {
+    margin-top:10rpx;
+    border: 2px solid #D9D9D9;
+    height: 80rpx;
+    line-height: 80rpx;
+    width: 200rpx;
+    display: inline-block;
+}
+
+.rmb {
+    height: 95rpx;
+    line-height: 95rpx;
+    width:60rpx;
+    display: inline-block;
+}
+
+.submit {
+    margin-top:15rpx;
+    color: white;
+    width: 100%;
+    background: #3367d6;
+    border-radius: 0;
+    height:95rpx;
+    line-height:95rpx;
+}

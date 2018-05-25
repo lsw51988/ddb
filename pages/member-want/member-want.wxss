@@ -1,0 +1,25 @@
+.row-0 {
+  width: 100%;
+  text-align: center;
+  height: 200rpx;
+  line-height: 200rpx;
+  margin-top: 300rpx;
+}
+
+.row-1 {
+  width: 100%;
+  text-align: center;
+  height: 200rpx;
+  line-height: 200rpx;
+}
+
+button {
+  width: 300rpx;
+  height: 150rpx;
+  line-height: 150rpx;
+  display: inline-block;
+}
+
+.mr-40 {
+  margin-right: 40rpx;
+}

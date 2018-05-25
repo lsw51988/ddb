@@ -16,7 +16,7 @@ Page({
         modalFlag: true,
         type: ["电动车维修点", "电动车维修兼销售点", "便民开锁点"],
         type_index: 0,
-        belong_creator: 0
+        belong_creator: 0,
     },
 
     onLoad: function () {
@@ -51,7 +51,7 @@ Page({
                 });
             },
         })
-        this.data.mapCtx = wx.createMapContext("map", this);
+        that.data.mapCtx = wx.createMapContext("map", that);
     },
 
     getMobile: function (e) {
@@ -241,3 +241,75 @@ function uploadFile(repair_id, img) {
         }
     })
 }
+
+function login(latitude, longitude) {
+    wx.login({
+        success: function (loginRes) {
+            var js_code = loginRes.code;
+            wx.getUserInfo({
+                success: function (userRes) {
+                    userRes.userInfo.js_code = js_code;
+                    userRes.userInfo.latitude = latitude;
+                    userRes.userInfo.longitude = longitude;
+                    userRes.userInfo.scene_code = wx.getStorageSync("scene_code");
+                    wx.request({
+                        url: app.globalData.host + '/wechat/index',
+                        header: {
+                            "Content-Type": "application/x-www-form-urlencoded",
+                        },
+                        method: "POST",
+                        data: userRes.userInfo,
+                        success: function (res) {
+                            console.log(userRes);
+                            wx.setStorageSync('member', res.data.data);
+                        }
+                    })
+                },
+                fail: function (userRes) {
+                    wx.showModal({
+                        title: '提示',
+                        content: '若不授权用户信息，无法正常使用功能，点击授权则可重新使用；若不点击，后续还要用小程序，需在微信【发现】-【小程序】-删除【电动帮】，重新授权，方可使用',
+                        cancelText: "不授权",
+                        confirmText: "授权",
+                        success: function (confirmRes) {
+                            if (confirmRes.confirm) {
+                                wx.openSetting({
+                                    success: function () {
+                                        wx.getUserInfo({
+                                            success: function (userRes) {
+                                                userRes.userInfo.js_code = js_code;
+                                                userRes.userInfo.latitude = latitude;
+                                                userRes.userInfo.longitude = longitude;
+                                                userRes.userInfo.scene_code = wx.getStorageSync("scene_code");
+                                                wx.request({
+                                                    url: app.globalData.host + '/wechat/index',
+                                                    header: {
+                                                        "Content-Type": "application/x-www-form-urlencoded",
+                                                    },
+                                                    method: "POST",
+                                                    data: userRes.userInfo,
+                                                    success: function (res) {
+                                                        wx.setStorageSync('member', res.data.data);
+                                                    }
+                                                })
+                                            },
+                                        })
+                                    }
+                                })
+                            } else {
+                                wx.showModal({
+                                    title: '提示',
+                                    content: '您已拒绝授权用户信息，无法正常使用程序功能，需在微信【发现】-【小程序】-删除【电动帮】，重新授权，方可使用'
+                                })
+                            }
+                        }
+                    })
+                }
+            })
+        },
+        fail: function (loginRes) {
+            console.log("wx接口login请求错误");
+            console.log(loginRes);
+        }
+    })
+};

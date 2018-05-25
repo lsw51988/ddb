@@ -117,7 +117,7 @@
             </view>
             <view class='addr-input'>
                 <view class='addr-select'>
-                    <picker mode="region" bindchange="bindRegionChange" value="{{region}}" custom-item="{{customItem}}" name="addr">
+                    <picker mode="region" value="{{region}}" custom-item="{{customItem}}" name="addr">
                         <view class="picker">
                             {{region[0]}}，{{region[1]}}，{{region[2]}}
                         </view>

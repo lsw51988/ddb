@@ -1,0 +1,46 @@
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
+    <block wx:for="{{imgUrls}}">
+        <swiper-item>
+            <image src="{{item}}" class="slide-image" width="355" height="150" style='width:{{windowWidth}}px' bindtap='previewImage' data-src="{{item}}" />
+        </swiper-item>
+    </block>
+</swiper>
+<view class='title'>电动车信息</view>
+<view class='content'>
+    <view class='item'>
+        <view class='label'>品牌</view>
+        <view class='val'>雅迪</view>
+    </view>
+    <view class='item'>
+        <view class='label'>车牌号</view>
+        <view class='val'>A123123</view>
+    </view>
+    <view class='item'>
+        <view class='label'>电压</view>
+        <view class='val'>48V</view>
+    </view>
+</view>
+<view class='title'>丢失信息</view>
+<view class='content'>
+    <view class='item'>
+        <view class='label'>丢失时间</view>
+        <view class='val'>2018-05-23</view>
+    </view>
+    <view class='item'>
+        <view class='label'>丢失地区</view>
+        <view class='val'>南京-秦淮区</view>
+    </view>
+    <view class='item'>
+        <view class='label'>丢失地点</view>
+        <view class='val'>雅居乐小区</view>
+    </view>
+    <view class='remark'>
+        备注信息:财付通对带有微信支付字样、标识、logo、图片等信息的物料、宣传资料和扫码设备享有知识产权，你不得在经营场所实施或协助、放任他人实施
+    </view>
+</view>
+<view class='title'>悬赏信息</view>
+     <view class='item'>
+        <view class='label'>金额</view>
+        <view class='val'>100元</view>
+    </view>
+ <button bindtap="submit" class='submit'>立即联系失主</button>

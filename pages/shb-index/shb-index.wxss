@@ -19,6 +19,6 @@ button {
   display: inline-block;
 }
 
-.sell {
+.mr-40 {
   margin-right: 40rpx;
 }

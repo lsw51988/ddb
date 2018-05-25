@@ -1,0 +1,36 @@
+<!--二手车列表-->
+<view class='bar'>
+  <view class='item'>
+    <picker bindchange="timeChange" value="{{index}}" range="{{building_types}}" class='item-s'>
+      <view type="default" class="SimHei text-center fs-13 ">{{time}}
+      </view>
+    </picker>
+    <image src="/img/arrow-down.png" class='arrow' />
+  </view>
+  <view class='item'>
+    <picker bindchange="addrChange" value="{{index}}" range="{{building_types}}" class='item-s'>
+      <view type="default" class="SimHei text-center fs-13 ">{{addr}}
+      </view>
+    </picker>
+    <image src="/img/arrow-down.png" class='arrow' />
+  </view>
+  <view class='item'>
+    <picker bindchange="commissionChange" value="{{index}}" range="{{building_types}}" class='item-s'>
+      <view type="default" class="SimHei text-center fs-13 ">{{commission}}
+      </view>
+    </picker>
+    <image src="/img/arrow-down.png" class='arrow' />
+  </view>
+</view>
+
+<view class='list-item'>
+  <view class='li-top'>
+    <view class='number'>编号No.1</view>
+    <view class='date'>3-11 10:00:00</view>
+  </view>
+  <view class='li-bottom'>
+    <view class='brand'>雅迪</view>
+    <view class='addr'>南京市玄武区乔虹苑</view>
+    <view class='price'>3400元</view>
+  </view>
+</view>

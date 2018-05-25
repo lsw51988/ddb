@@ -99,3 +99,99 @@
 .des::after {
   border: none;
 }
+
+
+.modal-body {
+    height: 100vh;
+    width: 100vw;
+    opacity: 0.5;
+    position: absolute;
+    background: black;
+    z-index: 1;
+    text-align: center;
+     top:0;
+}
+
+.modal-window {
+    position: absolute;
+    top: 340rpx;
+    width: 80vw;
+    left: 10vw;
+    padding: 0;
+    z-index: 9999;
+    background: white;
+}
+
+.modal-title {
+    font-size: 38rpx;
+    text-align: center;
+    height: 100rpx;
+    line-height: 100rpx;
+    border: none;
+    border-bottom: 1px solid #eee;
+}
+
+.content-titie {
+    height: 80rpx;
+    font-size: 30rpx;
+    line-height: 80rpx;
+    border-bottom: 1px solid #eee;
+    text-indent: 40rpx;
+    width: 70vw;
+    margin-left: 5vw;
+}
+
+.content-text {
+    height: 70rpx;
+    line-height: 70rpx;
+    margin-bottom: 30rpx;
+    font-size: 26rpx;
+    text-indent: 40rpx;
+    width: 70vw;
+    margin-left: 5vw;
+    color: #c7c7c7;
+}
+
+.reject {
+    display: inline-block;
+    float: left;
+    width: 40vw;
+    font-size: 32rpx;
+    border: none;
+    background: white;
+    color: #808080;
+    border-radius: 0;
+}
+
+.reject::after {
+    border-radius: 0;
+}
+
+.approve {
+    display: inline-block;
+    float: right;
+    width: 40vw;
+    color: #3ec33f;
+    font-size: 32rpx;
+    border: none;
+    background: white;
+    border-radius: 0;
+}
+
+.approve::after {
+    border-radius: 0;
+}
+
+.content-img {
+    text-align: center;
+    height: 90rpx;
+    width: 100%;
+}
+
+image {
+    display: inline-block;
+    width: 50rpx;
+    height: 50rpx;
+    border-radius: 18rpx;
+    margin-top: 20rpx;
+}

@@ -2,7 +2,7 @@
     <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
 </map>
 
-<form bindsubmit="formSubmit">
+<form bindsubmit="formSubmit" style='z-index:0'>
     <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell weui-cell_input">
             <view class="weui-cell__hd">
