@@ -27,3 +27,19 @@
     background: #3367d6;
     border-radius: 0;
 }
+
+.captcha {
+    width: 440rpx;
+    height: 120rpx;
+    margin-top: 10rpx;
+    margin-left: 10%;
+}
+
+.captcha-input {
+    width: 80%;
+    height: 80rpx;
+    border: 4rpx solid #eee;
+    margin-left: 10%;
+    border-radius: 10rpx;
+    font-size: 34rpx;
+}

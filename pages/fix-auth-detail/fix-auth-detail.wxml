@@ -1,12 +1,12 @@
-<map id="near_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="20" class='map' markers="{{markers}}" controls='{{controls}}' bindcontroltap="controltap">
+<map id="near_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="20" class='map' markers="{{markers}}" controls='{{controls}}' bindcontroltap="controltap" bindregionchange="regionChange" show-location>
   <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
 </map>
-<view class='hint'>位置如果不准确,可以微调</view>
+<view class='hint'>位置如果不准确,可以微调小人的位置</view>
 <swiper indicator-dots="{{indicatorDots}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{imgUrls}}">
     <swiper-item>
-      <image src="{{item}}" class="slide-image" width="355" height="150" style='width:{{windowWidth}}px' bindtap='previewImage' data-src="{{item}}"/>
+      <image src="{{item}}" class="slide-image" width="355" height="150" style='width:{{windowWidth}}px' bindtap='previewRpairImage' data-src="{{item}}"/>
     </swiper-item>
   </block>
 </swiper>
@@ -41,7 +41,7 @@
             <view class="weui-uploader__files">
               <block wx:for="{{imgs}}" wx:key="*this">
                 <view class="weui-uploader__file">
-                  <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" bindtap="previewImage" id="{{item}}" />
+                  <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" bindtap="previewAuthImage" id="{{item}}" />
                   <view href="#" style="padding-left:20px" bindtap="delImg" id="{{item}}">删除</view>
                 </view>
               </block>

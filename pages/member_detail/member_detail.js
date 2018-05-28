@@ -34,6 +34,10 @@ Page({
                         index = i;
                     break;
                 }
+                var buy_status = 1;
+                if (data['status'] == 2){
+                    var buy_status = 2;
+                }
                 that.setData({
                     "real_name": data['real_name'],
                     "mobile": data['mobile'],
@@ -42,12 +46,12 @@ Page({
                     "number": data['number'],
                     "voltage_index": index,
                     "price": data['price'],
-                    "status": data['status'],
+                    "status": buy_status,
                     "last_change_time": data['last_change_time'].substring(0, 7),
                     "bikeImgs": data['bikeImgs']
                 })
             },
-            fail: function (res) { 
+            fail: function (res) {
                 util.failHint();
             }
         })
@@ -79,13 +83,13 @@ Page({
 
     tapNew: function () {
         this.setData({
-            buy_status: '1'
+            status: '1'
         })
     },
 
     tapOld: function () {
         this.setData({
-            buy_status: '2'
+            status: '2'
         })
     },
 
@@ -142,18 +146,20 @@ Page({
                 wx.hideLoading();
                 if (res.data.status == true) {
                     wx.hideLoading();
-                    wx.showModal({
-                        title: '提示',
-                        content: '操作成功',
-                    })
                     //上传文件
-                    console.log(res.data);
                     var member_bike_id = res.data.data.member_bike_id;
                     for (var i = 0; i < that.data.bikeImgs.length; i++) {
                         if (that.data.bikeImgs[i].indexOf("ddb.com") == -1) {
                             uploadFile(member_bike_id, that.data.bikeImgs[i]);
                         }
                     }
+                    wx.showModal({
+                        title: '提示',
+                        content: '操作成功',
+                        success:function(){
+                            wx.navigateBack()
+                        }
+                    })
                 } else {
                     util.falseHint(res.data.msg);
                 }
@@ -194,27 +200,27 @@ Page({
             if (bikeImg == that.data.bikeImgs[i]) {
                 delete (that.data.bikeImgs[i]);
                 //远程图片也需要删除
-                if (bikeImg.indexOf("ddb.com")!=-1){
+                if (bikeImg.indexOf("ddb.com") != -1) {
                     var id = bikeImg.substr(bikeImg.lastIndexOf("/") + 1);
                     wx.showLoading({
                         title: '请稍后...',
                     })
                     wx.request({
-                        url: app.globalData.host + '/wechat/member/bikeImg/'+id,
+                        url: app.globalData.host + '/wechat/member/bikeImg/' + id,
                         method: "DELETE",
                         header: util.header(),
-                        success:function(res){
-                            if(res.data.status==true){
+                        success: function (res) {
+                            if (res.data.status == true) {
                                 wx.hideLoading();
                                 wx.showModal({
                                     title: '提示',
                                     content: '删除成功',
                                 })
-                            }else{
+                            } else {
                                 util.falseHint(res.data.msg);
                             }
                         },
-                        fail:function(){
+                        fail: function () {
                             util.failHint()
                         }
                     })

@@ -35,9 +35,25 @@ Page({
         wx.showShareMenu({
             withShareTicket: true
         })
+        if ((/wx.qlogo.cn/.test(wx.getStorageSync('member').avatarUrl))) {
+            that.data.avatarUrl = wx.getStorageSync('member').avatarUrl;
+        }else{
+            that.data.avatarUrl = app.globalData.host + '/wechat/avatar?path=' + wx.getStorageSync('member').avatarUrl
+        }
+        console.log(that.data.avatarUrl);
         that.setData({
             'member': wx.getStorageSync('member'),
-            'avatarUrl': app.globalData.host + '/wechat/avatar?path=' + wx.getStorageSync('member').avatarUrl,
+            'avatarUrl': that.data.avatarUrl,
+            'imgUrl': app.globalData.host + "/wechat/qr_code"
+        });
+    },
+
+    onShow:function(){
+        console.log(wx.getStorageSync("member"));
+        var that = this;
+        that.setData({
+            'member': wx.getStorageSync('member'),
+            'avatarUrl': that.data.avatarUrl,
             'imgUrl': app.globalData.host + "/wechat/qr_code"
         });
     },

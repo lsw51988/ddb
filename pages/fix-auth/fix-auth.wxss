@@ -44,7 +44,7 @@
 
 .line-item-2 {
   display: inline-block;
-  width: 180rpx;
+  width: 200rpx;
 }
 .btn{
   display:inline-block;

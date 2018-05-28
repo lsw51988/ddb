@@ -98,7 +98,7 @@ Page({
             success: function (e) {
                 that.data.latitude = e.latitude;
                 that.data.longitude = e.longitude;
-            }
+            }   
         })
     },
 
@@ -158,7 +158,6 @@ Page({
         var formData = e.detail.value;
         formData.longitude = that.data.longitude;
         formData.latitude = that.data.latitude;
-        console.log(util.header());
         if (that.data.img.length == 0) {
             wx.showModal({
                 title: '提示',

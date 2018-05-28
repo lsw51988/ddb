@@ -1,11 +1,11 @@
 <view class='avatar-area'>
-    <view wx:if="{{member.avatarUrl==''}}">
+    <view wx:if="{{member.avatarUrl==null}}">
         <image src="/img/default_avatar.jpg" class='avatar' bindtap='goto_member_avatar'></image>
     </view>
     <view wx:else>
         <image src="{{avatarUrl}}" class='avatar' bindtap='goto_member_avatar'></image>
     </view>
-    <view wx:if="{{member.nickName==''}}">
+    <view wx:if="{{member.nickName==null}}">
         <view class='nick-name'>骑行侠</view>
     </view>
     <view wx:else>

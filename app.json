@@ -1,6 +1,8 @@
 {
     "pages": [
         "pages/index/index",
+        "pages/fix-auth/fix-auth",
+        
         "pages/member-want/member-want",
         "pages/member/member",
         "pages/member_log/member_log",
@@ -12,7 +14,7 @@
         "pages/suggestion/suggestion",
         "pages/shb-detail/shb-detail",
         "pages/member_detail/member_detail",
-        "pages/fix-auth/fix-auth",
+      
         "pages/fix-auth-detail/fix-auth-detail",
         "pages/near-mts/near-mts",
         "pages/member_avatar/member_avatar",
