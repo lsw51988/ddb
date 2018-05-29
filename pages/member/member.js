@@ -49,7 +49,6 @@ Page({
     },
 
     onShow:function(){
-        console.log(wx.getStorageSync("member"));
         var that = this;
         that.setData({
             'member': wx.getStorageSync('member'),

@@ -1,7 +1,7 @@
 <map id="near_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="20" class='map' markers="{{markers}}" controls='{{controls}}' bindcontroltap="controltap" bindregionchange="regionChange" show-location>
   <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
 </map>
-<view class='hint'>位置如果不准确,可以微调小人的位置</view>
+<view class='hint'>位置不准确?微调地图,红色标记即时你的定位</view>
 <swiper indicator-dots="{{indicatorDots}}"
   autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
   <block wx:for="{{imgUrls}}">

@@ -1,25 +1,21 @@
-<map id="pay_help_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" class='map' markers="{{markers}}" controls='{{controls}}' bindcontroltap="controltap">
-  <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
+<map id="pay_help_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" class='map' markers="{{markers}}" controls='{{controls}}' bindcontroltap="controltap" show-location>
 </map>
 <view class='content'>
-  <view class='intro'>
-    <view class='title'>说明：</view>
-    <view class='items'>
-      <view class='item'>1.系统会自动通知附近所有的修车点。</view>
-      <view class='item'>2.拖车费用是在拖车师傅将您的车拖至修理店后付给拖车师傅，不会经过电动帮平台。</view>
-      <view class='item'>3.计费参考标准：5元/公里。</view>
+    <view class='intro'>
+        <view class='title'>说明：</view>
+        <view class='items'>
+            <view class='item'>1.系统会自动通知附近所有的修车点。</view>
+            <view class='item'>2.拖车费用是在拖车师傅将您的车拖至修理店后付给拖车师傅，不会经过电动帮平台。</view>
+            <view class='item'>3.计费参考标准：10元/公里。具体数额需要当面沟通</view>
+        </view>
     </view>
-  </view>
-  <view class='operation'>
+    <!-- <view class='operation'>
     <view class='score'>
       <label>积分奖励：</label>
       <input name="score" class='score_input' type='number'></input>
       <view class='points'>分</view>
       <view class='hint'>您还剩100分</view>
     </view>
-    <view class='cost-hint'>
-    预计拖车费用约10元
-    </view>
-  </view>
-  <button class='submit'>确定</button>
+  </view> -->
+    <button class='cancel' bindtap='cancelHelp' data-id='{{appeal_id}}'>取消</button>
 </view>

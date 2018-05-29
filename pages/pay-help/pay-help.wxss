@@ -29,7 +29,7 @@
 }
 
 .items {
-  font-size: 24rpx;
+  font-size: 30rpx;
   height: 40rpx;
   line-height: 40rpx;
   width: 96%;
@@ -52,7 +52,7 @@
 
 .score_input {
   display: inline-block;
-  border: 4rpx solid black;
+  border: 2rpx solid  #eee;
   text-align: center;
   width: 120rpx;
   height: 60rpx;
@@ -75,11 +75,11 @@
   font-size: 28rpx;
 }
 
-.submit {
+.cancel {
   position: absolute;
   width: 100%;
   bottom: 0;
-  background: #3367d6;
+  background: #9D9D9D;
   color: white;
   border-radius: 0;
 }

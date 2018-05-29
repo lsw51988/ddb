@@ -18,11 +18,20 @@
   background: #eee;
 }
 
-.item {
+.item_false {
   width: 100%;
   height: 100rpx;
   border-radius: 20rpx 0 0 20rpx;
   background: #6CFA6C;
+  border: 1px solid #eee;
+  margin-bottom: 10rpx;
+}
+
+.item_true {
+  width: 100%;
+  height: 100rpx;
+  border-radius: 20rpx 0 0 20rpx;
+  background: #EE5A46;
   border: 1px solid #eee;
   margin-bottom: 10rpx;
 }

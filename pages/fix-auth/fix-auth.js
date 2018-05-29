@@ -7,7 +7,9 @@ Page({
         longitude: "",
         latitude: "",
         mts_list: [],
-        markers:[]
+        markers:[],
+        scale: 18,
+        current_item_id: ""
     },
 
     onLoad: function (options) {
@@ -147,6 +149,8 @@ Page({
         }
         that.data.markers[id-1].iconPath = "/img/mt-click.png";
         that.setData({
+            current_item_id: id,
+            scale: 19,
             markers: that.data.markers
         });
     }

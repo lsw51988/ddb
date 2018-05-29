@@ -1,10 +1,10 @@
-<map id="near_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" class='map' markers="{{markers}}" controls='{{controls}}' bindcontroltap="controltap" show-location>
+<map id="near_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" class='map' markers="{{markers}}" controls='{{controls}}' bindcontroltap="controltap" show-location>
     <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
 </map>
 <scroll-view scroll-y class='mts'>
     <button class='add-mts' bindtap='goto_add_mts'>都不是?添加我的维修点</button>
     <view wx:for="{{mts_list}}">
-        <view class='item' bindtap='mt_click' data-id="{{item.id}}">
+        <view class='item_{{current_item_id==item.id}}' bindtap='mt_click' data-id="{{item.id}}">
             <view class='line'>
                 <view class='line-item-1'>名称: {{item.name}}</view>
                 <view class='line-item-2'>评分: 5/5</view>

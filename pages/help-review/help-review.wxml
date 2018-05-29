@@ -1,47 +1,47 @@
-<view class="title">您上次在XXX位置发出的求助请求回访单</view>
 <view class='list'>
-  <view class='item'>
-    <view class='i-title'>
-      1.您上次的求助等待时长是
+    <view class='item'>
+        <view class='i-title'>
+            1.您上次的求助等待时长是
+        </view>
+        <radio-group>
+            <radio>无,自行推至维修点</radio>
+            <radio>15分钟</radio>
+            <radio>30分钟</radio>
+            <radio>更多</radio>
+        </radio-group>
     </view>
-    <radio-group>
-      <radio>自行推至维修点</radio>
-      <radio>15分钟</radio>
-      <radio>30分钟</radio>
-      <radio>更多</radio>
-    </radio-group>
-  </view>
-  <view class='item'>
-    <view class='i-title'>
-      2.您上次的维修时长
+    <view class='item'>
+        <view class='i-title'>
+            2.您上次的维修时长
+        </view>
+        <radio-group>
+            <radio>10分钟</radio>
+            <radio>20分钟</radio>
+            <radio>30分钟</radio>
+            <radio>更多</radio>
+        </radio-group>
     </view>
-    <radio-group>
-      <radio>10分钟</radio>
-      <radio>20分钟</radio>
-      <radio>30分钟</radio>
-      <radio>更多</radio>
-    </radio-group>
-  </view>
-  <view class='item'>
-    <view class='i-title'>
-      3.您上次维修的花费<input type='number' name="cost"></input>元
+    <view class='item'>
+        <view class='i-title'>
+            3.您上次维修的花费
+            <input type='number' name="cost" class='cost'></input>元
+        </view>
     </view>
-  </view>
-  <view class='item'>
-    <view class='i-title'>
-      4.您对上次的维修结果满意吗？
+    <view class='item'>
+        <view class='i-title'>
+            4.您对上次的维修结果满意吗？
+        </view>
+        <radio-group>
+            <radio>不满意</radio>
+            <radio>还行，说的过去</radio>
+            <radio>满意</radio>
+        </radio-group>
     </view>
-    <radio-group>
-      <radio>不满意</radio>
-      <radio>还行，说的过去</radio>
-      <radio>满意</radio>
-    </radio-group>
-  </view>
-  <view class='item'>
-    <view class='i-title'>
-      5.您还有其他什么想说的？
+    <view class='item'>
+        <view class='i-title'>
+            5.您还有其他什么想说的？
+        </view>
+        <textarea></textarea>
     </view>
-    <textarea></textarea>
-  </view>
 </view>
 <button class='submit'>提交</button>
