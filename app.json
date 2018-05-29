@@ -1,12 +1,11 @@
 {
     "pages": [
-        "pages/member-want/member-want",
-       "pages/lost-help/lost-help",
         "pages/index/index",
+        "pages/lost-help/lost-help",
+        "pages/member-want/member-want",
         "pages/near-mts/near-mts",
         "pages/pay-help/pay-help",
         "pages/help/help",
-      
         "pages/help-review/help-review",
         "pages/fix-auth/fix-auth",
         "pages/member/member",
@@ -14,7 +13,6 @@
         "pages/lost-list/lost-list",
         "pages/shb-list/shb-list",
         "pages/lost-detail/lost-detail",
-        
         "pages/shb-sell/shb-sell",
         "pages/suggestion/suggestion",
         "pages/shb-detail/shb-detail",

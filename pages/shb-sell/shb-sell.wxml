@@ -43,7 +43,7 @@
                 <view class="weui-label">购买时间</view>
             </view>
             <view class="weui-cell__bd">
-                <picker mode="date" value="{{date}}" fields="month" start="2010-01" bindchange="buyTimeChange" name="buy_date" value="{{buy_date}}">
+                <picker mode="date" fields="month" start="2010-01" bindchange="buyTimeChange" name="buy_date" value="{{buy_date}}">
                     <view class="weui-input">{{buy_date}}</view>
                 </picker>
             </view>
@@ -106,7 +106,7 @@
                 <view class="weui-label">电瓶更换时间</view>
             </view>
             <view class="weui-cell__bd">
-                <picker mode="date" value="{{date}}" fields="month" start="2010-01" bindchange="buyTimeChange" name="buy_date" value="{{buy_date}}" >
+                <picker mode="date" fields="month" start="2010-01" bindchange="buyTimeChange" name="buy_date" value="{{buy_date}}" >
                     <view class="weui-input">{{buy_date}}</view>
                 </picker>
             </view>

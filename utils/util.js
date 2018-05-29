@@ -190,6 +190,49 @@ function delImg(imgs, del_key) {
     return newImgs;
 }
 
+/**
+ * 查看用户是否认证过
+ */
+function memberAuth(){
+    wx.showLoading({
+        title: '请稍后...',
+    })
+    wx.request({
+        url: host + '/wechat/member/mobile',
+        method: "GET",
+        header: {
+            'content-type': "application/x-www-form-urlencoded",
+            'token': wx.getStorageSync("member").token
+        },
+        success: function (res) {
+            if (res.data.status == true) {
+                var member = wx.getStorageSync("member");
+                member.mobile = res.data.data.mobile
+                wx.setStorageSync("member", member)
+                wx.hideLoading();
+            } else {
+                wx.hideLoading();
+                wx.showModal({
+                    title: '提示',
+                    content: '您尚未认证,请先去认证',
+                    success: function (res) {
+                        wx.redirectTo({
+                            url: '../member_detail/member_detail',
+                        })
+                    }
+                })
+            }
+        },
+        fail: function (res) {
+            wx.hideLoading();
+            wx.showModal({
+                title: '提示',
+                content: '网络异常，请重新操作',
+            })
+        }
+    })
+}
+
 module.exports = {
     formatTime: formatTime,
     transDate: transDate,
@@ -200,5 +243,6 @@ module.exports = {
     failHint: failHint,
     falseHint: falseHint,
     validateImgCount: validateImgCount,
-    delImg: delImg
+    delImg: delImg,
+    memberAuth: memberAuth
 }

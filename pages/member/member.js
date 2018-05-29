@@ -40,7 +40,6 @@ Page({
         }else{
             that.data.avatarUrl = app.globalData.host + '/wechat/avatar?path=' + wx.getStorageSync('member').avatarUrl
         }
-        console.log(that.data.avatarUrl);
         that.setData({
             'member': wx.getStorageSync('member'),
             'avatarUrl': that.data.avatarUrl,

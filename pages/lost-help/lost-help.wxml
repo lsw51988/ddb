@@ -28,7 +28,7 @@
                 <view class="weui-label">丢失时间</view>
             </view>
             <view class="weui-cell__bd">
-                <picker mode="date" value="{{date}}" fields="month" start="2010-01" bindchange="lostDateChange" name="lost_date" value="{{lost_date}}">
+                <picker mode="date" fields="day" start="2010-01-01" bindchange="lostDateChange" name="lost_date" value="{{lost_date}}">
                     <view class="weui-input">{{lost_date}}</view>
                 </picker>
             </view>
@@ -50,22 +50,28 @@
                 <view class="weui-label">丢失地点</view>
             </view>
             <view class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入具体丢失的地点" name="detail_addr" value="{{detail_addr}}" />
+                <input class="weui-input" placeholder="请输入具体丢失的地点" name="address" value="{{address}}" />
             </view>
         </view>
     </view>
     <view class="weui-cells weui-cells_after-title">
         <view class="weui-cell">
             <view class="weui-cell__bd">
-                <textarea class="weui-textarea" placeholder="备注:车辆的比较明显的特征信息" style="height: 3.3em" name="remark" />
-                <view class="weui-textarea-counter">0/40</view>
+                <textarea class="weui-textarea" placeholder="备注:车辆的比较明显的特征信息" style="height: 3.3em" name="memo" value='{{memo}}'/>
+                <view class="weui-textarea-counter">0/100</view>
             </view>
         </view>
     </view>
     <view class='title'>悬赏</view>
-    <view class='offer'>
-        <input type='number' name="offer" class='offer-input'></input>
+    <view class='rewards'>
+        <input type='number' name="rewards" class='rewards-input' value='{{rewards}}'></input>
         <view class="rmb">元</view>
     </view>
-    <button formType="submit" class='submit'>提交</button>
+    <view class="weui-cells__tips mb-10">
+        温馨提示：
+        <view class='ti-20'>1.悬赏金额将用于当面交易给找到您车的人,不会经过电动帮平台</view>
+        <view class='ti-20'>2.有效展示时间为2周,每天在该页面刷新可以让排名靠前更容易被别人看到哦.</view>
+        <view class='ti-20'>3.发布丢失信息将会扣除您10个积分,且不可回撤,更新不会消耗积分.</view>
+    </view>
+    <button formType="submit" class='submit'>{{btnText}}</button>
 </form>
