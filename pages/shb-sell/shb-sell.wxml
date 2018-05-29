@@ -124,7 +124,7 @@
                     </picker>
                 </view>
                 <view class='detail-addr'>
-                    <input placeholder='详细地址' name="detail_addr"></input>
+                    <input placeholder='详细地址' name="detail_addr" value='{{detail_addr}}'></input>
                 </view>
             </view>
         </view>

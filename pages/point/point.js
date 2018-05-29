@@ -1,66 +1,27 @@
-// pages/point/point.js
+var md5 = require("../../utils/md5.js");
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
-  
+    amount:10
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
   onLoad: function (options) {
-  
+      console.log(md5.hexMD5("appid=wxd930ea5d5a258f4f&body=test&device_info=1000&mch_id=10000100&nonce_str=ibuaiVcKdpRxkhJA&key=192006250b4c09247ec02edce69f6a2d"));
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
+  choose:function(e){
+      var amount = e.currentTarget.dataset.amount;
+      this.setData({
+          amount: amount
+      });
   },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+  withdraw:function(){
+    var amount = this.data,amount;
+    console.log(amount);
+    wx.requestPayment({
+        timeStamp: Date.parse(new Date()),
+        nonceStr: md5.hexMD5(Date.parse(new Date())),
+        package: '',
+        signType: 'MD5',
+        paySign: '',
+    })
   }
 })

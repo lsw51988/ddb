@@ -8,7 +8,8 @@ Page({
         voltage_index: 0,
         memberData: [],
         bikeImgs: [],
-        status:1
+        status:1,
+        detail_addr:""
     },
 
     onLoad: function (options) {
@@ -103,7 +104,6 @@ Page({
             sizeType: ['original', 'compressed'],
             sourceType: ['camera'],
             success: function (res) {
-                console.log(res);
                 that.setData({
                     bikeImgs: that.data.bikeImgs.concat(res.tempFilePaths)
                 });
@@ -174,6 +174,15 @@ Page({
                     wx.hideLoading();
                     if (res.data.msg == "积分不足") {
                         //转入积分充值页面
+                        wx.showModal({
+                            title: '提示',
+                            content: '积分不足',
+                            success:function(){
+                                wx.navigateTo({
+                                    url: '../point/point',
+                                })
+                            }
+                        })
                     }
                 }
             },

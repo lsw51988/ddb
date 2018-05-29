@@ -1,1 +1,76 @@
-/* pages/point/point.wxss */
+.intro {
+    font-size: 28rpx;
+    margin: 40rpx;
+    padding: 20rpx;
+    border: 1px solid #eee;
+}
+
+.item {
+    text-indent: 20rpx;
+    height: 60rpx;
+    line-height: 60rpx;
+}
+
+.withdraw {
+    width: 100vw;
+    text-align: center;
+    height: 200rpx;
+}
+
+.options {
+    width: 560rpx;
+    height: 160rpx;
+    line-height: 160rpx;
+    font-size: 28rpx;
+    display: inline-block;
+}
+
+.option_false {
+    height: 150rpx;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid #eee;
+    border-radius: 20rpx;
+    margin-left: 20rpx;
+}
+
+.option_true {
+    height: 150rpx;
+    text-align: center;
+    display: inline-block;
+    border: 1px solid #eee;
+    border-radius: 20rpx;
+    margin-left: 20rpx;
+    background: #3367d6;
+    color:white;
+}
+
+.option-item {
+    height: 40rpx;
+    line-height: 40rpx;
+    width: 160rpx;
+}
+
+.mt-30 {
+    margin-top: 30rpx;
+}
+
+.mb-30 {
+    margin-bottom: 30rpx;
+}
+
+.mb-10 {
+    margin-bottom: 10rpx;
+}
+
+.btn {
+    margin-top:200rpx;
+    width: 80vw;
+    margin-left: 10vw;
+    height: 95rpx;
+    line-height: 95rpx;
+    border: none;
+    border-radius: 0;
+    background: #3367d6;
+    color: white;
+}

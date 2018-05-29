@@ -1,5 +1,7 @@
 {
     "pages": [
+        "pages/point/point",
+        "pages/shb-sell/shb-sell",
         "pages/index/index",
         "pages/suggestion/suggestion",
         "pages/lost-help/lost-help",
@@ -14,14 +16,14 @@
         "pages/lost-list/lost-list",
         "pages/shb-list/shb-list",
         "pages/lost-detail/lost-detail",
-        "pages/shb-sell/shb-sell",
+        
         "pages/shb-detail/shb-detail",
         "pages/member_detail/member_detail",
         "pages/fix-auth-detail/fix-auth-detail",
         "pages/member_avatar/member_avatar",
         "pages/test/test",
         "pages/add-mts/add-mts",
-        "pages/point/point",
+       
         "pages/about/about",
         "pages/shb-index/shb-index",
         "pages/recommend/recommend",
