@@ -1,8 +1,7 @@
 {
     "pages": [
-           
         "pages/index/index",
-"pages/point/point",
+        "pages/point/point",
         "pages/shb-sell/shb-sell",
         "pages/suggestion/suggestion",
         "pages/lost-help/lost-help",
