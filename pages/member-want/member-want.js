@@ -64,6 +64,12 @@ Page({
         wx.navigateTo({
             url: '../lost-help/lost-help',
         })
+    },
+
+    goto_point:function(){
+        wx.navigateTo({
+            url: '../point/point',
+        })
     }
 })
 function improveUserInfo(data) {

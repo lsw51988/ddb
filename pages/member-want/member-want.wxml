@@ -7,3 +7,6 @@
     <button class='mr-40' bindtap='goto_help'>求助</button>
     <button bindtap='goto_lost_help'>丢失求助</button>
 </view>
+<view class='row-1'>
+    <button class='mr-40' bindtap='goto_point'>充值积分</button>
+</view>

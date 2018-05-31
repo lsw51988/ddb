@@ -1,13 +1,10 @@
-var md5 = require("../../utils/md5.js");
+var util = require("../../utils/util.js");
+const app = getApp()
 Page({
   data: {
-    amount:10
+    amount:1000
   },
 
-//md5.hexMD5
-  onLoad: function (options) {
-      console.log(md5.hexMD5("appid=wxd930ea5d5a258f4f&body=test&device_info=1000&mch_id=10000100&nonce_str=ibuaiVcKdpRxkhJA&key=192006250b4c09247ec02edce69f6a2d"));
-  },
   choose:function(e){
       var amount = e.currentTarget.dataset.amount;
       this.setData({
@@ -15,14 +12,72 @@ Page({
       });
   },
   withdraw:function(){
-    var amount = this.data,amount;
+    var amount = this.data.amount;
     console.log(amount);
-    wx.requestPayment({
-        timeStamp: Date.parse(new Date()),
-        nonceStr: md5.hexMD5(Date.parse(new Date())),
-        package: '',
-        signType: 'MD5',
-        paySign: '',
+    wx.request({
+        url: app.globalData.host +'/wechat/point/pay',
+        method:"POST",
+        data:{
+            total_fee:amount
+        },
+        header:util.header(),
+        success:function(res){
+            if(res.data.status){
+                var data = res.data.data;
+                var orderId = data.orderId;
+                wx.requestPayment({
+                    'timeStamp': data.timeStamp.toString(),
+                    'nonceStr': data.nonceStr,
+                    'package': data.package,
+                    'signType': 'MD5',
+                    'paySign': data.paySign,
+                    success:function(payRes){
+                        wx.showLoading({
+                            title: '请稍后...',
+                        })
+                        wx.request({
+                            url: app.globalData.host+'/wechat/point/pay_callback',
+                            header:util.header(),
+                            method:"POST",
+                            data:{
+                                'orderId': orderId
+                            },
+                            success:function(){
+                                wx.hideLoading();
+                                wx.showModal({
+                                    title: '提示',
+                                    content: '充值成功',
+                                })
+                            },
+                            fail:function(){
+                                wx.hideLoading();
+                                wx.showModal({
+                                    title: '提示',
+                                    content: '电动帮服务器内部错误',
+                                })
+                            }
+                        })
+                    },
+                    fail:function(res){
+                        wx.showModal({
+                            title: '提示',
+                            content: '充值失败',
+                        })
+                    }
+                })
+            }else{
+                wx.showModal({
+                    title: '提示',
+                    content: res.data.msg,
+                })
+            }
+        },
+        fail:function(res){
+            wx.showModal({
+                title: '提示',
+                content: '签名失败',
+            })
+        }
     })
   }
 })
