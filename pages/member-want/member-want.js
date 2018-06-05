@@ -51,25 +51,18 @@ Page({
     },
 
     goto_fix_auth: function () {
-        wx.navigateTo({
-            url: '../fix-auth/fix-auth',
-        })
+        util.memberAuth('../fix-auth/fix-auth');
     },
+
     goto_help: function () {
-        wx.navigateTo({
-            url: '../help/help',
-        })
+        util.memberAuth('../help/help');
     },
     goto_lost_help: function () {
-        wx.navigateTo({
-            url: '../lost-help/lost-help',
-        })
+        util.memberAuth('../lost-help/lost-help');
     },
 
     goto_point:function(){
-        wx.navigateTo({
-            url: '../point/point',
-        })
+        util.memberAuth('../point/point');
     }
 })
 function improveUserInfo(data) {

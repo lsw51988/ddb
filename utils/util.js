@@ -193,7 +193,13 @@ function delImg(imgs, del_key) {
 /**
  * 查看用户是否认证过
  */
-function memberAuth(){
+function memberAuth(targetUrl){
+    var member = wx.getStorageSync("member");
+    if (member.mobile!=null){
+        wx.navigateTo({
+            url: targetUrl,
+        })
+    }
     wx.showLoading({
         title: '请稍后...',
     })
@@ -210,6 +216,9 @@ function memberAuth(){
                 member.mobile = res.data.data.mobile
                 wx.setStorageSync("member", member)
                 wx.hideLoading();
+                wx.navigateTo({
+                    url: targetUrl,
+                })
             } else {
                 wx.hideLoading();
                 wx.showModal({

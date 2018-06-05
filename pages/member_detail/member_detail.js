@@ -38,6 +38,10 @@ Page({
                 if (data['status'] == 2){
                     var buy_status = 2;
                 }
+                var last_change_time="";
+                if (data['last_change_time']!=null){
+                    last_change_time = data['last_change_time'].substring(0, 7)
+                }
                 that.setData({
                     "real_name": data['real_name'],
                     "mobile": data['mobile'],
@@ -47,7 +51,7 @@ Page({
                     "voltage_index": index,
                     "price": data['price'],
                     "status": buy_status,
-                    "last_change_time": data['last_change_time'].substring(0, 7),
+                    "last_change_time": last_change_time,
                     "bikeImgs": data['bikeImgs']
                 })
             },

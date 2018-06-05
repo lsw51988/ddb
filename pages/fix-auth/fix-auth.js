@@ -66,10 +66,7 @@ Page({
                                 markers[i] = marker;
                             }
                             that.setData({
-                                markers: markers
-                            });
-
-                            that.setData({
+                                markers: markers,
                                 mts_list: res.data.data
                             });
                         } else {
@@ -92,7 +89,6 @@ Page({
     },
     controltap: function (e) {
         //重新定位
-        console.log(e);
         var that = this;
         this.data.mapCtx.moveToLocation();
         this.data.mapCtx.getCenterLocation({
@@ -103,32 +99,8 @@ Page({
         })
     },
     goto_add_mts: function () {
-        wx.request({
-            url: app.globalData.host + '/wechat/appeal/mobile',
-            method: "GET",
-            header: util.header(),
-            success: function (res) {
-                if (res.data.status == true) {
-                    wx.hideLoading();
-                    wx.navigateTo({
-                        url: '../add-mts/add-mts',
-                    })
-                } else {
-                    wx.hideLoading();
-                    wx.showModal({
-                        title: '提示',
-                        content: '您尚未认证,请先去认证',
-                        success: function (res) {
-                            wx.redirectTo({
-                                url: '../member_detail/member_detail',
-                            })
-                        }
-                    })
-                }
-            },
-            fail: function (res) {
-                util.failHint();
-            }
+        wx.navigateTo({
+            url: '../add-mts/add-mts',
         })
     },
 

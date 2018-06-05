@@ -1,6 +1,9 @@
 {
     "pages": [
+        
         "pages/index/index",
+        "pages/shb-list/shb-list",
+"pages/shb-detail/shb-detail",
         "pages/point/point",
         "pages/shb-sell/shb-sell",
         "pages/suggestion/suggestion",
@@ -14,9 +17,9 @@
         "pages/member/member",
         "pages/member_log/member_log",
         "pages/lost-list/lost-list",
-        "pages/shb-list/shb-list",
+        
         "pages/lost-detail/lost-detail",
-        "pages/shb-detail/shb-detail",
+       
         "pages/member_detail/member_detail",
         "pages/fix-auth-detail/fix-auth-detail",
         "pages/member_avatar/member_avatar",

@@ -106,8 +106,8 @@
                 <view class="weui-label">电瓶更换时间</view>
             </view>
             <view class="weui-cell__bd">
-                <picker mode="date" fields="month" start="2010-01" bindchange="buyTimeChange" name="buy_date" value="{{buy_date}}" >
-                    <view class="weui-input">{{buy_date}}</view>
+                <picker mode="date" fields="month" start="2010-01" bindchange="lastChangeTimeChange" name="last_change_time" value="{{last_change_time}}" >
+                    <view class="weui-input">{{last_change_time}}</view>
                 </picker>
             </view>
         </view>

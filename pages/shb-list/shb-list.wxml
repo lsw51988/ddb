@@ -1,36 +1,37 @@
 <!--二手车列表-->
 <view class='bar'>
-  <view class='item'>
-    <picker bindchange="timeChange" value="{{index}}" range="{{building_types}}" class='item-s'>
-      <view type="default" class="SimHei text-center fs-13 ">{{time}}
-      </view>
-    </picker>
-    <image src="/img/arrow-down.png" class='arrow' />
-  </view>
-  <view class='item'>
-    <picker bindchange="addrChange" value="{{index}}" range="{{building_types}}" class='item-s'>
-      <view type="default" class="SimHei text-center fs-13 ">{{addr}}
-      </view>
-    </picker>
-    <image src="/img/arrow-down.png" class='arrow' />
-  </view>
-  <view class='item'>
-    <picker bindchange="statusChange" value="{{index}}" range="{{building_types}}" class='item-s'>
-      <view type="default" class="SimHei text-center fs-13 ">{{status}}
-      </view>
-    </picker>
-    <image src="/img/arrow-down.png" class='arrow' />
-  </view>
+    <view class='item'>
+        <picker bindchange="timeChange" value="{{time_index}}" range="{{time_range}}" class='item-s'>
+            <view type="default" class="SimHei text-center fs-13 ">{{time_range[time_index]}}
+            </view>
+        </picker>
+        <image src="/img/arrow-down.png" class='arrow' />
+    </view>
+    <view class='item'>
+        <picker mode="region" bindchange="addrChange" value="{{region}}"  class='item-s'>
+            <view type="default" class="SimHei text-center fs-13 ">{{region[2]}}
+            </view>
+        </picker>
+        <image src="/img/arrow-down.png" class='arrow' />
+    </view>
+    <view class='item'>
+        <picker bindchange="priceChange" value="{{price_index}}" range="{{price_range}}" class='item-s'>
+            <view type="default" class="SimHei text-center fs-13 ">{{price_range[price_index]}}
+            </view>
+        </picker>
+        <image src="/img/arrow-down.png" class='arrow' />
+    </view>
 </view>
-
-<view class='list-item'>
-  <view class='li-top'>
-    <view class='number'>编号No.1</view>
-    <view class='date'>3-11 10:00:00</view>
-  </view>
-  <view class='li-bottom'>
-    <view class='brand'>雅迪</view>
-    <view class='addr'>南京市玄武区乔虹苑</view>
-    <view class='price'>3400元</view>
-  </view>
+<view wx:for="{{bike_list}}">
+    <view class='list-item' bindtap='gotoShbDetail' data-id="{{item.id}}">
+        <view class='li-top'>
+            <view class='number'>编号No.{{item.id}}</view>
+            <view class='date'>{{item.created_at}}</view>
+        </view>
+        <view class='li-bottom'>
+            <view class='brand'>{{item.brand_name}}</view>
+            <view class='addr'>{{item.city}}{{item.district}}</view>
+            <view class='price'>{{item.out_price}}元</view>
+        </view>
+    </view>
 </view>

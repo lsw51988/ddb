@@ -31,6 +31,13 @@ Page({
                             index = i;
                         break;
                     }
+                    console.log(that.data.memberData);
+                    var last_change_time = memberData["last_change_time"];
+                    if (last_change_time!=null){
+                        last_change_time = memberData["last_change_time"].substring(0, 7)
+                    }else{
+                        last_change_time="";
+                    }
                     that.setData({
                         "mobile": wx.getStorageSync("member").mobile,
                         "real_name": that.data.memberData['real_name'],
@@ -40,7 +47,7 @@ Page({
                         "status": memberData["status"],
                         "price": memberData["price"],
                         "buy_date": memberData["buy_date"].substring(0, 7),
-                        "last_change_time": memberData["last_change_time"].substring(0, 7),
+                        "last_change_time": last_change_time,
                         "region": memberData["region"]
                     });
                 } else {
@@ -95,6 +102,12 @@ Page({
     buyTimeChange: function (e) {
         this.setData({
             buy_date: e.detail.value
+        })
+    },
+
+    lastChangeTimeChange: function (e) {
+        this.setData({
+            last_change_time: e.detail.value
         })
     },
 
@@ -176,7 +189,7 @@ Page({
                         //转入积分充值页面
                         wx.showModal({
                             title: '提示',
-                            content: '积分不足',
+                            content: '积分不足,请先充值',
                             success:function(){
                                 wx.navigateTo({
                                     url: '../point/point',
