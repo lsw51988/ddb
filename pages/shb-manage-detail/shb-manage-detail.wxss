@@ -1,0 +1,82 @@
+.submit {
+    color: white;
+    width: 33%;
+    background: #3367d6;
+    border-radius: 0;
+    float: left;
+    display: inline-block;
+}
+
+.repub {
+    color: white;
+    width: 100%;
+    background: #3367d6;
+    border-radius: 0;
+    float: left;
+    display: inline-block;
+}
+
+.revoke {
+    color: white;
+    width: 33%;
+    background: #8d8d8d;
+    border-radius: 0;
+    float: right;
+    display: inline-block;
+}
+
+.deal {
+    color: white;
+    width: 34%;
+    background: #ff4900;
+    border-radius: 0;
+    display: inline-block;
+}
+
+.hint {
+    text-indent: 50rpx;
+    font-size: 24rpx;
+    line-height: 40rpx;
+    padding: 20rpx 20rpx;
+    color: #2ba245;
+}
+
+.item {
+    height: 90rpx;
+    line-height: 90rpx;
+    font-size: 30rpx;
+}
+
+.addr {
+    height: 150rpx;
+    line-height: 160rpx;
+}
+
+.addr-input {
+    height: 152rpx;
+    width: 100%;
+}
+
+.addr-select {
+    height: 80rpx;
+    line-height: 80rpx;
+    position: relative;
+    float: left;
+}
+
+.detail-addr {
+    height: 70rpx;
+    line-height: 70rpx;
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+.captcha-input {
+    width: 80%;
+    height: 80rpx;
+    border: 4rpx solid #eee;
+    margin-left: 10%;
+    border-radius: 10rpx;
+    font-size: 34rpx;
+}

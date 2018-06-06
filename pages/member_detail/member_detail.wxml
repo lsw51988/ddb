@@ -80,8 +80,8 @@
         <view class="weui-label">购买时状态</view>
       </view>
       <view class="weui-cell__bd">
-        <view class="status_{{status==1}}" bindtap='tapNew'>全新</view>
-        <view class="status_{{status==2}}" bindtap='tapOld'>二手</view>
+        <view class="status_{{status=='1'}}" bindtap='tapNew'>全新</view>
+        <view class="status_{{status=='2'}}" bindtap='tapOld'>二手</view>
         <input style='display:none' name="status" value="{{status}}" />
       </view>
     </view>
@@ -124,6 +124,6 @@
   </view>
 </form>
 <modal hidden="{{modalFlag}}" title="请输入验证码" confirm-text="提交" cancel-text="取消" bindcancel="model_cancel" bindconfirm="model_confirm">
-  <input type='text' placeholder="请输入验证码" class='captcha-input' type='number' bindblur="captchaBlur" />
+  <input type='number' placeholder="请输入验证码" class='captcha-input' type='number' bindblur="captchaBlur" />
   <image src="{{imageUrl}}" class='captcha' bindtap='freshCaptcha'></image>
 </modal>

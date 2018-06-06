@@ -50,4 +50,4 @@
     </view>
 </view>
 <view class='hint'>温馨提示：联系时可告知对方您是从电动帮看到的。</view>
-<button class='submit' bindtap='makePhoneCall'>立即联系</button>
+<button class='submit' bindtap='makePhoneCallOrUpdate'>{{btnText}}</button>

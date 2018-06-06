@@ -1,0 +1,55 @@
+
+.list-item {
+    height: 120rpx;
+    width: 99%;
+    font-size: 28rpx;
+    margin-top: 10rpx;
+    border: 2rpx solid #2a2d32;
+    border-radius: 10rpx;
+}
+
+.li-top {
+    height: 60rpx;
+    line-height: 60rpx;
+}
+
+.li-bottom {
+    height: 60rpx;
+    line-height: 60rpx;
+}
+
+.number {
+    padding-left: 20rpx;
+    display: inline-block;
+    width: 340rpx;
+    float: left;
+}
+
+.date {
+    width: 300rpx;
+    float: right;
+    padding-right: 20rpx;
+    text-align: right;
+    display: inline-block;
+}
+
+.brand {
+    padding-left: 20rpx;
+    display: inline-block;
+    width: 20%;
+    text-align: left;
+}
+
+.addr {
+    display: inline-block;
+    width: 50%;
+    text-align: center;
+}
+
+.price {
+    padding-right: 20rpx;
+    display: inline-block;
+    width: 20%;
+    text-align: right;
+    float: right;
+}

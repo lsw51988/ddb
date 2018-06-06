@@ -1,24 +1,32 @@
 .title {
-  text-align: center;
-  font-size: 30rpx;
-  padding: 5px 10px;
+    text-align: center;
+    font-size: 30rpx;
+    padding: 5px 10px;
 }
 
 .area {
-  width: 100%;
-  text-align: center;
-  height: 400rpx;
-  line-height: 400rpx;
-  margin-top: 200rpx;
+    width: 100vw;
+    text-align: center;
+    height: 200rpx;
+    line-height: 200rpx;
+    margin-top: 200rpx;
+}
+
+.line {
+    width: 100%;
+    text-align: center;
+    height: 200rpx;
+    line-height: 200rpx;
+    margin-top: 20rpx;
 }
 
 button {
-  width: 300rpx;
-  height: 150rpx;
-  line-height: 150rpx;
-  display: inline-block;
+    width: 300rpx;
+    height: 150rpx;
+    line-height: 150rpx;
+    display: inline-block;
 }
 
 .mr-40 {
-  margin-right: 40rpx;
+    margin-right: 40rpx;
 }

@@ -1,15 +1,17 @@
 {
     "pages": [
-        
         "pages/index/index",
-        "pages/shb-list/shb-list",
-"pages/shb-detail/shb-detail",
-        "pages/point/point",
+        "pages/shb-manage-detail/shb-manage-detail",
         "pages/shb-sell/shb-sell",
+        "pages/shb-manage/shb-manage",
+        "pages/shb-index/shb-index",
+        "pages/shb-list/shb-list",
+        "pages/shb-detail/shb-detail",
+        "pages/point/point",
+        "pages/near-mts/near-mts",
         "pages/suggestion/suggestion",
         "pages/lost-help/lost-help",
         "pages/member-want/member-want",
-        "pages/near-mts/near-mts",
         "pages/pay-help/pay-help",
         "pages/help/help",
         "pages/help-review/help-review",
@@ -17,16 +19,13 @@
         "pages/member/member",
         "pages/member_log/member_log",
         "pages/lost-list/lost-list",
-        
         "pages/lost-detail/lost-detail",
-       
         "pages/member_detail/member_detail",
         "pages/fix-auth-detail/fix-auth-detail",
         "pages/member_avatar/member_avatar",
         "pages/test/test",
         "pages/add-mts/add-mts",
         "pages/about/about",
-        "pages/shb-index/shb-index",
         "pages/recommend/recommend",
         "pages/ans-help/ans-help",
         "pages/socket/socket"

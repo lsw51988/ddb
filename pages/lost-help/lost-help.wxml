@@ -40,7 +40,7 @@
             <view class="weui-cell__bd area">
                 <picker mode="region" value="{{region}}" custom-item="{{customItem}}" name="addr">
                     <view class="picker">
-                        {{region[0]}}，{{region[1]}}，{{region[2]}}
+                        {{region[0]}},{{region[1]}},{{region[2]}}
                     </view>
                 </picker>
             </view>

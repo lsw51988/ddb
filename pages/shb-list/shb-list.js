@@ -9,13 +9,15 @@ Page({
         time_index: 0,
         price_index: 0,
         search: [],
-        current_page:1
+        current_page:1,
+        max_page: 1
     },
 
     onLoad: function (options) {
         this.data.region = [];
         this.data.search['city'] = wx.getStorageSync("member").location[1];
         this.data.search['district'] = wx.getStorageSync("member").location[2];
+        this.data.search['current_page'] = this.data.current_page;
         getList(this, this.data.search);
     },
 
@@ -49,7 +51,15 @@ Page({
         wx.navigateTo({
             url: '../shb-detail/shb-detail?id='+id,
         })
-    }
+    },
+
+    onReachBottom: function () {
+        var that = this;
+        if (that.data.max_page > that.data.current_page) {
+            that.data.search['current_page'] = that.data.current_page + 1;
+            getList(that, that.data.search)
+        }
+    },
 })
 
 function getList(_this, search) {
@@ -67,7 +77,9 @@ function getList(_this, search) {
                 wx.hideLoading();
                 var resData = res.data.data;
                 _this.setData({
-                    "bike_list": resData.rows
+                    "bike_list": resData.rows,
+                    "current_page": resData.current_page,
+                    "max_page": resData.max_page
                 })
             } else {
                 util.falseHint(res.data.msg);

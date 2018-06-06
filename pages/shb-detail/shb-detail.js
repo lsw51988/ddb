@@ -9,11 +9,18 @@ Page({
     duration: 1000,
     windowWidth: wx.getSystemInfoSync().windowWidth,
     bikeInfo:[],
-    id:""
+    id:"",
+    btnText:"立即联系"
   },
 
   onLoad:function(e){
+      console.log(e);
       var that = this;
+      if(e.manage!=undefined){
+            that.setData({
+                'btnText':"立即更新"
+            })
+      }
       that.data.id = e.id;
       wx.showLoading({
           title: '请稍后...',
@@ -54,25 +61,30 @@ Page({
       })
   },
 
-  makePhoneCall:function(){
+  makePhoneCallOrUpdate:function(){
       var that = this;
-      wx.makePhoneCall({
-          phoneNumber: that.data.bikeInfo['mobile'],
-          success:function(){
-                wx.request({
-                    url: app.globalData.host + '/wechat/shb/contact/' + that.data.id,
-                    method:"GET",
-                    header:util.header(),
-                    success:function(){},
-                    fail:function(){}
-                })
-          },
-          fail:function(){
-            wx.showModal({
-                title: '提示',
-                content: '好像出错了,请重试',
-            })
-          }
-      })
+      if(that.data.btnText=="立即联系"){
+          wx.makePhoneCall({
+              phoneNumber: that.data.bikeInfo['mobile'],
+              success: function () {
+                  wx.request({
+                      url: app.globalData.host + '/wechat/shb/contact/' + that.data.id,
+                      method: "GET",
+                      header: util.header(),
+                      success: function () { },
+                      fail: function () { }
+                  })
+              },
+              fail: function () {
+                  wx.showModal({
+                      title: '提示',
+                      content: '好像出错了,请重试',
+                  })
+              }
+          })
+      }else{
+          
+      }
+      
   }
 })

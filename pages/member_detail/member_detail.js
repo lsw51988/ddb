@@ -11,7 +11,7 @@ Page({
         cap_btn_status: false,
         cap_loading_status: false,
         mobile: "",
-        status: 1,
+        status: '1',
         sms_code_flag: true,
         bikeImgs: []
     },
@@ -30,14 +30,12 @@ Page({
                 that.data.real_name = data['real_name'];
                 var index = 0;
                 for (var i = 0; i < that.data.voltage.length; i++) {
-                    if (data['voltage'] == that.data.voltage[i])
+                    if (parseInt(data['voltage']) == parseInt(that.data.voltage[i])) {
                         index = i;
-                    break;
+                        break;
+                    }   
                 }
-                var buy_status = 1;
-                if (data['status'] == 2){
-                    var buy_status = 2;
-                }
+                
                 var last_change_time="";
                 if (data['last_change_time']!=null){
                     last_change_time = data['last_change_time'].substring(0, 7)
@@ -50,7 +48,7 @@ Page({
                     "number": data['number'],
                     "voltage_index": index,
                     "price": data['price'],
-                    "status": buy_status,
+                    "status": data['status'],
                     "last_change_time": last_change_time,
                     "bikeImgs": data['bikeImgs']
                 })
@@ -153,7 +151,7 @@ Page({
                     //上传文件
                     var member_bike_id = res.data.data.member_bike_id;
                     for (var i = 0; i < that.data.bikeImgs.length; i++) {
-                        if (that.data.bikeImgs[i].indexOf("ddb.com") == -1) {
+                        if (that.data.bikeImgs[i].indexOf(app.globalData.host) == -1) {
                             uploadFile(member_bike_id, that.data.bikeImgs[i]);
                         }
                     }
@@ -204,7 +202,7 @@ Page({
             if (bikeImg == that.data.bikeImgs[i]) {
                 delete (that.data.bikeImgs[i]);
                 //远程图片也需要删除
-                if (bikeImg.indexOf("ddb.com") != -1) {
+                if (bikeImg.indexOf(app.globalData.host) != -1) {
                     var id = bikeImg.substr(bikeImg.lastIndexOf("/") + 1);
                     wx.showLoading({
                         title: '请稍后...',

@@ -9,7 +9,8 @@ Page({
         memberData: [],
         bikeImgs: [],
         status:1,
-        detail_addr:""
+        detail_addr:"",
+        last_change_time:"未更换"
     },
 
     onLoad: function (options) {
@@ -36,7 +37,7 @@ Page({
                     if (last_change_time!=null){
                         last_change_time = memberData["last_change_time"].substring(0, 7)
                     }else{
-                        last_change_time="";
+                        last_change_time ="未更换";
                     }
                     that.setData({
                         "mobile": wx.getStorageSync("member").mobile,
@@ -91,6 +92,12 @@ Page({
                 "last_change_time": ""
             });
         }
+    },
+
+    voltageChange: function (e) {
+        this.setData({
+            voltage_index: e.detail.value
+        })
     },
 
     statusChange:function(e){
@@ -170,13 +177,13 @@ Page({
                     wx.hideLoading();
                     var shb_id = res.data.data.shb_id;
                     for (var i = 0; i < that.data.bikeImgs.length; i++) {
-                        if (that.data.bikeImgs[i].indexOf("ddb.com") == -1) {
+                        //if (that.data.bikeImgs[i].indexOf(app.globalData.host) == -1) {
                             uploadFile(shb_id, that.data.bikeImgs[i]);
-                        }
+                        //}
                     }
                     wx.showModal({
                         title: '提示',
-                        content: '添加成功,等待后台审核通过',
+                        content: '添加成功',
                         success: function () {
                             wx.redirectTo({
                                 url: '../shb-list/shb-list',
