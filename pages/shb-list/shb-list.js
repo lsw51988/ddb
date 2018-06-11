@@ -13,6 +13,10 @@ Page({
         max_page: 1
     },
 
+    onShareAppMessage: function () {
+        return util.share(this);
+    },
+
     onLoad: function (options) {
         this.data.region = [];
         this.data.search['city'] = wx.getStorageSync("member").location[1];

@@ -1,37 +1,37 @@
 page {
-  background: #efeff4;
+    background: #efeff4;
 }
 
 .title {
-  font-size: 28rpx;
-  text-indent: 40rpx;
-  border: 4rpx solid #d1d1d1;
-  background: white;
-  line-height: 50rpx;
-  padding: 20rpx 40rpx;
+    font-size: 28rpx;
+    text-indent: 40rpx;
+    border: 4rpx solid #d1d1d1;
+    background: white;
+    line-height: 50rpx;
+    padding: 20rpx 40rpx;
 }
 
 .list {
-  position: absolute;
-  bottom: 0;
-  height: 440rpx;
-  width: 100%;
+    position: absolute;
+    bottom: 0;
+    height: 264rpx;
+    width: 100%;
 }
 
 .item {
-  height: 80rpx;
-  line-height: 80rpx;
-  padding-left: 40rpx;
-  font-size: 30rpx;
-  border-top: 8rpx solid #f0f0f0;
-  background: white;
+    height: 80rpx;
+    line-height: 80rpx;
+    padding-left: 40rpx;
+    font-size: 30rpx;
+    border-top: 8rpx solid #f0f0f0;
+    background: white;
 }
 
 .img {
-  width: 40rpx;
-  height: 40rpx;
-  position: relative;
-  top: 22rpx;
-  margin-right: 20rpx;
-  float: right;
+    width: 40rpx;
+    height: 40rpx;
+    position: relative;
+    top: 22rpx;
+    margin-right: 20rpx;
+    float: right;
 }

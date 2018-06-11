@@ -12,6 +12,10 @@ Page({
         current_item_id: ""
     },
 
+    onShareAppMessage: function () {
+        return util.share(this);
+    },
+
     onLoad: function (options) {
         var that = this;
         wx.getSystemInfo({

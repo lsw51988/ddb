@@ -5,6 +5,10 @@ Page({
     amount:1000
   },
 
+  onShareAppMessage: function () {
+      return util.share(this);
+  },
+
   choose:function(e){
       var amount = e.currentTarget.dataset.amount;
       this.setData({

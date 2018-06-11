@@ -1,59 +1,61 @@
-<map id="pay_help_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" class='map' markers="{{markers}}" controls='{{controls}}' bindcontroltap="controltap" show-location>
-  <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
+<map id="pay_help_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="17" class='map' markers="{{markers}}" controls='{{controls}}' bindcontroltap="controltap" show-location>
+
 </map>
 <view class='content'>
-  <view class='line'>
-    <view bindtap='changetab' class="{{active==0?'active':''}}" data-active="0">请求拖车帮助
-      <image src="/img/help{{active==0?'-active':''}}.png"></image>
+    <view class='line'>
+        <view bindtap='changetab' class="{{active==0?'active':''}}" data-active="0">请求拖车帮助
+            <image bindtap='changetab' data-active="0" src="/img/help{{active==0?'-active':''}}.png"></image>
+        </view>
+        <view bindtap='changetab' class="{{active==1?'active':''}}" data-active="1">自行推车至修理点
+            <image bindtap='changetab' data-active="1" src="/img/help{{active==1?'-active':''}}.png"></image>
+        </view>
     </view>
-    <view bindtap='changetab' class="{{active==1?'active':''}}" data-active="1">自行推车至修理点
-      <image src="/img/help{{active==1?'-active':''}}.png"></image>
-    </view>
-  </view>
-  <swiper current='{{active}}'>
-    <swiper-item>
-      <view class='s-item'>
-        <view class='s-line'>
-          <view class='s-line-item-1'>李先生-13813800300</view>
-          <view class='s-line-item-2'>相距: 约400米</view>
-        </view>
-        <view class='s-line'>
-          <view class='s-line-item-1'>故障: 车胎爆了</view>
-          <view class='s-line-item-2'>悬赏积分: 50分</view>
-        </view>
-        <view class='s-line'>
-          <view class='s-line-item-1'>费用: 约10元</view>
-          <view class='s-line-item-2'>求助时间: 16:30</view>
-        </view>
-        <view class='s-btn'>立即帮助</view>
-      </view>
-    </swiper-item>
+    <swiper current='{{active}}'>
+        <swiper-item>
+            <scroll-view scroll-y>
+                <view wx:for="{{sos_list}}">
+                    <view class='s-item' bindtap='appealClick' data-id="{{item.id}}">
+                        <view class='s-lines'>
+                            <view class='s-line'>
+                                <view class='s-line-item-1'>{{item.real_name}}-{{item.mobile}}</view>
+                                <view class='s-line-item-2'>费用: 约10元</view>
+                            </view>
+                            <view class='s-line'>
+                                <view class='s-line-item-1'>故障: {{problem[item.type]}}</view>
+                                <view class='s-line-item-2'>求助时间:{{item.created_at}}</view>
+                            </view>
+                            <view class='s-line'>
+                                <view class='s-line-item'>注: {{item.description}}</view>
+                            </view>
+                        </view>
+                        <view class='s-btn' data-mobile="{{item.mobile}}" data-id="{{item.id}}" bindtap='makePhoneCall'>立即帮助</view>
+                    </view>
+                </view>
+            </scroll-view>
+        </swiper-item>
 
-    <swiper-item>
-      <view class='p-item'>
-        <view class='p-line'>
-          <view class='p-line-item-1'>李先生-13813800300</view>
-          <view class='p-line-item-2'>相距: 约400米</view>
-        </view>
-        <view class='p-line'>
-          <view class='p-line-item-1'>故障: 车胎爆了</view>
-          <view class='p-line-item-2'>求助时间:16:30</view>
-        </view>
-        <view class='p-btn'>立即帮助</view>
-      </view>
-      
-      <view class='p-item'>
-        <view class='p-line'>
-          <view class='p-line-item-1'>李先生-13813800300</view>
-          <view class='p-line-item-2'>相距: 约400米</view>
-        </view>
-        <view class='p-line'>
-          <view class='p-line-item-1'>故障: 车胎爆了</view>
-          <view class='p-line-item-2'>求助时间:16:30</view>
-        </view>
-        <view class='p-btn'>立即帮助</view>
-      </view>
-    </swiper-item>
-  </swiper>
+        <swiper-item>
+            <scroll-view scroll-y>
+                <view wx:for="{{show_list}}">
+                    <view class='s-item' bindtap='appealClick' data-id="{{item.id}}">
+                        <view class='s-lines'>
+                            <view class='s-line'>
+                                <view class='s-line-item-1'>{{item.real_name}}-{{item.mobile}}</view>
+                                <view class='s-line-item-2'>求助时间:{{item.created_at}}</view>
+                            </view>
+                            <view class='s-line'>
+                                <view class='s-line-item-1'>故障: {{problem[item.type]}}</view>
+                                <view class='s-line-item-2'></view>
+                            </view>
+                            <view class='s-line'>
+                                <view class='s-line-item'>注: {{item.description}}</view>
+                            </view>
+                        </view>
+                        <view class='s-btn' data-mobile="{{item.mobile}}" data-id="{{item.id}}" bindtap='makePhoneCall'>立即帮助</view>
+                    </view>
+                </view>
+            </scroll-view>
+        </swiper-item>
+    </swiper>
 
 </view>

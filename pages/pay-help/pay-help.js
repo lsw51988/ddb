@@ -10,6 +10,10 @@ Page({
         markers: [],
     },
 
+    onShareAppMessage: function () {
+        return util.share(this);
+    },
+
     onLoad: function (options) {
         var that = this;
         that.data.latitude = options.latitude

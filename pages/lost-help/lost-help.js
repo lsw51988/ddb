@@ -16,6 +16,10 @@ Page({
         lostBikeId: ""
     },
 
+    onShareAppMessage: function () {
+        return util.share(this);
+    },
+    
     onLoad: function (options) {
         var that = this;
         if (wx.getStorageSync("member").mobile == undefined) {

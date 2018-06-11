@@ -7,6 +7,11 @@ Page({
         origin_avatar_url: "",
         origin_nick_name: "",
     },
+
+    onShareAppMessage: function () {
+        return util.share(this);
+    },
+    
     onLoad: function (options) {
         var that = this;
         wx.showLoading({

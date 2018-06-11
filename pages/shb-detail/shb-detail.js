@@ -13,6 +13,10 @@ Page({
     btnText:"立即联系"
   },
 
+  onShareAppMessage: function () {
+      return util.share(this);
+  },
+
   onLoad:function(e){
       console.log(e);
       var that = this;

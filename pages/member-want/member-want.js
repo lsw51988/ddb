@@ -1,6 +1,18 @@
 const app = getApp()
 var util = require("../../utils/util.js");
 Page({
+
+    onShareAppMessage: function () {
+        return util.share(this);
+    },
+    
+    onLoad:function(opts){
+        console.log(opts);
+        if (opts.share_user_id != undefined) {
+            console.log(opts.share_user_id);
+        }
+    },
+
     onGotUserInfo: function (e) {
         if (!wx.getStorageSync("member").union_flag) {
             //拒绝授权

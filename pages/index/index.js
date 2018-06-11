@@ -1,36 +1,23 @@
 const app = getApp()
-
+var util = require("../../utils/util.js");
 Page({
     data: {
         markers: [],
         circles: [],
         longitude: "",
-        latitude: ""
+        latitude: "",
+        btnText:"请求帮助",
+        member_id:"",
+        share_member_id:""
     },
-    onShareAppMessage: function (res) {
-        if (res.from === 'button') {
-            // 来自页面内转发按钮
-            console.log(res.target)
-        }
-        return {
-            title: '电动帮',
-            path: '/pages/index/index',
-            success: function (res) {
-                wx.showModal({
-                    title: '提示',
-                    content: '转发成功',
-                })
-            },
-            fail: function (res) {
-                wx.showModal({
-                    title: '提示',
-                    content: '转发失败',
-                })
-            }
-        }
+    onShareAppMessage: function () {
+        return util.share(this);
     },
     onLoad: function (opts) {
         var that = this;
+        if (opts.share_member_id != undefined) {
+            that.data.share_member_id = opts.share_member_id;
+        }
         var marker = {}
         wx.getSystemInfo({
             success: function (res) {
@@ -91,7 +78,7 @@ Page({
                 wx.setStorageSync("latitude", res.latitude)
                 wx.setStorageSync("longitude", res.longitude)
                 locationData(res, that);
-                login(res.latitude, res.longitude);
+                login(res.latitude, res.longitude,that);
             },
             fail: function (res) {
                 wx.showModal({
@@ -109,7 +96,7 @@ Page({
                                             wx.setStorageSync("latitude", res.latitude)
                                             wx.setStorageSync("longitude", res.longitude)
                                             locationData(res, that);
-                                            login(res.latitude, res.longitude);
+                                            login(res.latitude, res.longitude, that);
                                         },
                                     })
                                 }
@@ -127,22 +114,28 @@ Page({
     },
 
     help: function () {
-        console.log(wx.getStorageSync("member").auth_time);
-        if (wx.getStorageSync("member").auth_time == null) {
-            wx.showModal({
-                title: '提示',
-                content: '您需要先认证',
-                success: function () {
-                    wx.navigateTo({
-                        url: '../member_detail/member_detail',
-                    })
-                }
-            })
-        } else {
-            wx.navigateTo({
-                url: '../help/help',
-            })
-        }
+       if(this.data.btnText=="请求帮助"){
+           if (wx.getStorageSync("member").auth_time == null) {
+               wx.showModal({
+                   title: '提示',
+                   content: '您需要先认证',
+                   success: function () {
+                       wx.navigateTo({
+                           url: '../member_detail/member_detail',
+                       })
+                   }
+               })
+           } else {
+               wx.navigateTo({
+                   url: '../help/help',
+               })
+           }
+       }else{
+           wx.navigateTo({
+               url: '../ans-help/ans-help',
+           })
+       }
+       
     },
     controltap: function (e) {
         switch (e.controlId) {
@@ -166,7 +159,7 @@ Page({
     }
 })
 
-function login(latitude, longitude) {
+function login(latitude, longitude, that) {
     wx.login({
         success: function (loginRes) {
             var js_code = loginRes.code;
@@ -174,6 +167,8 @@ function login(latitude, longitude) {
             loginRes.latitude = latitude;
             loginRes.longitude = longitude;
             loginRes.scene_code = wx.getStorageSync("scene_code");
+            loginRes.share_member_id = that.data.share_member_id
+            
             wx.request({
                 url: app.globalData.host + '/wechat/index',
                 header: {
@@ -183,6 +178,11 @@ function login(latitude, longitude) {
                 data: loginRes,
                 success: function (res) {
                     wx.setStorageSync('member', res.data.data);
+                    if(res.data.data.repair_flag){
+                        that.setData({
+                            btnText:"响应帮助"
+                        })
+                    }
                 }
             })
         },

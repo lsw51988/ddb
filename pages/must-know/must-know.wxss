@@ -1,0 +1,20 @@
+.content {
+    font-size: 28rpx;
+    width: 90%;
+    margin-left: 5%;
+}
+
+.title {
+    font-size: 36rpx;
+    text-align: center;
+}
+
+.h1 {
+    font-size: 32rpx;
+    margin-top:40rpx;
+}
+
+.para {
+    line-height: 50rpx;
+    text-indent: 40rpx;
+}

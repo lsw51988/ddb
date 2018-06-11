@@ -1,4 +1,4 @@
-// 丢失求助页面
+var util = require("../../utils/util.js");
 Page({
     data: {
         imgUrls: [
@@ -13,6 +13,10 @@ Page({
         windowWidth: wx.getSystemInfoSync().windowWidth,
         region: ['江苏省', '南京市', '秦淮区'],
         lost_date: ""
+    },
+
+    onShareAppMessage: function () {
+        return util.share(this);
     },
 
     onLoad: function (options) {

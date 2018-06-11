@@ -1,6 +1,11 @@
 {
     "pages": [
+       
         "pages/index/index",
+        "pages/test1/test1",
+        "pages/test/test",
+        "pages/ans-help/ans-help",
+        "pages/suggestion/suggestion",
         "pages/shb-manage-detail/shb-manage-detail",
         "pages/shb-sell/shb-sell",
         "pages/shb-manage/shb-manage",
@@ -9,7 +14,8 @@
         "pages/shb-detail/shb-detail",
         "pages/point/point",
         "pages/near-mts/near-mts",
-        "pages/suggestion/suggestion",
+        "pages/must-know/must-know",
+        "pages/coop/coop",
         "pages/lost-help/lost-help",
         "pages/member-want/member-want",
         "pages/pay-help/pay-help",
@@ -23,11 +29,9 @@
         "pages/member_detail/member_detail",
         "pages/fix-auth-detail/fix-auth-detail",
         "pages/member_avatar/member_avatar",
-        "pages/test/test",
         "pages/add-mts/add-mts",
         "pages/about/about",
         "pages/recommend/recommend",
-        "pages/ans-help/ans-help",
         "pages/socket/socket"
     ],
     "window": {

@@ -26,6 +26,10 @@ Page({
         controls:[]
     },
 
+    onShareAppMessage: function () {
+        return util.share(this);
+    },
+    
     onLoad: function (options) {
         var that = this;
         that.data.repair_id = options.id;

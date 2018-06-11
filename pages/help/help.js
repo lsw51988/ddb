@@ -26,6 +26,11 @@ Page({
         sms_code_flag: true,
         appeal_id: ""
     },
+
+    onShareAppMessage: function () {
+        return util.share(this);
+    },
+    
     onLoad: function (options) {
         var that = this;
         if (wx.getStorageSync("member").mobile != undefined) {
@@ -39,6 +44,10 @@ Page({
                 success: function (res) {
                     if (res.data.status == true) {
                         wx.hideLoading();
+                        that.setData({
+                            "mobile": res.data.data.mobile,
+                            "mobile_show": res.data.data.mobile.replace(/(\d{3})\d{4}(\d{3})/, '$1****$2')
+                        })
                         if (res.data.data.appeal != undefined) {
                             var appeal = res.data.data.appeal;
                             that.setData({
@@ -46,11 +55,18 @@ Page({
                                 desc: appeal.desc,
                                 appeal_id: appeal.id
                             });
+                            if (appeal.method == '2') {
+                                wx.navigateTo({
+                                    url: '../pay-help/pay-help?appeal_id=' + appeal.id + '&longitude=' + appeal.longitude + "&latitude=" + appeal.latitude
+                                })
+                                return;
+                            } else {
+                                wx.navigateTo({
+                                    url: '../near-mts/near-mts?appeal_id=' + appeal.id + '&longitude=' + appeal.longitude + "&latitude=" + appeal.latitude
+                                })
+                                return;
+                            }
                         }
-                        that.setData({
-                            "mobile": res.data.data.mobile,
-                            "mobile_show": res.data.data.mobile.replace(/(\d{3})\d{4}(\d{3})/, '$1****$2')
-                        })
                     } else {
                         wx.hideLoading();
                         wx.showModal({
@@ -100,6 +116,51 @@ Page({
             },
         })
         that.data.mapCtx = wx.createMapContext("map", that);
+    },
+
+    onShow: function (options) {
+        var that = this;
+        if (wx.getStorageSync("member").mobile != undefined) {
+            wx.showLoading({
+                title: '请稍后...',
+            })
+            wx.request({
+                url: app.globalData.host + '/wechat/appeal/create',
+                method: "GET",
+                header: util.header(),
+                success: function (res) {
+                    if (res.data.status == true) {
+                        wx.hideLoading();
+                        that.setData({
+                            "mobile": res.data.data.mobile,
+                            "mobile_show": res.data.data.mobile.replace(/(\d{3})\d{4}(\d{3})/, '$1****$2')
+                        })
+                        if (res.data.data.appeal != undefined) {
+                            var appeal = res.data.data.appeal;
+                            that.setData({
+                                problem_index: appeal.type,
+                                desc: appeal.desc,
+                                appeal_id: appeal.id
+                            });
+                        }
+                    } else {
+                        wx.hideLoading();
+                        wx.showModal({
+                            title: '提示',
+                            content: '您尚未认证,请先去认证',
+                            success: function (res) {
+                                wx.redirectTo({
+                                    url: '../member_detail/member_detail',
+                                })
+                            }
+                        })
+                    }
+                },
+                fail: function (res) {
+                    util.failHint();
+                }
+            })
+        }
     },
 
     problemChange: function (e) {
@@ -162,15 +223,15 @@ Page({
         if (that.data.appeal_id != "") {
             formData.appeal_id = that.data.appeal_id;
         }
-        for (var key in formData) {
-            if (formData[key] === "" || formData[key] === null) {
-                wx.showModal({
-                    title: '提示',
-                    content: '请填写必填项',
-                })
-                return false;
-            }
-        }
+        // for (var key in formData) {
+        //     if (formData[key] === "" || formData[key] === null) {
+        //         wx.showModal({
+        //             title: '提示',
+        //             content: '请填写必填项',
+        //         })
+        //         return false;
+        //     }
+        // }
         if (formData.method == 2) {
             if (that.data.appeal_id == "") {
                 //如果是创建操作才会给出提示
@@ -183,7 +244,7 @@ Page({
                         }
                     }
                 })
-            }else{
+            } else {
                 help(that, formData)
             }
         } else {
@@ -214,17 +275,17 @@ function help(_this, formData) {
                 } else {
                     //寻求拖车帮助
                     wx.navigateTo({
-                        url: '../pay-help/pay-help?appeal_id=' + res.data.appeal_id+'&longitude=' + _this.data.longitude + "&latitude=" + _this.data.latitude
+                        url: '../pay-help/pay-help?appeal_id=' + res.data.appeal_id + '&longitude=' + _this.data.longitude + "&latitude=" + _this.data.latitude
                     })
                 }
             } else {
                 wx.hideLoading();
-                if (res.data.msg.no_repairs!=undefined) {
+                if (res.data.msg.no_repairs != undefined) {
                     wx.showModal({
                         title: '提示',
                         content: '附近没有记录的维修点,您如果看到可手动添加,获得很多积分哦'
                     })
-                }else{
+                } else {
                     wx.showModal({
                         title: '提示',
                         content: res.data.msg

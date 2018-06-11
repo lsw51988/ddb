@@ -1,12 +1,11 @@
 <view class="title">感谢您真诚的提出意见，我们一定认真考量,优化系统.</view>
 <form bindsubmit="formSubmit">
     <view class='s_type'>
-        类别：
-        <checkbox-group bindchange="checkboxChange">
-            <label wx:for='{{checkboxItems}}' wx:key="{{value}}">
-                <checkbox value='{{item.value}}' name="type">{{item.name}}</checkbox>
-            </label>
-        </checkbox-group>
+        模块：
+        <picker mode="selector" range='{{types}}' value='{{type_index}}' name='type' bindchange="typeChange">
+        <image src="/img/arrow-down.png" class='arrow' />
+        <view class="weui-input" style='padding-left:20rpx;'>{{types[type_index]}}</view>
+        </picker> 
     </view>
     <view class='s_type'>
         具体描述：

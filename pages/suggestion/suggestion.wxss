@@ -1,27 +1,39 @@
 .title {
-  font-size: 32rpx;
-  padding: 5px 10px;
+    font-size: 32rpx;
+    padding: 5px 10px;
 }
 
 .s_type {
-  margin-top: 30rpx;
-  padding: 0 60rpx;
-   font-size: 30rpx;
+    margin-top: 30rpx;
+    padding: 0 60rpx;
+    font-size: 30rpx;
 }
 
-.s_type checkbox {
-  margin-left: 20rpx;
+.s_type picker {
+    border:1px solid #d1d1d1;
+    width:500rpx;
+}
+
+.arrow {
+    width: 30rpx;
+    height: 30rpx;
+    position: relative;
+    margin-right: 20rpx;
+    margin-top:20rpx;
+    display: inline-block;
+    float: right;
 }
 
 .s_type textarea {
-  border: 1px solid #d1d1d1;
-  border-radius: 10rpx;
+    border: 1px solid #d1d1d1;
+    border-radius: 10rpx;
 }
-button{
-  position: absolute;
-  width:100%;
-  bottom:0;
-  background: #3367d6;
-  color:white;
-  border-radius: 0;
+
+button {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    background: #3367d6;
+    color: white;
+    border-radius: 0;
 }

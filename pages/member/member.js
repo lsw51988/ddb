@@ -1,33 +1,12 @@
 const app = getApp();
+var util = require("../../utils/util.js");
 Page({
     data: {
 
     },
-    onShareAppMessage: function (res) {
-        return {
-            title: '电动帮',
-            path: '/pages/member/member',
-            success: function (res) {
-                wx.showModal({
-                    title: '提示',
-                    content: '转发成功',
-                    success: function () {
-                        wx.getShareInfo({
-                            shareTicket: res.shareTickets[0],
-                            success: function (res1) {
-                                console.log(res1);
-                            }
-                        })
-                    }
-                })
-            },
-            fail: function (res) {
-                wx.showModal({
-                    title: '提示',
-                    content: '转发失败',
-                })
-            }
-        }
+    
+    onShareAppMessage: function () {
+        return util.share(this);
     },
 
     onLoad: function (options) {

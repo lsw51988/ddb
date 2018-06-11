@@ -1,20 +1,13 @@
 <view class="title">电动帮是一个致力于提供便民服务的软件，希望可以帮助大家的日常出行和生活。</view>
 <view class='list'>
- <view class='item'>
+ <view class='item' bindtap='gotoMustKnow'>
     使用须知
     <image src='/img/arrow-right.png' class='img'></image>
   </view>
-  <view class='item'>
-    帮公益
+  <view class='item' bindtap='gotoSuggestion'>建议
     <image src='/img/arrow-right.png' class='img'></image>
   </view>
-  <view class='item'>建议
-    <image src='/img/arrow-right.png' class='img'></image>
-  </view>
-  <view class='item'>欢迎评分
-    <image src='/img/arrow-right.png' class='img'></image>
-  </view>
-  <view class='item'>商业合作
+  <view class='item' bindtap='gotoCoop'>商业合作
     <image src='/img/arrow-right.png' class='img'></image>
   </view>
 </view>

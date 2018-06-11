@@ -1,3 +1,3 @@
 <view class="title">推荐规则：您推荐一次，您将获取二个积分，您推荐的用户成功使用并完成资料完善。您将额外获取10个积分奖励。</view>
 <view class="title">推荐方式：1.小程序任意页面点击右上角<image src="/img/share.png"></image>，然后分享；2.直接点击下方分享按钮</view>
-<button>分享给您的好友</button>
+<button open-type='share'>分享给您的好友</button>

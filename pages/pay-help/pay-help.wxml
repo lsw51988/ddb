@@ -17,5 +17,5 @@
       <view class='hint'>您还剩100分</view>
     </view>
   </view> -->
-    <button class='cancel' bindtap='cancelHelp' data-id='{{appeal_id}}'>取消</button>
+    <button class='cancel' bindtap='cancelHelp' data-id='{{appeal_id}}'>取消请求帮助</button>
 </view>

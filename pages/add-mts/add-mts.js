@@ -19,6 +19,10 @@ Page({
         belong_creator: 0,
     },
 
+    onShareAppMessage: function () {
+        return util.share(this);
+    },
+
     onLoad: function () {
         var that = this;
         wx.getSystemInfo({

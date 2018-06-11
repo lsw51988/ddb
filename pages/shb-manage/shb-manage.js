@@ -7,6 +7,11 @@ Page({
         current_page:1,
         max_page:1
     },
+
+    onShareAppMessage: function () {
+        return util.share(this);
+    },
+    
     onLoad: function (options) {
         this.data.search['self_flag'] = true;
         this.data.search['current_page'] = this.data.current_page;

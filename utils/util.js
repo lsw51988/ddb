@@ -1,4 +1,4 @@
-var host = "http://local.ddb.com";
+var host = "https://www.ebikea.com";
 const formatTime = date => {
     const year = date.getFullYear()
     const month = date.getMonth() + 1
@@ -193,12 +193,13 @@ function delImg(imgs, del_key) {
 /**
  * 查看用户是否认证过
  */
-function memberAuth(targetUrl){
+function memberAuth(targetUrl) {
     var member = wx.getStorageSync("member");
-    if (member.mobile!=null){
+    if (member.mobile != null) {
         wx.navigateTo({
             url: targetUrl,
         })
+        return;
     }
     wx.showLoading({
         title: '请稍后...',
@@ -242,6 +243,30 @@ function memberAuth(targetUrl){
     })
 }
 
+/**
+ * 分享
+ */
+function share(that) {
+    return {
+        title: '电动帮',
+        imageUrl: '/img/bang.png',
+        path: '/pages/index/index?share_member_id=' + wx.getStorageSync('member').id,
+        success: function (res) {
+            wx.showModal({
+                title: '提示',
+                content: '转发成功',
+            })
+        },
+        fail: function (res) {
+            wx.showModal({
+                title: '提示',
+                content: '转发失败',
+            })
+        }
+    }
+
+}
+
 module.exports = {
     formatTime: formatTime,
     transDate: transDate,
@@ -253,5 +278,6 @@ module.exports = {
     falseHint: falseHint,
     validateImgCount: validateImgCount,
     delImg: delImg,
-    memberAuth: memberAuth
+    memberAuth: memberAuth,
+    share: share
 }
