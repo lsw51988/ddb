@@ -1,86 +1,80 @@
 .bar {
-  height: 90rpx;
-  line-height: 90rpx;
-  width: 100%;
-  border: 1px solid #2a2d32;
+    height: 90rpx;
+    line-height: 90rpx;
+    width: 100%;
+    border: 1px solid #2a2d32;
 }
 
 .item {
-  width: 33%;
-  height: 100%;
-  display: inline-block;
-  border-right: 2rpx solid #2a2d32;
-  font-size: 34rpx;
-  position: relative;
-  bottom: 5rpx;
+    width: 33%;
+    height: 100%;
+    display: inline-block;
+    border-right: 2rpx solid #2a2d32;
+    font-size: 34rpx;
+    position: relative;
+    bottom: 5rpx;
 }
 
 .item-s {
-  width: 100%;
-  text-align: center;
+    width: 100%;
+    text-align: center;
 }
 
 .arrow {
-  width: 30rpx;
-  height: 30rpx;
-  position: relative;
-  top: -58rpx;
-  margin-right: 20rpx;
-  display: inline-block;
-  float: right;
+    width: 30rpx;
+    height: 30rpx;
+    position: relative;
+    top: -58rpx;
+    margin-right: 20rpx;
+    display: inline-block;
+    float: right;
 }
 
 .list-item {
-  height: 120rpx;
-  width: 99.5%;
-  font-size: 28rpx;
-  margin-top: 10rpx;
-  border: 2rpx solid #2a2d32;
-  border-radius: 10rpx;
+    height: 120rpx;
+    width: 99.5%;
+    font-size: 28rpx;
+    margin-top: 10rpx;
+    border: 2rpx solid #2a2d32;
+    border-radius: 10rpx;
 }
 
 .li-top {
-  height: 60rpx;
-  line-height: 60rpx;
+    height: 60rpx;
+    line-height: 60rpx;
 }
 
 .li-bottom {
-  height: 60rpx;
-  line-height: 60rpx;
+    height: 60rpx;
+    line-height: 60rpx;
 }
 
 .number {
-  padding-left: 20rpx;
-  display: inline-block;
-  width: 120rpx;
-  float: left;
+    padding-left: 20rpx;
+    display: inline-block;
+    width: 120rpx;
+    float: left;
 }
 
 .date {
-  width: 200rpx;
-  float: right;
-  padding-right: 20rpx;
-  text-align: right;
-  display: inline-block;
-}
-
-.brand {
-  padding-left: 20rpx;
-  display: inline-block;
-  width: 20%;
-  text-align: left;
+    width: 300rpx;
+    float: right;
+    padding-right: 20rpx;
+    text-align: right;
+    display: inline-block;
 }
 
 .addr {
-  display: inline-block;
-  width: 50%;
-  text-align: center;
+    display: inline-block;
+    padding-left:20rpx;
+    width: 70%;
+    text-align: left;
 }
 
 .price {
-  padding-right: 20rpx;
-  display: inline-block;
-  width: 20%;
-  text-align: right;
-  float: right;
+    padding-right: 20rpx;
+    display: inline-block;
+    width: 20%;
+    text-align: right;
+    float: right;
 }

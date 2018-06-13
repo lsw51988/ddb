@@ -1,4 +1,4 @@
-var host = "https://www.ebikea.com";
+var host = "http://local.ddb.com";
 const formatTime = date => {
     const year = date.getFullYear()
     const month = date.getMonth() + 1
