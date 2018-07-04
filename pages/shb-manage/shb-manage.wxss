@@ -1,3 +1,9 @@
+.bar {
+    height: 90rpx;
+    line-height: 90rpx;
+    width: 100%;
+    border: 1px solid #2a2d32;
+}
 
 .list-item {
     height: 120rpx;
@@ -6,6 +12,31 @@
     margin-top: 10rpx;
     border: 2rpx solid #2a2d32;
     border-radius: 10rpx;
+}
+
+.item {
+    width: 99%;
+    height: 100%;
+    display: inline-block;
+    border-right: 2rpx solid #2a2d32;
+    font-size: 34rpx;
+    position: relative;
+    bottom: 5rpx;
+}
+
+.arrow {
+    width: 30rpx;
+    height: 30rpx;
+    position: relative;
+    top: -58rpx;
+    margin-right: 20rpx;
+    display: inline-block;
+    float: right;
+}
+
+.item-s {
+    width: 100%;
+    text-align: center;
 }
 
 .li-top {
@@ -52,4 +83,9 @@
     width: 20%;
     text-align: right;
     float: right;
+}
+
+.no-data{
+    width:100%;
+    text-align:center;
 }

@@ -55,6 +55,7 @@ Page({
                 });
             },
         })
+
         wx.getLocation({
             type: "gcj02",
             success: function (res) {
@@ -69,14 +70,16 @@ Page({
         this.data.mapCtx = wx.createMapContext("pay_help_map", this);
     },
 
-    onShow:function(){
+    onShow: function () {
         var that = this;
-        that.data.timer = setInterval(function () {
-            if (that.data.i % 10 == 0) {
-                nearAppeals(that);
-            }
-            that.data.i++;
-        }, 1000);
+        if (that.data.time == "") {
+            that.data.timer = setInterval(function () {
+                if (that.data.i % 10 == 0) {
+                    nearAppeals(that);
+                }
+                that.data.i++;
+            }, 1000);
+        }
     },
 
     onHide: function () {

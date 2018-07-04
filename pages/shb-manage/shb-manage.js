@@ -3,6 +3,8 @@ const app = getApp()
 Page({
     data: {
         bike_list: [],
+        time_range: ["时间", "今天", "最近一周", "本月内"],
+        time_index: 0,
         search: [],
         current_page:1,
         max_page:1
@@ -18,6 +20,14 @@ Page({
         getList(this, this.data.search)
     },
 
+    timeChange: function (e) {
+        this.data.search['time'] = e.detail.value;
+        this.setData({
+            "time_index": e.detail.value
+        });
+        getList(this, this.data.search);
+    },
+    
     gotoShbDetail: function (e) {
         var id = e.currentTarget.dataset.id;
         wx.navigateTo({

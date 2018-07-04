@@ -2,31 +2,67 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
     data: {
-
+        appeal_text: "求助记录"
     },
-    
+
     onShareAppMessage: function () {
         return util.share(this);
     },
 
     onLoad: function (options) {
         var that = this;
-        wx.showShareMenu({
-            withShareTicket: true
+
+        wx.showLoading({
+            title: '请稍后...',
         })
+        wx.request({
+            url: app.globalData.host + '/wechat/homePage/index',
+            method: "GET",
+            header: util.header(),
+            success: function (res) {
+                if (res.data.status == true) {
+                    wx.hideLoading();
+                    var resData = res.data.data;
+                    that.setData({
+                        'level': resData.level,
+                        'point': resData.point,
+                        'appeal_times': resData.appeal_times,
+                        'deal_times': resData.deal_times,
+                    })
+                } else {
+                    util.falseHint(res.data.msg);
+                }
+            },
+            fail: function (e) {
+                console.log(e);
+                //console.log("定位");
+                wx.hideLoading();
+                wx.showModal({
+                    title: '提示',
+                    content: 'homePage/index接口出错',
+                })
+               // util.failHint();
+            }
+        })
+
+        if (wx.getStorageSync('member').repair_flag) {
+            that.data.appeal_text = "应助记录";
+        }
+
         if ((/wx.qlogo.cn/.test(wx.getStorageSync('member').avatarUrl))) {
             that.data.avatarUrl = wx.getStorageSync('member').avatarUrl;
-        }else{
+        } else {
             that.data.avatarUrl = app.globalData.host + '/wechat/avatar?path=' + wx.getStorageSync('member').avatarUrl
         }
         that.setData({
             'member': wx.getStorageSync('member'),
             'avatarUrl': that.data.avatarUrl,
-            'imgUrl': app.globalData.host + "/wechat/qr_code"
+            'imgUrl': app.globalData.host + "/wechat/qr_code",
+            'appeal_text': that.data.appeal_text
         });
     },
 
-    onShow:function(){
+    onShow: function () {
         var that = this;
         that.setData({
             'member': wx.getStorageSync('member'),
@@ -37,42 +73,42 @@ Page({
 
     previewImage: function (e) {
         wx.previewImage({
-            current: app.globalData.host +"/wechat/qr_code?_t=" + Date.parse(new Date()), // 当前显示图片的http链接
-            urls: [app.globalData.host +"/wechat/qr_code?_t=" + Date.parse(new Date())] // 需要预览的图片http链接列表
+            current: app.globalData.host + "/wechat/qr_code?_t=" + Date.parse(new Date()), // 当前显示图片的http链接
+            urls: [app.globalData.host + "/wechat/qr_code?_t=" + Date.parse(new Date())] // 需要预览的图片http链接列表
         })
     },
 
-    goto_member_want:function(){
-      wx.navigateTo({
-          url: '../member-want/member-want',
-      })
+    goto_member_want: function () {
+        wx.navigateTo({
+            url: '../member-want/member-want',
+        })
     },
 
-    goto_shb_index:function(){
+    goto_shb_index: function () {
         wx.navigateTo({
             url: '../shb-index/shb-index',
         })
     },
 
-    goto_member_avatar:function(){
+    goto_member_avatar: function () {
         wx.navigateTo({
             url: '../member_avatar/member_avatar',
         })
     },
 
-    goto_suggestions:function(){
+    goto_suggestions: function () {
         wx.navigateTo({
             url: '../suggestion/suggestion',
         })
     },
 
-    goto_lost_list:function(){
+    goto_lost_list: function () {
         wx.navigateTo({
             url: '../lost-list/lost-list',
         })
     },
 
-    goto_about:function(){
+    goto_about: function () {
         wx.navigateTo({
             url: '../about/about',
         })
@@ -87,6 +123,20 @@ Page({
     goto_member_log: function () {
         wx.navigateTo({
             url: '../member_log/member_log',
+        })
+    },
+
+    goto_shop: function () {
+        wx.showModal({
+            title: '提示',
+            content: '即将开放',
+        })
+    },
+
+    goto_insure: function () {
+        wx.showModal({
+            title: '提示',
+            content: '即将开放',
         })
     }
 })

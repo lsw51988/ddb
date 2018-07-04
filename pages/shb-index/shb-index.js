@@ -5,7 +5,7 @@ Page({
         return util.share(this);
     },
 
-    goto_sell:function(){
+    goto_sell: function () {
         wx.navigateTo({
             url: '../shb-sell/shb-sell',
         })
@@ -15,7 +15,7 @@ Page({
             url: '../shb-list/shb-list',
         })
     },
-    goto_manager:function(){
+    goto_manager: function () {
         wx.navigateTo({
             url: '../shb-manage/shb-manage',
         })

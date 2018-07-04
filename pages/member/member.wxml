@@ -11,7 +11,7 @@
     <view wx:else>
         <view class='nick-name'>{{member.nickName}}</view>
     </view>
-    
+
 </view>
 <view class='detail'>
     <view class='wx-pub'>
@@ -21,32 +21,32 @@
     <view class='member'>
         <view class='line'>
             <label>积分：</label>
-            <view>100分</view>
+            <view>{{point}}分</view>
         </view>
         <view class='line'>
             <label>会员等级：</label>
-            <view>铜牌会员</view>
+            <view>{{level}}</view>
         </view>
         <view class='line'>
             <label>交易记录：</label>
-            <view>2次</view>
+            <view>{{appeal_times}}次</view>
         </view>
         <view class='line'>
-            <label>求助记录：</label>
-            <view>2次</view>
+            <label>{{appeal_text}}：</label>
+            <view>{{deal_times}}次</view>
         </view>
     </view>
 </view>
 <view class='nine-blocks'>
     <view class='block-item' bindtap='goto_member_want'>我要</view>
-    <view class='block-item'>我的商城</view>
-    <view class='block-item'>我的保险</view>
-
-    <view class='block-item' bindtap='goto_suggestions'>我的建议</view>
     <view class='block-item' bindtap='goto_shb_index'>二手车市</view>
     <view class='block-item' bindtap='goto_lost_list'>丢失求助</view>
-
+    
+    <view class='block-item' bindtap='goto_suggestions'>我的建议</view>
     <view class='block-item' bindtap='goto_about'>关于电动帮</view>
     <view class='block-item' bindtap='goto_recommend'>推荐有奖</view>
+    
+    <view class='block-item' bindtap='goto_shop'>我的商城</view>
+    <view class='block-item' bindtap='goto_insure'>我的保险</view>
     <view class='block-item' bindtap='goto_member_log'>我的记录</view>
 </view>

@@ -1,9 +1,6 @@
 {
     "pages": [
-        
         "pages/index/index",
-        "pages/test1/test1",
-        "pages/test/test",
         "pages/ans-help/ans-help",
         "pages/suggestion/suggestion",
         "pages/shb-manage-detail/shb-manage-detail",
@@ -25,14 +22,13 @@
         "pages/member/member",
         "pages/member_log/member_log",
         "pages/lost-list/lost-list",
-       "pages/lost-detail/lost-detail",
+        "pages/lost-detail/lost-detail",
         "pages/member_detail/member_detail",
         "pages/fix-auth-detail/fix-auth-detail",
         "pages/member_avatar/member_avatar",
         "pages/add-mts/add-mts",
         "pages/about/about",
-        "pages/recommend/recommend",
-        "pages/socket/socket"
+        "pages/recommend/recommend"
     ],
     "window": {
         "backgroundTextStyle": "light",

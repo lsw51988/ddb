@@ -78,3 +78,8 @@
     text-align: right;
     float: right;
 }
+
+.no-data{
+    width:100%;
+    text-align:center;
+}

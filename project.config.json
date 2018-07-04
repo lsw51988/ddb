@@ -1,14 +1,14 @@
 {
 	"description": "项目配置文件。",
 	"setting": {
-		"urlCheck": false,
+		"urlCheck": true,
 		"es6": true,
 		"postcss": true,
 		"minified": true,
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "1.9.91",
+	"libVersion": "2.1.1",
 	"appid": "wx3bd752036e968963",
 	"projectname": "%E7%94%B5%E5%8A%A8%E5%B8%AE",
 	"condition": {
