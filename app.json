@@ -1,8 +1,7 @@
 {
     "pages": [
-        "pages/guide/guide",
         "pages/index/index",
-      
+        "pages/guide/guide",
         "pages/ans-help/ans-help",
         "pages/suggestion/suggestion",
         "pages/shb-manage-detail/shb-manage-detail",
