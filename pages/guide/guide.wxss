@@ -1,0 +1,22 @@
+.title {
+    width: 99vw;
+    margin-left: 1px;
+    height: 100rpx;
+    line-height: 100rpx;
+    text-align: center;
+    border: 1px solid #eee;
+    font-size: 35rpx;
+    color: #08a4f7;
+}
+
+.items {
+    width: 90vw;
+    margin-left: 5vw;
+    margin-top: 10rpx;
+}
+
+.item {
+    text-indent: 30rpx;
+    font-size: 26rpx;
+    line-height: 55rpx;
+}

@@ -71,6 +71,12 @@ Page({
         });
     },
 
+    goto_guide:function(){
+        wx.navigateTo({
+            url: '../guide/guide',
+        })
+    },
+
     previewImage: function (e) {
         wx.previewImage({
             current: app.globalData.host + "/wechat/qr_code?_t=" + Date.parse(new Date()), // 当前显示图片的http链接

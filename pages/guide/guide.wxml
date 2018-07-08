@@ -1,0 +1,19 @@
+<view class='title'>为什么会有电动帮?</view>
+<view class='items'>
+    <view class='item'>1.您有没有在骑电动车的过程中遇到过车子坏掉但是又找不到附近的维修点,不得不一边推车一边寻找?</view>
+    <view class='item'>2.崭新的电动车有没有被偷过?</view>
+    <view class='item'>3.想买/卖二手车,却找不到合适的人?</view>
+</view>
+
+<view class='title'>是什么?</view>
+<view class='items'>
+    <view class='item'>1.如果你是骑车的人:可以帮助您在电动车损坏的情况下快速帮您找到附近的维修点,车辆无法前行时还可以请求帮助</view>
+    <view class='item'>2.如果您是修车的人,可以查看附近是否有车辆损坏的人需要帮助,增加收入</view>
+</view>
+
+<view class='title'> 还可以干什么?</view>
+<view class='items'>
+    <view class='item'>1.车辆丢失之后,可以发布丢失信息,发布悬赏金额,让大家帮助一起寻找</view>
+    <view class='item'>2.如果您想买卖二手车,也可以在这里发布信息,为您省去不必要的麻烦</view>
+    <view class='item'>3.您还可以在这里购买保险,让自己和家人有多一份保障.</view>
+</view>
