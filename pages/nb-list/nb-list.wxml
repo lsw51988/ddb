@@ -1,0 +1,47 @@
+<!--二手车列表-->
+<view class='bar'>
+  <view class='item'>
+    <picker mode="region" bindchange="addrChange" value="{{region}}" class='item-s'>
+      <view type="default" class="SimHei text-center fs-13 ">{{region[2]}}
+      </view>
+    </picker>
+    <image src="/img/arrow-down.png" class='arrow' />
+  </view>
+  <view class='item'>
+    <picker bindchange="priceChange" value="{{price_index}}" range="{{price_range}}" class='item-s'>
+      <view type="default" class="SimHei text-center fs-13 ">{{price_range[price_index]}}
+      </view>
+    </picker>
+    <image src="/img/arrow-down.png" class='arrow' />
+  </view>
+</view>
+
+<view wx:if='{{bike_list.length == 0}}'>
+  <view class='no-data'>暂无数据</view>
+</view>
+<view wx:else>
+  <view wx:for="{{bike_list}}">
+    <view class='list-item' bindtap='gotoDetail' data-id="{{item.id}}">
+      <view class='li-top'>
+        <view class='number'>
+          <view wx:if="{{self_flag}}">
+            <view wx:if="{{item.status ==1}}"> 待审核 </view>
+            <view wx:if="{{item.status ==2}}"> 审核成功 </view>
+            <view wx:if="{{item.status ==3}}"> 审核失败 </view>
+            <view wx:if="{{item.status ==4}}"> 自主取消 </view>
+            <view wx:if="{{item.status ==5}}"> 时效过期 </view>
+          </view>
+          <view wx:else>
+            编号 {{item.id}}
+          </view>
+        </view>
+        <view class='date'>{{item.district}}{{item.detail_addr}}</view>
+      </view>
+      <view class='li-bottom'>
+        <view class='brand'>{{item.brand_name}}-{{item.voltage}}V</view>
+        <!-- <view class='addr'>{{item.city}}{{item.district}}</view> -->
+        <view class='price'>{{item.price}}元</view>
+      </view>
+    </view>
+  </view>
+</view>

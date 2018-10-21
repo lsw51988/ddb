@@ -8,9 +8,9 @@
 		"newFeature": true
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.1.1",
+	"libVersion": "2.3.0",
 	"appid": "wx3bd752036e968963",
-	"projectname": "%E7%94%B5%E5%8A%A8%E5%B8%AE",
+	"projectname": "ddb",
 	"condition": {
 		"search": {
 			"current": -1,

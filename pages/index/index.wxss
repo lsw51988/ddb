@@ -1,7 +1,8 @@
-.map{
+.map {
   width: 100%;
   height: 100vh;
 }
+
 .bottom-bar {
   position: fixed;
   width: 30%;
@@ -21,7 +22,7 @@
   font-family: "微软雅黑";
   color: white;
   /* background: linear-gradient(to bottom, #fc1c03, #fa3921); */
-  background: #F05B47;
+  background: #f05b47;
 }
 
 .position {
@@ -38,7 +39,7 @@
 
 .position-img {
   margin-top: 2.5px;
-  margin-left:2.2px;
+  margin-left: 2.2px;
   width: 35px;
   height: 35px;
 }
@@ -51,7 +52,7 @@
   line-height: 20px;
   display: inline-block;
   margin-top: 20px;
-  margin-right:5px;
+  margin-right: 5px;
   float: right;
   text-align: center;
 }

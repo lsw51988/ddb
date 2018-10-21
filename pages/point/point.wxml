@@ -1,22 +1,22 @@
 <view class='intro'>
-    <view>充值说明</view>
-    <view class='item'>1.积分充值成功之后,无法退回</view>
-    <view class='item'>2.积分到账时间:一般为5分钟之内</view>
+  <view>充值说明</view>
+  <view class='item'>1.积分充值成功之后,无法退回</view>
+  <view class='item'>2.积分到账时间:一般为5分钟之内</view>
 </view>
 <view class='withdraw'>
-    <view class='options'>
-        <view class='option_{{amount==1000}}' bindtap='choose' data-amount="1000">
-            <view class='option-item mt-30 mb-10'>10元</view>
-            <view class='option-item mb-30'>100积分</view>
-        </view>
-        <view class='option_{{amount==5000}}' bindtap='choose' data-amount="5000">
-            <view class='option-item mt-30 mb-10'>50元</view>
-            <view class='option-item mb-30'>520积分</view>
-        </view>
-        <view class='option_{{amount==10000}}' bindtap='choose' data-amount="10000">
-            <view class='option-item mt-30 mb-10'>100元</view>
-            <view class='option-item mb-30'>1050积分</view>
-        </view>
+  <view class='options'>
+    <view class='option_{{amount==1000}}' bindtap='choose' data-amount="1000">
+      <view class='option-item mt-30 mb-10'>10元</view>
+      <view class='option-item mb-30'>100积分</view>
     </view>
+    <view class='option_{{amount==5000}}' bindtap='choose' data-amount="5000">
+      <view class='option-item mt-30 mb-10'>50元</view>
+      <view class='option-item mb-30'>520积分</view>
+    </view>
+    <view class='option_{{amount==10000}}' bindtap='choose' data-amount="10000">
+      <view class='option-item mt-30 mb-10'>100元</view>
+      <view class='option-item mb-30'>1050积分</view>
+    </view>
+  </view>
 </view>
 <button class='btn' bindtap='withdraw'>充值</button>

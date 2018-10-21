@@ -1,15 +1,15 @@
 <view class="title">感谢您真诚的提出意见，我们一定认真考量,优化系统.</view>
 <form bindsubmit="formSubmit">
-    <view class='s_type'>
-        模块：
-        <picker mode="selector" range='{{types}}' value='{{type_index}}' name='type' bindchange="typeChange">
-        <image src="/img/arrow-down.png" class='arrow' />
-        <view class="weui-input" style='padding-left:20rpx;'>{{types[type_index]}}</view>
-        </picker> 
-    </view>
-    <view class='s_type'>
-        具体描述：
-        <textarea name="content"></textarea>
-    </view>
-    <button formType="submit">提交</button>
+  <view class='s_type'>
+    模块：
+    <picker mode="selector" range='{{types}}' value='{{type_index}}' name='type' bindchange="typeChange">
+      <image src="/img/arrow-down.png" class='arrow' />
+      <view class="weui-input" style='padding-left:20rpx;'>{{types[type_index]}}</view>
+    </picker>
+  </view>
+  <view class='s_type'>
+    具体描述：
+    <textarea name="content"></textarea>
+  </view>
+  <button formType="submit">提交</button>
 </form>

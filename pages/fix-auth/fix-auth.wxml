@@ -1,23 +1,23 @@
 <map id="near_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" class='map' markers="{{markers}}" controls='{{controls}}' bindcontroltap="controltap" show-location>
-    <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
+  <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
 </map>
 <scroll-view scroll-y class='mts'>
-    <button class='add-mts' bindtap='goto_add_mts'>都不是?添加我的维修点</button>
-    <view wx:for="{{mts_list}}">
-        <view class='item_{{current_item_id==item.id}}' bindtap='mt_click' data-id="{{item.id}}">
-            <view class='line'>
-                <view class='line-item-1'>名称: {{item.name}}</view>
-                <view class='line-item-2'>评分: 5/5</view>
-            </view>
-            <view class='line'>
-                <view class='line-item-1'>地址: {{item.address}}</view>
-                <view class='line-item-2'>店主: {{item.belonger_name}}</view>
-            </view>
-            <view class='btn' bindtap='goto_fix_auth_detail' data-id="{{item.id}}" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}">认领</view>
-        </view>
+  <button class='add-mts' bindtap='goto_add_mts'>都不是?添加我的维修点</button>
+  <view wx:for="{{mts_list}}">
+    <view class='item_{{current_item_id==item.id}}' bindtap='mt_click' data-id="{{item.id}}">
+      <view class='line'>
+        <view class='line-item-1'>名称: {{item.name}}</view>
+        <view class='line-item-2'>评分: 5/5</view>
+      </view>
+      <view class='line'>
+        <view class='line-item-1'>地址: {{item.address}}</view>
+        <view class='line-item-2'>店主: {{item.belonger_name}}</view>
+      </view>
+      <view class='btn' bindtap='goto_fix_auth_detail' data-id="{{item.id}}" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}">认领</view>
     </view>
+  </view>
 
-    <!-- <view class='item'>
+  <!-- <view class='item'>
     <view class='line'>
       <view class='line-item-1'>名称: 小李电动车维修</view>
       <view class='line-item-2'>评分: 4.5/5</view>

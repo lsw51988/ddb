@@ -3,16 +3,17 @@
   font-size: 30rpx;
   padding: 5px 10px;
 }
-image{
+
+image {
   display: inline-block;
-  width:32px;
-  height:16px;
+  width: 32px;
+  height: 16px;
 }
 
-button{
-  margin-top:250rpx;
-  width:80%;
+button {
+  margin-top: 250rpx;
+  width: 80%;
   background: #3367d6;
-  color:white;
+  color: white;
   border-radius: 0;
 }

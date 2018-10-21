@@ -68,10 +68,12 @@
     border-radius: 0;
     height:95rpx;
     line-height:95rpx;
+    position: fixed;
+    bottom: 0;
 }
 
 .remark{
     width:80vw;
     font-size:30rpx;
-    text-indent: 40rpx;
+    text-indent: 120rpx;
 }

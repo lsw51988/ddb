@@ -6,7 +6,7 @@
         <view class="weui-label">姓名</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" placeholder="请输入您的姓名" name="real_name" value="{{real_name}}"/>
+        <input class="weui-input" placeholder="请输入您的姓名" name="real_name" value="{{real_name}}" />
       </view>
     </view>
     <view class="weui-cell weui-cell_input weui-cell_vcode">
@@ -34,7 +34,7 @@
         <view class="weui-label">品牌</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" placeholder="请输入品牌" name="brand_name" value="{{brand_name}}"/>
+        <input class="weui-input" placeholder="请输入品牌" name="brand_name" value="{{brand_name}}" />
       </view>
     </view>
     <view class="weui-cell weui-cell_input">
@@ -52,7 +52,7 @@
         <view class="weui-label">车牌号</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" placeholder="请输入车牌号" name="number" value="{{number}}"/>
+        <input class="weui-input" placeholder="请输入车牌号" name="number" value="{{number}}" />
       </view>
     </view>
     <view class="weui-cell weui-cell_input weui-cell_vcode">
@@ -60,7 +60,7 @@
         <view class="weui-label">电压</view>
       </view>
       <view class="weui-cell__bd">
-        <picker mode="selector" range="{{voltage}}" value='{{voltage_index}}'  bindchange="voltageChange" name="voltage">
+        <picker mode="selector" range="{{voltage}}" value='{{voltage_index}}' bindchange="voltageChange" name="voltage">
           <view class="weui-input">{{voltage[voltage_index]}}</view>
         </picker>
       </view>
@@ -119,7 +119,7 @@
         </view>
       </view>
     </view>
-    <view class="weui-cells__tips"  style='margin-bottom:10rpx;'>温馨提示：请准确填写您的信息,照片清晰,以防万一您的电动车丢失作为寻找的根据.</view>
+    <view class="weui-cells__tips" style='margin-bottom:10rpx;'>温馨提示：请准确填写您的信息,照片清晰,以防万一您的电动车丢失作为寻找的根据.</view>
     <button formType="submit" class='submit'>提交</button>
   </view>
 </form>

@@ -2,60 +2,60 @@
 
 </map>
 <view class='content'>
-    <view class='line'>
-        <view bindtap='changetab' class="{{active==0?'active':''}}" data-active="0">请求拖车帮助
-            <image bindtap='changetab' data-active="0" src="/img/help{{active==0?'-active':''}}.png"></image>
-        </view>
-        <view bindtap='changetab' class="{{active==1?'active':''}}" data-active="1">自行推车至修理点
-            <image bindtap='changetab' data-active="1" src="/img/help{{active==1?'-active':''}}.png"></image>
-        </view>
+  <view class='line'>
+    <view bindtap='changetab' class="{{active==0?'active':''}}" data-active="0">请求拖车帮助
+      <image bindtap='changetab' data-active="0" src="/img/help{{active==0?'-active':''}}.png"></image>
     </view>
-    <swiper current='{{active}}'>
-        <swiper-item>
-            <scroll-view scroll-y>
-                <view wx:for="{{sos_list}}">
-                    <view class='s-item' bindtap='appealClick' data-id="{{item.id}}">
-                        <view class='s-lines'>
-                            <view class='s-line'>
-                                <view class='s-line-item-1'>{{item.real_name}}-{{item.mobile}}</view>
-                                <view class='s-line-item-2'>费用: 约10元</view>
-                            </view>
-                            <view class='s-line'>
-                                <view class='s-line-item-1'>故障: {{problem[item.type]}}</view>
-                                <view class='s-line-item-2'>求助时间:{{item.created_at}}</view>
-                            </view>
-                            <view class='s-line'>
-                                <view class='s-line-item'>注: {{item.description}}</view>
-                            </view>
-                        </view>
-                        <view class='s-btn' data-mobile="{{item.mobile}}" data-id="{{item.id}}" bindtap='makePhoneCall'>立即帮助</view>
-                    </view>
-                </view>
-            </scroll-view>
-        </swiper-item>
+    <view bindtap='changetab' class="{{active==1?'active':''}}" data-active="1">自行推车至修理点
+      <image bindtap='changetab' data-active="1" src="/img/help{{active==1?'-active':''}}.png"></image>
+    </view>
+  </view>
+  <swiper current='{{active}}'>
+    <swiper-item>
+      <scroll-view scroll-y>
+        <view wx:for="{{sos_list}}">
+          <view class='s-item' bindtap='appealClick' data-id="{{item.id}}">
+            <view class='s-lines'>
+              <view class='s-line'>
+                <view class='s-line-item-1'>{{item.real_name}}-{{item.mobile}}</view>
+                <view class='s-line-item-2'>费用: 约10元</view>
+              </view>
+              <view class='s-line'>
+                <view class='s-line-item-1'>故障: {{problem[item.type]}}</view>
+                <view class='s-line-item-2'>求助时间:{{item.created_at}}</view>
+              </view>
+              <view class='s-line'>
+                <view class='s-line-item'>注: {{item.description}}</view>
+              </view>
+            </view>
+            <view class='s-btn' data-mobile="{{item.mobile}}" data-id="{{item.id}}" bindtap='makePhoneCall'>立即帮助</view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
 
-        <swiper-item>
-            <scroll-view scroll-y>
-                <view wx:for="{{show_list}}">
-                    <view class='s-item' bindtap='appealClick' data-id="{{item.id}}">
-                        <view class='s-lines'>
-                            <view class='s-line'>
-                                <view class='s-line-item-1'>{{item.real_name}}-{{item.mobile}}</view>
-                                <view class='s-line-item-2'>求助时间:{{item.created_at}}</view>
-                            </view>
-                            <view class='s-line'>
-                                <view class='s-line-item-1'>故障: {{problem[item.type]}}</view>
-                                <view class='s-line-item-2'></view>
-                            </view>
-                            <view class='s-line'>
-                                <view class='s-line-item'>注: {{item.description}}</view>
-                            </view>
-                        </view>
-                        <view class='s-btn' data-mobile="{{item.mobile}}" data-id="{{item.id}}" bindtap='makePhoneCall'>立即帮助</view>
-                    </view>
-                </view>
-            </scroll-view>
-        </swiper-item>
-    </swiper>
+    <swiper-item>
+      <scroll-view scroll-y>
+        <view wx:for="{{show_list}}">
+          <view class='s-item' bindtap='appealClick' data-id="{{item.id}}">
+            <view class='s-lines'>
+              <view class='s-line'>
+                <view class='s-line-item-1'>{{item.real_name}}-{{item.mobile}}</view>
+                <view class='s-line-item-2'>求助时间:{{item.created_at}}</view>
+              </view>
+              <view class='s-line'>
+                <view class='s-line-item-1'>故障: {{problem[item.type]}}</view>
+                <view class='s-line-item-2'></view>
+              </view>
+              <view class='s-line'>
+                <view class='s-line-item'>注: {{item.description}}</view>
+              </view>
+            </view>
+            <view class='s-btn' data-mobile="{{item.mobile}}" data-id="{{item.id}}" bindtap='makePhoneCall'>立即帮助</view>
+          </view>
+        </view>
+      </scroll-view>
+    </swiper-item>
+  </swiper>
 
 </view>

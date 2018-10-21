@@ -2,54 +2,54 @@
 </map>
 
 <form bindsubmit="formSubmit">
-    <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_input weui-cell_vcode">
-            <view class="weui-cell__hd">
-                <view class="weui-label">故障类型</view>
-            </view>
-            <view class="weui-cell__bd">
-                <picker mode="selector" range="{{problem}}" value='{{problem_index}}' bindchange="problemChange" name="type">
-                    <view class="weui-input">{{problem[problem_index]}}</view>
-                </picker>
-            </view>
-        </view>
-
-        <view class="weui-cells weui-cells_after-title des">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="请具体描述您遇到的问题" style="height: 3.3em;" name="desc" value="{{desc}}"/>
-                </view>
-            </view>
-        </view>
-
-        <view class="weui-cell weui-cell_input weui-cell_vcode">
-            <view class="weui-cell__hd">
-                <view class="weui-label">手机号</view>
-            </view>
-            <view class="weui-cell__bd">
-                <label class="weui-input" style='color:#646464'>{{mobile_show}}</label>
-            </view>
-            <view class="weui-cell__ft">
-                <button class="weui-vcode-btn get-capture" name="captcha" bindtap='getCaptcha' disabled='{{cap_btn_status}}' loading='{{cap_loading_status}}'>{{cap_btn_text}}</button>
-            </view>
-        </view>
-
-        <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-                <view class="weui-label">短信验证码</view>
-            </view>
-            <view class="weui-cell__bd">
-                <input type='number' class="weui-input" placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
-            </view>
-        </view>
-
-        <view class="weui-btn-area">
-            <button formType="submit" class='near-mt' data-id="1">查看附近维修点</button>
-            <button formType="submit" class='search-help' data-id="2">无法移动,寻求帮助</button>
-        </view>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+      <view class="weui-cell__hd">
+        <view class="weui-label">故障类型</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="selector" range="{{problem}}" value='{{problem_index}}' bindchange="problemChange" name="type">
+          <view class="weui-input">{{problem[problem_index]}}</view>
+        </picker>
+      </view>
     </view>
+
+    <view class="weui-cells weui-cells_after-title des">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" placeholder="请具体描述您遇到的问题" style="height: 3.3em;" name="desc" value="{{desc}}" />
+        </view>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+      <view class="weui-cell__hd">
+        <view class="weui-label">手机号</view>
+      </view>
+      <view class="weui-cell__bd">
+        <label class="weui-input" style='color:#646464'>{{mobile_show}}</label>
+      </view>
+      <view class="weui-cell__ft">
+        <button class="weui-vcode-btn get-capture" name="captcha" bindtap='getCaptcha' disabled='{{cap_btn_status}}' loading='{{cap_loading_status}}'>{{cap_btn_text}}</button>
+      </view>
+    </view>
+
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">短信验证码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input type='number' class="weui-input" placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
+      </view>
+    </view>
+
+    <view class="weui-btn-area">
+      <button formType="submit" class='near-mt' data-id="1">查看附近维修点</button>
+      <button formType="submit" class='search-help' data-id="2">无法移动,寻求帮助</button>
+    </view>
+  </view>
 </form>
 <modal hidden="{{modalFlag}}" title="请输入验证码" confirm-text="提交" cancel-text="取消" bindcancel="model_cancel" bindconfirm="model_confirm">
-    <input type='text' placeholder="请输入验证码" class='captcha-input' type='number' bindblur="captchaBlur" />
-    <image src="{{imageUrl}}" class='captcha' bindtap='freshCaptcha'></image>
+  <input type='text' placeholder="请输入验证码" class='captcha-input' type='number' bindblur="captchaBlur" />
+  <image src="{{imageUrl}}" class='captcha' bindtap='freshCaptcha'></image>
 </modal>

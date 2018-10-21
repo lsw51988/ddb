@@ -1,53 +1,53 @@
 <view class='avatar-area'>
-    <view wx:if="{{member.avatarUrl==null}}">
-        <image src="/img/default_avatar.jpg" class='avatar' bindtap='goto_member_avatar'></image>
-    </view>
-    <view wx:else>
-        <image src="{{avatarUrl}}" class='avatar' bindtap='goto_member_avatar'></image>
-    </view>
-    <view wx:if="{{member.nickName==null}}">
-        <view class='nick-name'>骑行侠</view>
-    </view>
-    <view wx:else>
-        <view class='nick-name'>{{member.nickName}}</view>
-    </view>
-
+  <view wx:if="{{member.avatarUrl==null}}">
+    <image src="/img/default_avatar.jpg" class='avatar' bindtap='goto_member_avatar'></image>
+  </view>
+  <view wx:else>
+    <image src="{{avatarUrl}}" class='avatar' bindtap='goto_member_avatar'></image>
+  </view>
+  <view wx:if="{{member.nickName==null}}">
+    <view class='nick-name'>骑行侠</view>
+  </view>
+  <view wx:else>
+    <view class='nick-name'>{{member.nickName}}</view>
+  </view>
 </view>
 <view class='detail'>
-    <view class='wx-pub'>
-        <image src='{{imgUrl}}' id="{{imgUrl}}" class='qr-code' bindtap='previewImage'></image>
-        <view class='follow'>关注微信公众号：电动帮</view>
+  <view class='wx-pub'>
+    <image src='{{imgUrl}}' id="{{imgUrl}}" class='qr-code' bindtap='previewImage'></image>
+    <view class='follow'>关注微信公众号：电动帮</view>
+  </view>
+  <view class='member'>
+    <view class='line'>
+      <label>积分：</label>
+      <view>{{point}}分</view>
     </view>
-    <view class='member'>
-        <view class='line'>
-            <label>积分：</label>
-            <view>{{point}}分</view>
-        </view>
-        <view class='line'>
-            <label>会员等级：</label>
-            <view>{{level}}</view>
-        </view>
-        <view class='line'>
-            <label>交易记录：</label>
-            <view>{{appeal_times}}次</view>
-        </view>
-        <view class='line'>
-            <label>{{appeal_text}}：</label>
-            <view>{{deal_times}}次</view>
-        </view>
+    <view class='line'>
+      <label>会员等级：</label>
+      <view>{{level}}</view>
     </view>
+    <view class='line'>
+      <label>交易记录：</label>
+      <view>{{appeal_times}}次</view>
+    </view>
+    <view class='line'>
+      <label>{{appeal_text}}：</label>
+      <view>{{deal_times}}次</view>
+    </view>
+  </view>
 </view>
 <view class='nine-blocks'>
-    <view class='block-item' bindtap='goto_member_want'>我要</view>
-    <view class='block-item' bindtap='goto_shb_index'>二手车市</view>
-    <view class='block-item' bindtap='goto_lost_list'>丢失求助</view>
-    
-    <view class='block-item' bindtap='goto_suggestions'>我的建议</view>
-    <view class='block-item' bindtap='goto_about'>关于电动帮</view>
-    <view class='block-item' bindtap='goto_recommend'>推荐有奖</view>
-    
-    <view class='block-item' bindtap='goto_shop'>我的商城</view>
-    <view class='block-item' bindtap='goto_insure'>我的保险</view>
-    <!-- <view class='block-item' bindtap='goto_member_log'>使用指南</view> -->
-    <view class='block-item' bindtap='goto_guide'>使用指南</view>
+  <view class='block-item' bindtap='goto_member_want'>我要</view>
+  <view class='block-item' bindtap='goto_shb_index'>二手车</view>
+  <view class='block-item' bindtap='goto_nb_index'>新车</view>
+
+  <view class='block-item' bindtap='goto_lost_list'>丢失求助</view>
+  <view class='block-item' bindtap='goto_suggestions'>我的建议</view>
+  <view class='block-item' bindtap='goto_about'>关于电动帮</view>
+
+  <view class='block-item' bindtap='goto_recommend'>推荐有奖</view>
+  <view class='block-item' bindtap='goto_shop'>我的商城</view>
+  <!-- <view class='block-item' bindtap='goto_insure'>我的保险</view> -->
+  <!-- <view class='block-item' bindtap='goto_member_log'>使用指南</view> -->
+  <view class='block-item' bindtap='goto_guide'>使用指南</view>
 </view>

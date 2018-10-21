@@ -1,9 +1,9 @@
 <!--二手车首页-->
 <view class='title'>二手车信息</view>
 <view class='area'>
-    <button class='mr-40' bindtap='goto_sell'>我要出售</button>
-    <button bindtap='goto_buy'>我要购买</button>
+  <button class='mr-40' bindtap='goto_sell'>我要出售</button>
+  <button bindtap='goto_buy'>我要购买</button>
 </view>
 <view class='line'>
-    <button class='mr-40' bindtap='goto_manager'>管理出售</button>
+  <button class='mr-40' bindtap='goto_manager'>管理出售</button>
 </view>

@@ -1,42 +1,42 @@
 <!--二手车列表-->
 <view class='bar'>
-    <view class='item'>
-        <picker bindchange="timeChange" value="{{time_index}}" range="{{time_range}}" class='item-s'>
-            <view type="default" class="SimHei text-center fs-13 ">{{time_range[time_index]}}
-            </view>
-        </picker>
-        <image src="/img/arrow-down.png" class='arrow' />
-    </view>
-    <view class='item'>
-        <picker bindchange="addrChange" mode="region" value="{{region}}" class='item-s'>
-            <view type="default" class="SimHei text-center fs-13 ">{{region[2]}}
-            </view>
-        </picker>
-        <image src="/img/arrow-down.png" class='arrow' />
-    </view>
-    <view class='item'>
-        <picker bindchange="commissionChange" value="{{rewards_index}}" range="{{rewards_range}}" class='item-s'>
-            <view type="default" class="SimHei text-center fs-13 ">{{rewards_range[rewards_index]}}
-            </view>
-        </picker>
-        <image src="/img/arrow-down.png" class='arrow' />
-    </view>
+  <view class='item'>
+    <picker bindchange="timeChange" value="{{time_index}}" range="{{time_range}}" class='item-s'>
+      <view type="default" class="SimHei text-center fs-13 ">{{time_range[time_index]}}
+      </view>
+    </picker>
+    <image src="/img/arrow-down.png" class='arrow' />
+  </view>
+  <view class='item'>
+    <picker bindchange="addrChange" mode="region" value="{{region}}" class='item-s'>
+      <view type="default" class="SimHei text-center fs-13 ">{{region[2]}}
+      </view>
+    </picker>
+    <image src="/img/arrow-down.png" class='arrow' />
+  </view>
+  <view class='item'>
+    <picker bindchange="commissionChange" value="{{rewards_index}}" range="{{rewards_range}}" class='item-s'>
+      <view type="default" class="SimHei text-center fs-13 ">{{rewards_range[rewards_index]}}
+      </view>
+    </picker>
+    <image src="/img/arrow-down.png" class='arrow' />
+  </view>
 </view>
 
 <view wx:if='{{bike_list.length == 0}}'>
-    <view class='no-data'>暂无数据</view>
+  <view class='no-data'>暂无数据</view>
 </view>
 <view wx:else>
-    <view wx:for="{{bike_list}}">
-        <view class='list-item' bindtap='gotoLostDetail' data-id="{{item.id}}">
-            <view class='li-top'>
-                <view class='number'>编号No.{{item.id}}</view>
-                <view class='date'>{{item.created_at}}</view>
-            </view>
-            <view class='li-bottom'>
-                <view class='addr'>{{item.city}}{{item.district}}</view>
-                <view class='price'>{{item.rewards}}元</view>
-            </view>
-        </view>
+  <view wx:for="{{bike_list}}">
+    <view class='list-item' bindtap='gotoLostDetail' data-id="{{item.id}}">
+      <view class='li-top'>
+        <view class='number'>编号No.{{item.id}}</view>
+        <view class='date'>{{item.created_at}}</view>
+      </view>
+      <view class='li-bottom'>
+        <view class='addr'>{{item.city}}{{item.district}}</view>
+        <view class='price'>{{item.rewards}}元</view>
+      </view>
     </view>
+  </view>
 </view>

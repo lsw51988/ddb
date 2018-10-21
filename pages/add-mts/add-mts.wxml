@@ -1,107 +1,107 @@
 <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" class='map' markers="{{markers}}" bindregionchange="regionChange" controls='{{controls}}' bindcontroltap="controltap" show-location>
-    <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
+  <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
 </map>
 
 <form bindsubmit="formSubmit" style='z-index:0'>
-    <view class="weui-cells weui-cells_after-title">
-        <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-                <view class="weui-label">维修点名称</view>
-            </view>
-            <view class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入维修点名称" name="name" />
-            </view>
-        </view>
-        <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-                <view class="weui-label">维修点地址</view>
-            </view>
-            <view class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入街道名称及门牌号" name="address" />
-            </view>
-        </view>
-        <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-                <view class="weui-label">维修点师傅</view>
-            </view>
-            <view class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入维修点师傅名字或姓氏" name="belonger_name" />
-            </view>
-        </view>
-        <view class="weui-cell weui-cell_input weui-cell_vcode">
-            <view class="weui-cell__hd">
-                <view class="weui-label">类型</view>
-            </view>
-            <view class="weui-cell__bd">
-                <picker mode="selector" range="{{type}}" value='{{type_index}}' bindchange="typeChange" name="type">
-                    <view class="weui-input">{{type[type_index]}}</view>
-                </picker>
-            </view>
-        </view>
-        <view class="weui-cell weui-cell_input" style='padding-right:0;'>
-            <view class="weui-cell__hd">
-                <view class="weui-label">维修点手机</view>
-            </view>
-            <view class="weui-cell__bd">
-                <input type='number' class="weui-input" placeholder="请输入手机号" name="mobile" bindblur='getMobile' />
-            </view>
-            <view class="weui-cell__ft">
-                <button class="weui-vcode-btn get-capture" name="captcha" bindtap='getCaptcha' disabled='{{cap_btn_status}}' loading='{{cap_loading_status}}'>{{cap_btn_text}}</button>
-            </view>
-        </view>
-        <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-                <view class="weui-label">短信验证码</view>
-            </view>
-            <view class="weui-cell__bd">
-                <input class="weui-input" placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
-            </view>
-        </view>
-        <view class="weui-cell weui-cell_input">
-            <view class="weui-cell__hd">
-                <view class="weui-label" style="width:320rpx;display:block">您是否是维修点主人</view>
-            </view>
-            <view class="weui-cell__bd">
-                <view class="belong_creator_{{belong_creator==1}}" bindtap='tapYes'>是</view>
-                <view class="belong_creator_{{belong_creator==0}}" bindtap='tapNo'>否</view>
-                <input style='display:none' name="belong_creator" value="{{belong_creator}}" />
-            </view>
-        </view>
-        <view class="weui-cells weui-cells_after-title des">
-            <view class="weui-cell">
-                <view class="weui-cell__bd">
-                    <textarea class="weui-textarea" placeholder="可增加描述,增加辨识度,比如XX超市对面,XX路口" style="height: 3.3em;" name="remark" />
-                </view>
-            </view>
-        </view>
-        <view class="weui-cell">
-            <view class="weui-cell__bd">
-                <view class="weui-uploader">
-                    <view class="weui-uploader__hd">
-                        <view class="weui-uploader__title">上传维修点照片</view>
-                        <view class="weui-uploader__info">{{img.length}}/3</view>
-                    </view>
-                    <view class="weui-uploader__bd">
-                        <view class="weui-uploader__files">
-                            <block wx:for="{{img}}" wx:key="*this">
-                                <view class="weui-uploader__file">
-                                    <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" bindtap="previewImage" id="{{item}}" />
-                                    <view href="#" style="padding-left:20px" bindtap="delImg" id="{{item}}">删除</view>
-                                </view>
-                            </block>
-                        </view>
-                        <view class="weui-uploader__input-box">
-                            <view class="weui-uploader__input" bindtap="chooseImage"></view>
-                        </view>
-                    </view>
-                </view>
-            </view>
-        </view>
-        <view class="weui-cells__tips" style='margin-bottom:10rpx;'>温馨提示：请准确填写您的信息,照片清晰,以防后台审核不通过.</view>
-        <button formType="submit" class='submit'>提交</button>
+  <view class="weui-cells weui-cells_after-title">
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">维修点名称</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入维修点名称" name="name" />
+      </view>
     </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">维修点地址</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入街道名称及门牌号" name="address" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">维修点师傅</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入维修点师傅名字或姓氏" name="belonger_name" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input weui-cell_vcode">
+      <view class="weui-cell__hd">
+        <view class="weui-label">类型</view>
+      </view>
+      <view class="weui-cell__bd">
+        <picker mode="selector" range="{{type}}" value='{{type_index}}' bindchange="typeChange" name="type">
+          <view class="weui-input">{{type[type_index]}}</view>
+        </picker>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input" style='padding-right:0;'>
+      <view class="weui-cell__hd">
+        <view class="weui-label">维修点手机</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input type='number' class="weui-input" placeholder="请输入手机号" name="mobile" bindblur='getMobile' />
+      </view>
+      <view class="weui-cell__ft">
+        <button class="weui-vcode-btn get-capture" name="captcha" bindtap='getCaptcha' disabled='{{cap_btn_status}}' loading='{{cap_loading_status}}'>{{cap_btn_text}}</button>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label">短信验证码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input">
+      <view class="weui-cell__hd">
+        <view class="weui-label" style="width:320rpx;display:block">您是否是维修点主人</view>
+      </view>
+      <view class="weui-cell__bd">
+        <view class="belong_creator_{{belong_creator==1}}" bindtap='tapYes'>是</view>
+        <view class="belong_creator_{{belong_creator==0}}" bindtap='tapNo'>否</view>
+        <input style='display:none' name="belong_creator" value="{{belong_creator}}" />
+      </view>
+    </view>
+    <view class="weui-cells weui-cells_after-title des">
+      <view class="weui-cell">
+        <view class="weui-cell__bd">
+          <textarea class="weui-textarea" placeholder="可增加描述,增加辨识度,比如XX超市对面,XX路口" style="height: 3.3em;" name="remark" />
+        </view>
+      </view>
+    </view>
+    <view class="weui-cell">
+      <view class="weui-cell__bd">
+        <view class="weui-uploader">
+          <view class="weui-uploader__hd">
+            <view class="weui-uploader__title">上传维修点照片</view>
+            <view class="weui-uploader__info">{{img.length}}/3</view>
+          </view>
+          <view class="weui-uploader__bd">
+            <view class="weui-uploader__files">
+              <block wx:for="{{img}}" wx:key="*this">
+                <view class="weui-uploader__file">
+                  <image class="weui-uploader__img" src="{{item}}" mode="aspectFill" bindtap="previewImage" id="{{item}}" />
+                  <view href="#" style="padding-left:20px" bindtap="delImg" id="{{item}}">删除</view>
+                </view>
+              </block>
+            </view>
+            <view class="weui-uploader__input-box">
+              <view class="weui-uploader__input" bindtap="chooseImage"></view>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="weui-cells__tips" style='margin-bottom:10rpx;'>温馨提示：请准确填写您的信息,照片清晰,以防后台审核不通过.</view>
+    <button formType="submit" class='submit'>提交</button>
+  </view>
 </form>
 <modal hidden="{{modalFlag}}" title="请输入验证码" confirm-text="提交" cancel-text="取消" bindcancel="model_cancel" bindconfirm="model_confirm">
-    <input type='text' placeholder="请输入验证码" class='captcha-input' type='number' bindblur="captchaBlur" />
-    <image src="{{imageUrl}}" class='captcha' bindtap='freshCaptcha'></image>
+  <input type='text' placeholder="请输入验证码" class='captcha-input' type='number' bindblur="captchaBlur" />
+  <image src="{{imageUrl}}" class='captcha' bindtap='freshCaptcha'></image>
 </modal>

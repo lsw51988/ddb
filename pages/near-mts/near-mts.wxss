@@ -1,92 +1,92 @@
 .position-ab {
-    position: absolute;
-    top: 40%;
-    left: 46%;
-    width: 60rpx;
-    height: 60rpx;
+  position: absolute;
+  top: 40%;
+  left: 46%;
+  width: 60rpx;
+  height: 60rpx;
 }
 
 .map {
-    width: 100%;
-    height: 42vh;
+  width: 100%;
+  height: 42vh;
 }
 
 .mts {
-    margin-top: 20rpx;
-    width: 100%;
-    height: 58vh;
-    background: #eee;
-    padding-bottom:95rpx;
+  margin-top: 20rpx;
+  width: 100%;
+  height: 58vh;
+  background: #eee;
+  padding-bottom: 95rpx;
 }
 
 .title {
-    text-align: center;
-    font-size: 30rpx;
+  text-align: center;
+  font-size: 30rpx;
 }
 
 .item_false {
-    width: 100%;
-    height: 100rpx;
-    border-radius: 20rpx 0 0 20rpx;
-    background: #1296db;
-    border: 1px solid #eee;
-    margin-bottom: 10rpx;
-    color:white;
+  width: 100%;
+  height: 100rpx;
+  border-radius: 20rpx 0 0 20rpx;
+  background: #1296db;
+  border: 1px solid #eee;
+  margin-bottom: 10rpx;
+  color: white;
 }
 
 .item_true {
-    width: 100%;
-    height: 100rpx;
-    border-radius: 20rpx 0 0 20rpx;
-    background: white;
-    border: 1px solid #eee;
-    margin-bottom: 10rpx;
-    color:black;
+  width: 100%;
+  height: 100rpx;
+  border-radius: 20rpx 0 0 20rpx;
+  background: white;
+  border: 1px solid #eee;
+  margin-bottom: 10rpx;
+  color: black;
 }
 
 .line {
-    font-size: 28rpx;
-    width: 620rpx;
-    height: 50rpx;
-    line-height: 50rpx;
-    display: inline-block;
-    float: left;
+  font-size: 28rpx;
+  width: 620rpx;
+  height: 50rpx;
+  line-height: 50rpx;
+  display: inline-block;
+  float: left;
 }
 
 .line-item-1 {
-    display: inline-block;
-    width: 400rpx;
-    margin-left: 20rpx;
+  display: inline-block;
+  width: 400rpx;
+  margin-left: 20rpx;
 }
 
 .line-item-2 {
-    display: inline-block;
-    width: 200rpx;
+  display: inline-block;
+  width: 200rpx;
 }
 
 .btn {
-    display: inline-block;
-    width: 120rpx;
-    height: 76rpx;
-    background: #EE5A46;
-    float: right;
-    position: relative;
-    bottom: 50rpx;
-    font-size: 30rpx;
-    text-align: center;
-    vertical-align: center;
-    padding-top: 26rpx;
-    color: white;
+  display: inline-block;
+  width: 120rpx;
+  height: 76rpx;
+  background: #ee5a46;
+  float: right;
+  position: relative;
+  bottom: 50rpx;
+  font-size: 30rpx;
+  text-align: center;
+  vertical-align: center;
+  padding-top: 26rpx;
+  color: white;
 }
 
 .cancel {
-    position: fixed;
-    bottom: 0;
-    width: 100%;
-    display: inline-block;
-    background: #9D9D9D;
-    color: white;
-    border-radius: 0;
-    height: 95rpx;
-    line-height: 95rpx;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  display: inline-block;
+  background: #9d9d9d;
+  color: white;
+  border-radius: 0;
+  height: 95rpx;
+  line-height: 95rpx;
 }

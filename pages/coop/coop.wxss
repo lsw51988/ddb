@@ -1,15 +1,16 @@
-.link{
-    font-size:32rpx;
-    text-align: center;
-    margin-top:20rpx;
-    height:95rpx;
-    line-height:95rpx;
-    background: #8d8d8d;
-    color:white;
-    width: 80vw;
-    margin-left:10vw;
-    border-radius: 20rpx;
+.link {
+  font-size: 32rpx;
+  text-align: center;
+  margin-top: 20rpx;
+  height: 95rpx;
+  line-height: 95rpx;
+  background: #8d8d8d;
+  color: white;
+  width: 80vw;
+  margin-left: 10vw;
+  border-radius: 20rpx;
 }
-.mt-400{
-    margin-top:400rpx;
+
+.mt-400 {
+  margin-top: 400rpx;
 }

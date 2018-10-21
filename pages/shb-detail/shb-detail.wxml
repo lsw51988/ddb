@@ -1,53 +1,53 @@
 <!-- 二手车详情 -->
 <swiper indicator-dots="{{indicatorDots}}" bindtap="previewImage" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" style='height:400rpx;'>
-    <block wx:for="{{imgUrls}}">
-        <swiper-item>
-            <image src="{{item}}"  style='width:{{windowWidth}}px;' />
-        </swiper-item>
-    </block>
+  <block wx:for="{{imgUrls}}">
+    <swiper-item>
+      <image src="{{item}}" style='width:{{windowWidth}}px;' />
+    </swiper-item>
+  </block>
 </swiper>
 <view class='title'>电动车信息</view>
 <view class='content'>
-    <view class='item'>
-        <view class='label'>标价</view>
-        <view class='val'>{{bikeInfo['out_price']}}元</view>
-    </view>
-    <view class='item'>
-        <view class='label'>挂牌时间</view>
-        <view class='val'>{{bikeInfo['created_at']}}</view>
-    </view>
-    <view class='item'>
-        <view class='label'>品牌</view>
-        <view class='val'>{{bikeInfo['brand_name']}}</view>
-    </view>
-    <view class='item'>
-        <view class='label'>电压</view>
-        <view class='val'>{{bikeInfo['voltage']}}V</view>
-    </view>
-    <view class='item'>
-        <view class='label'>购买时间</view>
-        <view class='val'>{{bikeInfo['buy_date']}}</view>
-    </view>
-    <view class='item'>
-        <view class='label'>所在区域</view>
-        <view class='val'>{{bikeInfo['city']}}{{bikeInfo['district']}}</view>
-    </view>
-    <view class='item'>
-        <view class='label'>详细地址</view>
-        <view class='val'>{{bikeInfo['detail_addr']}}</view>
-    </view>
-    <view class='item'>
-        <view class='label'>车牌号</view>
-        <view class='val'>{{bikeInfo['number']}}</view>
-    </view>
-    <view class='item'>
-        <view class='label'>出售人</view>
-        <view class='val'>{{bikeInfo['member_name']}}</view>
-    </view>
-     <view class='item-remark'>
-        <view class='label'>备注</view>
-        <view class='val-remark'>{{bikeInfo['remark']}}</view>
-    </view>
+  <view class='item'>
+    <view class='label'>标价</view>
+    <view class='val'>{{bikeInfo['out_price']}}元</view>
+  </view>
+  <view class='item'>
+    <view class='label'>挂牌时间</view>
+    <view class='val'>{{bikeInfo['created_at']}}</view>
+  </view>
+  <view class='item'>
+    <view class='label'>品牌</view>
+    <view class='val'>{{bikeInfo['brand_name']}}</view>
+  </view>
+  <view class='item'>
+    <view class='label'>电压</view>
+    <view class='val'>{{bikeInfo['voltage']}}V</view>
+  </view>
+  <view class='item'>
+    <view class='label'>购买时间</view>
+    <view class='val'>{{bikeInfo['buy_date']}}</view>
+  </view>
+  <view class='item'>
+    <view class='label'>所在区域</view>
+    <view class='val'>{{bikeInfo['city']}}{{bikeInfo['district']}}</view>
+  </view>
+  <view class='item'>
+    <view class='label'>详细地址</view>
+    <view class='val'>{{bikeInfo['detail_addr']}}</view>
+  </view>
+  <view class='item'>
+    <view class='label'>车牌号</view>
+    <view class='val'>{{bikeInfo['number']}}</view>
+  </view>
+  <view class='item'>
+    <view class='label'>出售人</view>
+    <view class='val'>{{bikeInfo['member_name']}}</view>
+  </view>
+  <view class='item-remark'>
+    <view class='label'>备注</view>
+    <view class='val-remark'>{{bikeInfo['remark']}}</view>
+  </view>
 </view>
 <view class='hint'>温馨提示：联系时可告知对方您是从电动帮看到的。</view>
 <button class='submit' bindtap='makePhoneCallOrUpdate'>{{btnText}}</button>

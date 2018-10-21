@@ -12,19 +12,19 @@
 }
 
 .captcha {
-    width: 440rpx;
-    height: 120rpx;
-    margin-top: 10rpx;
-    margin-left: 10%;
+  width: 440rpx;
+  height: 120rpx;
+  margin-top: 10rpx;
+  margin-left: 10%;
 }
 
 .captcha-input {
-    width: 80%;
-    height: 80rpx;
-    border: 4rpx solid #eee;
-    margin-left: 10%;
-    border-radius: 10rpx;
-    font-size: 34rpx;
+  width: 80%;
+  height: 80rpx;
+  border: 4rpx solid #eee;
+  margin-left: 10%;
+  border-radius: 10rpx;
+  font-size: 34rpx;
 }
 
 .submit {
@@ -68,130 +68,132 @@
 }
 
 .belong_creator_false {
-    display: inline-block;
-    background: #eee;
-    height: 60rpx;
-    width: 150rpx;
-    margin: 0 20rpx;
-    text-align: center;
-    line-height: 60rpx;
-    border-radius: 10rpx;
+  display: inline-block;
+  background: #eee;
+  height: 60rpx;
+  width: 150rpx;
+  margin: 0 20rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 10rpx;
 }
 
 .belong_creator_true {
-    display: inline-block;
-    background: #3367d6;
-    color: white;
-    height: 60rpx;
-    width: 150rpx;
-    margin: 0 20rpx;
-    text-align: center;
-    line-height: 60rpx;
-    border-radius: 10rpx;
+  display: inline-block;
+  background: #3367d6;
+  color: white;
+  height: 60rpx;
+  width: 150rpx;
+  margin: 0 20rpx;
+  text-align: center;
+  line-height: 60rpx;
+  border-radius: 10rpx;
 }
-.get-capture{
-    line-height:95rpx;
+
+.get-capture {
+  line-height: 95rpx;
 }
+
 .des {
   margin-left: 30rpx;
-  height:190rpx;
+  height: 190rpx;
 }
+
 .des::after {
   border: none;
 }
 
-
 .modal-body {
-    height: 100vh;
-    width: 100vw;
-    opacity: 0.5;
-    position: absolute;
-    background: black;
-    z-index: 1;
-    text-align: center;
-     top:0;
+  height: 100vh;
+  width: 100vw;
+  opacity: 0.5;
+  position: absolute;
+  background: black;
+  z-index: 1;
+  text-align: center;
+  top: 0;
 }
 
 .modal-window {
-    position: absolute;
-    top: 340rpx;
-    width: 80vw;
-    left: 10vw;
-    padding: 0;
-    z-index: 9999;
-    background: white;
+  position: absolute;
+  top: 340rpx;
+  width: 80vw;
+  left: 10vw;
+  padding: 0;
+  z-index: 9999;
+  background: white;
 }
 
 .modal-title {
-    font-size: 38rpx;
-    text-align: center;
-    height: 100rpx;
-    line-height: 100rpx;
-    border: none;
-    border-bottom: 1px solid #eee;
+  font-size: 38rpx;
+  text-align: center;
+  height: 100rpx;
+  line-height: 100rpx;
+  border: none;
+  border-bottom: 1px solid #eee;
 }
 
 .content-titie {
-    height: 80rpx;
-    font-size: 30rpx;
-    line-height: 80rpx;
-    border-bottom: 1px solid #eee;
-    text-indent: 40rpx;
-    width: 70vw;
-    margin-left: 5vw;
+  height: 80rpx;
+  font-size: 30rpx;
+  line-height: 80rpx;
+  border-bottom: 1px solid #eee;
+  text-indent: 40rpx;
+  width: 70vw;
+  margin-left: 5vw;
 }
 
 .content-text {
-    height: 70rpx;
-    line-height: 70rpx;
-    margin-bottom: 30rpx;
-    font-size: 26rpx;
-    text-indent: 40rpx;
-    width: 70vw;
-    margin-left: 5vw;
-    color: #c7c7c7;
+  height: 70rpx;
+  line-height: 70rpx;
+  margin-bottom: 30rpx;
+  font-size: 26rpx;
+  text-indent: 40rpx;
+  width: 70vw;
+  margin-left: 5vw;
+  color: #c7c7c7;
 }
 
 .reject {
-    display: inline-block;
-    float: left;
-    width: 40vw;
-    font-size: 32rpx;
-    border: none;
-    background: white;
-    color: #808080;
-    border-radius: 0;
+  display: inline-block;
+  float: left;
+  width: 40vw;
+  font-size: 32rpx;
+  border: none;
+  background: white;
+  color: #808080;
+  border-radius: 0;
 }
 
 .reject::after {
-    border-radius: 0;
+  border-radius: 0;
 }
 
 .approve {
-    display: inline-block;
-    float: right;
-    width: 40vw;
-    color: #3ec33f;
-    font-size: 32rpx;
-    border: none;
-    background: white;
-    border-radius: 0;
+  display: inline-block;
+  float: right;
+  width: 40vw;
+  color: #3ec33f;
+  font-size: 32rpx;
+  border: none;
+  background: white;
+  border-radius: 0;
 }
 
 .approve::after {
-    border-radius: 0;
+  border-radius: 0;
 }
 
 .content-img {
-    text-align: center;
-    height: 90rpx;
-    width: 100%;
+  text-align: center;
+  height: 90rpx;
+  width: 100%;
 }
 
 image {
-    display: inline-block;
-    width: 50rpx;
-    height: 50rpx;
-    border-radius: 18rpx;
-    margin-top: 20rpx;
+  display: inline-block;
+  width: 50rpx;
+  height: 50rpx;
+  border-radius: 18rpx;
+  margin-top: 20rpx;
 }

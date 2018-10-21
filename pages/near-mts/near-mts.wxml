@@ -1,21 +1,21 @@
 <map id="near_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" class='map' markers="{{markers}}" controls='{{controls}}' bindcontroltap="controltap" show-location>
-    <!-- <cover-image class='position-ab' src='/img/person-position.png'></cover-image> -->
+  <!-- <cover-image class='position-ab' src='/img/person-position.png'></cover-image> -->
 </map>
 <scroll-view scroll-y class='mts'>
-    <view class='title'>选择附近的维修点</view>
-    <view wx:for="{{mts_list}}">
-        <view class='item_{{current_item_id==item.id}}' bindtap='mt_click' data-id="{{item.id}}">
-            <view class='line'>
-                <view class='line-item-1'>名称: {{item.name}}</view>
-                <view class='line-item-2'>评分: 5/5</view>
-            </view>
-            <view class='line'>
-                <view class='line-item-1'>地址: {{item.address}}</view>
-                <view class='line-item-2'>店主: {{item.belonger_name}}</view>
-            </view>
-            <view class='btn' bindtap='route' data-id="{{item.id}}" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}" data-address="{{item.address}}">去这</view>
-        </view>
+  <view class='title'>选择附近的维修点</view>
+  <view wx:for="{{mts_list}}">
+    <view class='item_{{current_item_id==item.id}}' bindtap='mt_click' data-id="{{item.id}}">
+      <view class='line'>
+        <view class='line-item-1'>名称: {{item.name}}</view>
+        <view class='line-item-2'>评分: 5/5</view>
+      </view>
+      <view class='line'>
+        <view class='line-item-1'>地址: {{item.address}}</view>
+        <view class='line-item-2'>店主: {{item.belonger_name}}</view>
+      </view>
+      <view class='btn' bindtap='route' data-id="{{item.id}}" data-longitude="{{item.longitude}}" data-latitude="{{item.latitude}}" data-address="{{item.address}}">去这</view>
     </view>
+  </view>
 
 </scroll-view>
 <button class='cancel' bindtap='cancelHelp' data-id='{{appeal_id}}'>取消</button>

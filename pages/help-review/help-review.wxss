@@ -1,48 +1,48 @@
 .list {
-    font-size: 30rpx;
-    padding-left: 20rpx;
+  font-size: 30rpx;
+  padding-left: 20rpx;
 }
 
 radio-group {
-    width: 100%;
-    padding-left: 70rpx;
+  width: 100%;
+  padding-left: 70rpx;
 }
 
 radio {
-    width: 45%;
-    margin: 2%;
+  width: 45%;
+  margin: 2%;
 }
 
 .item {
-    margin-top: 20rpx;
+  margin-top: 20rpx;
 }
 
 .i-title {
-    padding-left: 30rpx;
+  padding-left: 30rpx;
 }
 
 input {
-    display: inline-block;
-    width: 120rpx;
-    height: 60rpx;
-    border: 1px solid black;
-    margin: 0 10rpx;
+  display: inline-block;
+  width: 120rpx;
+  height: 60rpx;
+  border: 1px solid black;
+  margin: 0 10rpx;
 }
 
-.cost{
-    border:2px solid #eee;
+.cost {
+  border: 2px solid #eee;
 }
 
 textarea {
-    border: 2rpx solid #d1d1d1;
-    width: 80%;
-    margin: 10rpx 0 20rpx 70rpx;
+  border: 2rpx solid #d1d1d1;
+  width: 80%;
+  margin: 10rpx 0 20rpx 70rpx;
 }
 
 .submit {
-    bottom:0;
-    width: 100%;
-    background: #3367d6;
-    color: white;
-    border-radius: 0;
+  bottom: 0;
+  width: 100%;
+  background: #3367d6;
+  color: white;
+  border-radius: 0;
 }

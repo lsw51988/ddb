@@ -1,15 +1,22 @@
 {
     "pages": [
+        
         "pages/index/index",
         "pages/guide/guide",
         "pages/ans-help/ans-help",
         "pages/suggestion/suggestion",
         "pages/shb-manage-detail/shb-manage-detail",
+        "pages/nb-manage-detail/nb-manage-detail",
         "pages/shb-sell/shb-sell",
         "pages/shb-manage/shb-manage",
+        "pages/nb-manage/nb-manage",
         "pages/shb-index/shb-index",
+        "pages/nb-index/nb-index",
+        "pages/nb-list/nb-list",
         "pages/shb-list/shb-list",
         "pages/shb-detail/shb-detail",
+        "pages/nb-detail/nb-detail",
+        "pages/nb-sell/nb-sell",
         "pages/point/point",
         "pages/near-mts/near-mts",
         "pages/must-know/must-know",
