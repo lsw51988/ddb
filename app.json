@@ -1,6 +1,5 @@
 {
     "pages": [
-        
         "pages/index/index",
         "pages/guide/guide",
         "pages/ans-help/ans-help",
@@ -23,6 +22,7 @@
         "pages/coop/coop",
         "pages/lost-help/lost-help",
         "pages/member-want/member-want",
+        "pages/member-sign/member-sign",
         "pages/pay-help/pay-help",
         "pages/help/help",
         "pages/help-review/help-review",

@@ -78,35 +78,7 @@ Page({
   },
 
   signin: function() {
-    wx.showLoading({
-      title: '请稍后...',
-    })
-    wx.request({
-      url: app.globalData.host + '/wechat/member/sign',
-      method: "POST",
-      header: util.header(),
-      success: function(res) {
-        wx.hideLoading();
-        if (!res.data.status) {
-          wx.showModal({
-            title: '提示',
-            content: res.data.msg
-          })
-        } else {
-          wx.showModal({
-            title: '成功',
-            content: "成功获取2个积分"
-          })
-        }
-      },
-      fail: function() {
-        wx.hideLoading();
-        wx.showModal({
-          title: '提示',
-          content: "获取unionid出错:服务器内部错误"
-        })
-      }
-    })
+    util.memberAuth('../member-sign/member-sign');
   }
 })
 
