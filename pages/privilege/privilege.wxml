@@ -1,0 +1,29 @@
+<view class='intro'>
+  <view class='title'>会员权益说明</view>
+  <view class='item'>会员期间，所有积分消耗为正常的80%</view>
+</view>
+<view class='withdraw'>
+  <view class='options'>
+    <view class='option_{{point==100}}' bindtap='choose' data-point="100">
+      <view class='option-item mt-30 mb-10'>一个月</view>
+      <view class='option-item mb-30'>100积分</view>
+    </view>
+    <view class='option_{{point==280}}' bindtap='choose' data-point="280">
+      <view class='option-item mt-30 mb-10'>三个月</view>
+      <view class='option-item mb-30'>280积分</view>
+    </view>
+  </view>
+  <view class='options mt-20'>
+    <view class='option_{{point==520}}' bindtap='choose' data-point="520">
+      <view class='option-item mt-30 mb-10'>半年</view>
+      <view class='option-item mb-30'>520积分</view>
+    </view>
+    <view class='option_{{point==1000}}' bindtap='choose' data-point="1000">
+      <view class='option-item mt-30 mb-10'>一年</view>
+      <view class='option-item mb-30'>1000积分</view>
+    </view>
+  </view>
+</view>
+
+<button class='btn' bindtap='become'>{{btnText}}</button>
+<view class='hint'>{{hintText}}</view>

@@ -1,5 +1,5 @@
 <view class='intro'>
-  <view>充值说明</view>
+  <view class='title'>充值说明</view>
   <view class='item'>1.积分充值成功之后,无法退回</view>
   <view class='item'>2.积分到账时间:一般为5分钟之内</view>
 </view>
@@ -16,6 +16,20 @@
     <view class='option_{{amount==10000}}' bindtap='choose' data-amount="10000">
       <view class='option-item mt-30 mb-10'>100元</view>
       <view class='option-item mb-30'>1050积分</view>
+    </view>
+  </view>
+  <view class='options mt-20'>
+    <view class='option_{{amount==20000}}' bindtap='choose' data-amount="20000">
+      <view class='option-item mt-30 mb-10'>200元</view>
+      <view class='option-item mb-30'>2100积分</view>
+    </view>
+    <view class='option_{{amount==50000}}' bindtap='choose' data-amount="50000">
+      <view class='option-item mt-30 mb-10'>500元</view>
+      <view class='option-item mb-30'>5200积分</view>
+    </view>
+    <view class='option_{{amount==100000}}' bindtap='choose' data-amount="100000">
+      <view class='option-item mt-30 mb-10'>1000元</view>
+      <view class='option-item mb-30'>10500积分</view>
     </view>
   </view>
 </view>

@@ -2,7 +2,7 @@ var util = require("../../utils/util.js");
 const app = getApp()
 Page({
   data: {
-    amount: 1000
+    amount: 5000
   },
 
   onShareAppMessage: function() {

@@ -2,14 +2,19 @@ const app = getApp()
 var util = require("../../utils/util.js");
 Page({
 
+  data: {
+    'prvilegeText': '成为会员'
+  },
+
   onShareAppMessage: function() {
     return util.share(this);
   },
 
   onLoad: function(opts) {
-    console.log(opts);
-    if (opts.share_user_id != undefined) {
-      console.log(opts.share_user_id);
+    if (wx.getStorageSync('member').is_privilege) {
+      this.setData({
+        'prvilegeText': '续费会员'
+      });
     }
   },
 
@@ -79,6 +84,10 @@ Page({
 
   signin: function() {
     util.memberAuth('../member-sign/member-sign');
+  },
+
+  goto_privilege: function() {
+    util.memberAuth('../privilege/privilege');
   }
 })
 
