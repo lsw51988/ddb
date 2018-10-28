@@ -145,16 +145,6 @@
         <input type="number" class="weui-input" placeholder="请输入期望售价" name="out_price" />
       </view>
     </view>
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label" style='color:red'>展示天数</view>
-      </view>
-      <view class="weui-cell__bd">
-        <picker mode="selector" range="{{show_days}}" value='{{show_days_index}}' bindchange="showDayChange" name="show_days_index">
-          <view class="weui-input">{{show_days[show_days_index]}}</view>
-        </picker>
-      </view>
-    </view>
 
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
@@ -190,7 +180,7 @@
     </view>
 
     <view class='hint'>
-      温馨提示:发布信息需要支付100积分。非会员每日展示积分需要10积分，会员8积分。无法回撤。
+      温馨提示:发布信息永久有效。
     </view>
   </view>
   <button class='submit' formType="submit">提交</button>

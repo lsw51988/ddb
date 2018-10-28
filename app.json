@@ -1,6 +1,7 @@
 {
   "pages": [
-    
+    "pages/shb-index/shb-index",
+    "pages/nb-index/nb-index",
     "pages/index/index",
     "pages/privilege/privilege",
     "pages/point/point",
@@ -12,8 +13,8 @@
     "pages/shb-sell/shb-sell",
     "pages/shb-manage/shb-manage",
     "pages/nb-manage/nb-manage",
-    "pages/shb-index/shb-index",
-    "pages/nb-index/nb-index",
+    
+    
     "pages/nb-list/nb-list",
     "pages/shb-list/shb-list",
     "pages/shb-detail/shb-detail",

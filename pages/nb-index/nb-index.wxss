@@ -1,9 +1,3 @@
-.title {
-  text-align: center;
-  font-size: 30rpx;
-  padding: 5px 10px;
-}
-
 .area {
   width: 100vw;
   text-align: center;
@@ -29,4 +23,21 @@ button {
 
 .mr-40 {
   margin-right: 40rpx;
+}
+
+.hint {
+  font-size: 30rpx;
+  position: fixed;
+  bottom: 40rpx;
+}
+
+.title {
+  font-size: 32rpx;
+  padding: 5px 10px;
+  font-weight: bold;
+}
+
+.item {
+  width: 90%;
+  margin-left: 60rpx;
 }

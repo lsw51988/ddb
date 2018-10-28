@@ -6,8 +6,8 @@ App({
         //检查当前token是否有效,如果无效则,重新获取token并写入本地缓存
         if (wx.getStorageSync("member").id!=undefined) {
             wx.request({
-                url: 'http://local.ddb.com/wechat/checkToken',
-                //url: 'https://www.ebikea.com/wechat/checkToken',
+                //url: 'http://local.ddb.com/wechat/checkToken',
+                url: 'https://www.ebikea.com/wechat/checkToken',
                 method: "POST",
                 header: util.header(),
                 data: {
@@ -27,7 +27,7 @@ App({
     },
     globalData: {
         userInfo: null,
-        //host: "https://www.ebikea.com",
-        host: "http://local.ddb.com",
+        host: "https://www.ebikea.com",
+        //host: "http://local.ddb.com",
     }
 })

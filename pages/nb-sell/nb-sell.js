@@ -3,8 +3,6 @@ const app = getApp();
 Page({
   data: {
     voltage: ["请选择", "48V", "60V", "72V", "96V", "其他"],
-    show_days: ['请选择', '一周-7天', '二周-14天', '一个月-30天', '三个月-90天', '半年-180天', '一年-365天'],
-    show_days_index: 0,
     voltage_index: 0,
     memberData: [],
     bikeImgs: []
@@ -44,12 +42,6 @@ Page({
   voltageChange: function(e) {
     this.setData({
       voltage_index: e.detail.value
-    })
-  },
-
-  showDayChange: function(e) {
-    this.setData({
-      show_days_index: e.detail.value
     })
   },
 
@@ -93,13 +85,6 @@ Page({
       wx.showModal({
         title: '提示',
         content: '请选择电压',
-      })
-      return;
-    }
-    if (data['show_days_index'] == 0) {
-      wx.showModal({
-        title: '提示',
-        content: '请选择展示天数',
       })
       return;
     }

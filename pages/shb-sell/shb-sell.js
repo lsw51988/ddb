@@ -10,8 +10,6 @@ Page({
     bikeImgs: [],
     status: 1,
     detail_addr: "",
-    show_days: ['请选择', '一周-7天', '二周-14天', '一个月-30天', '三个月-90天', '半年-180天', '一年-365天'],
-    show_days_index: 0,
     last_change_time: "未更换"
   },
 
@@ -153,12 +151,6 @@ Page({
     });
   },
 
-  showDayChange: function(e) {
-    this.setData({
-      show_days_index: e.detail.value
-    })
-  },
-
   formSubmit: function(e) {
     var that = this;
     console.log(e.detail.value);
@@ -173,13 +165,7 @@ Page({
       })
       return;
     }
-    if (data['show_days_index'] == 0) {
-      wx.showModal({
-        title: '提示',
-        content: '请选择展示天数',
-      })
-      return;
-    }
+
     for (var key in data) {
       if (key != 'last_change_time' && key != 'remark' && (data[key] === "" || data[key] === null)) {
         wx.showModal({

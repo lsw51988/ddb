@@ -1,9 +1,16 @@
 <!--二手车首页-->
-<view class='title'>新车信息</view>
 <view class='area'>
   <button class='mr-40' bindtap='goto_sell'>我要出售</button>
   <button bindtap='goto_buy'>我要购买</button>
 </view>
 <view class='line'>
   <button class='mr-40' bindtap='goto_manager'>管理出售</button>
+</view>
+
+<view class='hint'>
+  <view class='title'>提示</view>
+  <view class='item'>1. 可以免费发布3条新车记录。</view>
+  <view class='item'>2. 每条已发布的新车记录可以免费刷新3次/天。</view>
+  <view class='item'>3. 超出免费部分，发布需要消耗100积分/条，刷新需要消耗10积分/次。</view>
+  <view class='item'>4. 适时刷新记录，可以提高曝光度</view>
 </view>

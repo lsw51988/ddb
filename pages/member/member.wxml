@@ -22,10 +22,10 @@
       <label>积分：</label>
       <view>{{point}}分</view>
     </view>
-    <view class='line'>
+    <!-- <view class='line'>
       <label>会员等级：</label>
       <view>{{level}}</view>
-    </view>
+    </view> -->
     <view class='line'>
       <label>交易记录：</label>
       <view>{{appeal_times}}次</view>
@@ -46,7 +46,7 @@
   <view class='block-item' bindtap='goto_about'>关于电动帮</view>
 
   <view class='block-item' bindtap='goto_recommend'>推荐有奖</view>
-  <view class='block-item' bindtap='goto_shop'>我的商城</view>
+  <view class='block-item' bindtap='goto_shop'>严选商城</view>
   <!-- <view class='block-item' bindtap='goto_insure'>我的保险</view> -->
   <!-- <view class='block-item' bindtap='goto_member_log'>使用指南</view> -->
   <view class='block-item' bindtap='goto_guide'>使用指南</view>

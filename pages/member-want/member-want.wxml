@@ -9,8 +9,8 @@
 </view>
 <view class='row-1'>
   <button class='mr-40' bindtap='goto_point'>充值积分</button>
-  <button bindtap='signin'>签到</button>
+  <button bindtap='goto_privilege'>{{prvilegeText}}</button>
 </view>
 <view class='row-1'>
-  <button class='mr-40' bindtap='goto_privilege'>{{prvilegeText}}</button>
+  <button class='mr-40' bindtap='signin'>签到</button>
 </view>
