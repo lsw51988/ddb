@@ -1,7 +1,7 @@
 .bar {
   height: 90rpx;
   line-height: 90rpx;
-  width: 100%;
+  width: 100.5%;
   border: 1px solid #2a2d32;
 }
 
@@ -52,12 +52,12 @@
 .number {
   padding-left: 20rpx;
   display: inline-block;
-  width: 340rpx;
+  width: 30%;
   float: left;
 }
 
 .date {
-  width: 300rpx;
+  width: 60%;
   float: right;
   padding-right: 20rpx;
   text-align: right;
@@ -88,4 +88,20 @@
 .no-data {
   width: 100%;
   text-align: center;
+}
+
+.item-content{
+  display: inline-block;
+  width:85%;
+}
+.flush-btn{
+  display: inline-block;
+  float: right;
+  width:15%;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  background: #3367d6;
+  color:white;
+  border-radius:10rpx;
 }

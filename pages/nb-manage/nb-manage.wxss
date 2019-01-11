@@ -42,24 +42,25 @@
 .li-top {
   height: 60rpx;
   line-height: 60rpx;
+  padding-right: 20rpx;
 }
 
 .li-bottom {
   height: 60rpx;
   line-height: 60rpx;
+  padding-right: 20rpx;
 }
 
-.number {
+.status {
   padding-left: 20rpx;
   display: inline-block;
   width: 200rpx;
   float: left;
 }
 
-.date {
-  width: 500rpx;
+.addr {
+  width: 60%;
   float: right;
-  padding-right: 20rpx;
   text-align: right;
   display: inline-block;
 }
@@ -71,14 +72,7 @@
   text-align: left;
 }
 
-/* .addr {
-    display: inline-block;
-    width: 50%;
-    text-align: center;
-} */
-
 .price {
-  padding-right: 20rpx;
   display: inline-block;
   width: 20%;
   text-align: right;
@@ -88,4 +82,21 @@
 .no-data {
   width: 100%;
   text-align: center;
+}
+
+.item-content {
+  display: inline-block;
+  width: 85%;
+}
+
+.flush-btn {
+  display: inline-block;
+  float: right;
+  width: 15%;
+  height: 120rpx;
+  line-height: 120rpx;
+  text-align: center;
+  background: #3367d6;
+  color: white;
+  border-radius: 10rpx;
 }

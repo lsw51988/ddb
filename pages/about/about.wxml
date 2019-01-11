@@ -1,5 +1,9 @@
 <view class="title">电动帮是一个致力于提供便民服务的软件，希望可以帮助大家的日常出行和生活。</view>
 <view class='list'>
+  <view class='item' bindtap='gotoGuide'>
+      为什么？是什么？干什么？
+      <image src='/img/arrow-right.png' class='img'></image>
+    </view>
   <view class='item' bindtap='gotoMustKnow'>
     使用须知
     <image src='/img/arrow-right.png' class='img'></image>

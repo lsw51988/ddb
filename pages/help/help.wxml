@@ -45,7 +45,7 @@
 
     <view class="weui-btn-area">
       <button formType="submit" class='near-mt' data-id="1">查看附近维修点</button>
-      <button formType="submit" class='search-help' data-id="2">无法移动,寻求帮助</button>
+      <!-- <button formType="submit" class='search-help' data-id="2">无法移动,寻求帮助</button> -->
     </view>
   </view>
 </form>

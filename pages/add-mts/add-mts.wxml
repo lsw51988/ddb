@@ -38,25 +38,6 @@
         </picker>
       </view>
     </view>
-    <view class="weui-cell weui-cell_input" style='padding-right:0;'>
-      <view class="weui-cell__hd">
-        <view class="weui-label">维修点手机</view>
-      </view>
-      <view class="weui-cell__bd">
-        <input type='number' class="weui-input" placeholder="请输入手机号" name="mobile" bindblur='getMobile' />
-      </view>
-      <view class="weui-cell__ft">
-        <button class="weui-vcode-btn get-capture" name="captcha" bindtap='getCaptcha' disabled='{{cap_btn_status}}' loading='{{cap_loading_status}}'>{{cap_btn_text}}</button>
-      </view>
-    </view>
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">短信验证码</view>
-      </view>
-      <view class="weui-cell__bd">
-        <input class="weui-input" placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
-      </view>
-    </view>
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
         <view class="weui-label" style="width:320rpx;display:block">您是否是维修点主人</view>
@@ -65,6 +46,25 @@
         <view class="belong_creator_{{belong_creator==1}}" bindtap='tapYes'>是</view>
         <view class="belong_creator_{{belong_creator==0}}" bindtap='tapNo'>否</view>
         <input style='display:none' name="belong_creator" value="{{belong_creator}}" />
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input" hidden="{{appeal_visiable}}" style='padding-right:0;'>
+      <view class="weui-cell__hd">
+        <view class="weui-label">维修点手机</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input type='number' class="weui-input" placeholder="请输入店主手机号" name="mobile" bindblur='getMobile' />
+      </view>
+      <view class="weui-cell__ft">
+        <button class="weui-vcode-btn get-capture" name="captcha" bindtap='getCaptcha' disabled='{{cap_btn_status}}' loading='{{cap_loading_status}}'>{{cap_btn_text}}</button>
+      </view>
+    </view>
+    <view class="weui-cell weui-cell_input" hidden="{{appeal_visiable}}">
+      <view class="weui-cell__hd">
+        <view class="weui-label">短信验证码</view>
+      </view>
+      <view class="weui-cell__bd">
+        <input class="weui-input" placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
       </view>
     </view>
     <view class="weui-cells weui-cells_after-title des">

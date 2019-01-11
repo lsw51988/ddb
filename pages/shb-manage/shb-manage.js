@@ -42,6 +42,54 @@ Page({
       getList(that, that.data.search)
     }
   },
+
+  flush: function(e) {
+    var id = e.currentTarget.dataset.id;
+    wx.showLoading({
+      title: '请稍后...',
+    })
+    wx.request({
+      url: app.globalData.host + '/wechat/member/flush',
+      method: "GET",
+      header: util.header(),
+      data: {
+        'bike_id': id,
+        'type': 2
+      },
+      success: function(res) {
+        if (res.data.status == true) {
+          var count = res.data.data;
+          if (count > 0) {
+            var okmsg = '该条记录今天还可免费刷新' + count + '次';
+          } else {
+            var okmsg = '刷新成功';
+          }
+          wx.hideLoading();
+          wx.showModal({
+            title: '提示',
+            content: okmsg,
+          })
+        } else {
+          if (res.data.msg = '积分不足') {
+            wx.showModal({
+              title: '提示',
+              content: '积分不足',
+              success: function() {
+                wx.navigateTo({
+                  url: '../point/point',
+                })
+              }
+            })
+          } else {
+            util.falseHint(res.data.msg);
+          }
+        }
+      },
+      fail: function() {
+        util.failHint();
+      }
+    })
+  }
 })
 
 function getList(_this, search) {

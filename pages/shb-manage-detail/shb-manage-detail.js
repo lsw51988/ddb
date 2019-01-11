@@ -72,7 +72,7 @@ Page({
             "bikeImgs": memberData["imgUrls"]
           });
         } else {
-          util.falseHint();
+          util.falseHint(res.data.msg);
         }
       },
       fail: function() {

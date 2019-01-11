@@ -14,7 +14,7 @@ page {
 .list {
   position: absolute;
   bottom: 0;
-  height: 264rpx;
+  height: 352rpx;
   width: 100%;
 }
 

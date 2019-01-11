@@ -17,6 +17,7 @@ Page({
     type: ["电动车维修点", "电动车维修兼销售点", "便民开锁点"],
     type_index: 0,
     belong_creator: 0,
+    appeal_visiable:true
   },
 
   onShareAppMessage: function() {
@@ -145,13 +146,15 @@ Page({
 
   tapYes: function() {
     this.setData({
-      belong_creator: 1
+      belong_creator: 1,
+      appeal_visiable:false
     })
   },
 
   tapNo: function() {
     this.setData({
-      belong_creator: 0
+      belong_creator: 0,
+      appeal_visiable: true
     })
   },
 

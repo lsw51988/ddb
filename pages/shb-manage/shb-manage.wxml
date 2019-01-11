@@ -13,16 +13,19 @@
 </view>
 <view wx:else>
   <view wx:for="{{bike_list}}">
-    <view class='list-item' bindtap='gotoShbDetail' data-id="{{item.id}}">
-      <view class='li-top'>
-        <view class='number'>编号No.{{item.id}}</view>
-        <view class='date'>{{item.created_at}}</view>
+    <view class='list-item'>
+      <view class='item-content' bindtap='gotoShbDetail' data-id="{{item.id}}">
+        <view class='li-top'>
+          <view class='number'>编号No.{{item.id}}</view>
+          <view class='date'>{{item.created_at}}</view>
+        </view>
+        <view class='li-bottom'>
+          <view class='brand'>{{item.brand_name}}</view>
+          <view class='addr'>{{item.city}}{{item.district}}</view>
+          <view class='price'>{{item.out_price}}</view>
+        </view>
       </view>
-      <view class='li-bottom'>
-        <view class='brand'>{{item.brand_name}}</view>
-        <view class='addr'>{{item.city}}{{item.district}}</view>
-        <view class='price'>{{item.out_price}}元</view>
-      </view>
+      <view class='flush-btn' data-id="{{item.id}}" bindtap='flush'>刷新</view>
     </view>
   </view>
 </view>

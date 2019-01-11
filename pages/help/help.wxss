@@ -36,7 +36,7 @@
 }
 
 .near-mt {
-  width: 50%;
+  width: 100%;
   display: inline-block;
   background: #3367d6;
   color: white;

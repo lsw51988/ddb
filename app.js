@@ -7,7 +7,7 @@ App({
         if (wx.getStorageSync("member").id!=undefined) {
             wx.request({
                 //url: 'http://local.ddb.com/wechat/checkToken',
-                url: 'https://www.ebikea.com/wechat/checkToken',
+                url: 'https://www.njddb.com/wechat/checkToken',
                 method: "POST",
                 header: util.header(),
                 data: {
@@ -26,8 +26,8 @@ App({
         }
     },
     globalData: {
-        userInfo: null,
-        host: "https://www.ebikea.com",
-        //host: "http://local.ddb.com",
+      userInfo: null,
+      host: "https://www.njddb.com",
+      //host: "http://local.ddb.com",
     }
 })

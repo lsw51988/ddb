@@ -20,4 +20,9 @@ Page({
     })
   },
 
+  gotoGuide: function () {
+    wx.navigateTo({
+      url: '../guide/guide',
+    })
+  }
 })

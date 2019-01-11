@@ -137,7 +137,7 @@ Page({
   goto_shop: function() {
     wx.showModal({
       title: '提示',
-      content: '即将开放',
+      content: '即将开放,欢迎洽谈合作',
     })
   },
 
