@@ -22,7 +22,7 @@
       </view>
     </view>
 
-    <view class="weui-cell weui-cell_input weui-cell_vcode">
+    <!-- <view class="weui-cell weui-cell_input weui-cell_vcode">
       <view class="weui-cell__hd">
         <view class="weui-label">手机号</view>
       </view>
@@ -41,7 +41,7 @@
       <view class="weui-cell__bd">
         <input type='number' class="weui-input" placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
       </view>
-    </view>
+    </view> -->
 
     <view class="weui-btn-area">
       <button formType="submit" class='near-mt' data-id="1">查看附近维修点</button>

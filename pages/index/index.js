@@ -74,7 +74,6 @@ Page({
     wx.getLocation({
       type: "gcj02",
       success: function(res) {
-        console.log(res);
         wx.setStorageSync("latitude", res.latitude)
         wx.setStorageSync("longitude", res.longitude)
         locationData(res, that);
@@ -88,6 +87,7 @@ Page({
           confirmText: "授权",
           success: function(res) {
             if (res.confirm) {
+              console.log('shouquan');
               wx.openSetting({
                 success: function(res) {
                   //重新获取地理位置权限
@@ -102,6 +102,7 @@ Page({
                 }
               })
             } else {
+              console.log('bu shouquan');
               wx.showModal({
                 title: '提示',
                 content: '您已拒绝授权地理位置，无法正常使用程序功能，需在微信【发现】-【小程序】-删除【电动帮】，重新授权，方可使用'

@@ -17,17 +17,17 @@ Page({
     type: ["电动车维修点", "电动车维修兼销售点", "便民开锁点"],
     type_index: 0,
     belong_creator: 0,
-    appeal_visiable:true
+    appeal_visiable: true
   },
 
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     return util.share(this);
   },
 
-  onLoad: function() {
+  onLoad: function () {
     var that = this;
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         that.setData({
           controls: [{
             id: 0,
@@ -45,7 +45,7 @@ Page({
     })
     wx.getLocation({
       type: "gcj02",
-      success: function(res) {
+      success: function (res) {
         that.data.longitude = res.longitude;
         that.data.latitude = res.latitude;
         that.setData({
@@ -57,60 +57,60 @@ Page({
     that.data.mapCtx = wx.createMapContext("map", that);
   },
 
-  getMobile: function(e) {
+  getMobile: function (e) {
     this.data.mobile = e.detail.value;
   },
 
-  getCaptcha: function(e) {
+  getCaptcha: function (e) {
     util.getCaptcha(this);
   },
 
-  model_cancel: function(e) {
+  model_cancel: function (e) {
     this.setData({
       modalFlag: true
     });
   },
 
-  model_confirm: function(e) {
+  model_confirm: function (e) {
     util.verifyCaptcha(this);
   },
 
-  captchaBlur: function(e) {
+  captchaBlur: function (e) {
     this.data.captcha = e.detail.value;
   },
 
-  freshCaptcha: function() {
+  freshCaptcha: function () {
     util.freshCaptcha(this);
   },
 
-  regionChange: function(e) {
+  regionChange: function (e) {
     var that = this;
     that.data.mapCtx.getCenterLocation({
-      success: function(res) {
+      success: function (res) {
         that.data.longitude = res.longitude;
         that.data.latitude = res.latitude;
       }
     });
   },
 
-  controltap: function(e) {
+  controltap: function (e) {
     //重新定位
     var that = this;
     this.data.mapCtx.moveToLocation();
     this.data.mapCtx.getCenterLocation({
-      success: function(e) {
+      success: function (e) {
         that.data.latitude = e.latitude;
         that.data.longitude = e.longitude;
       }
     })
   },
 
-  chooseImage: function(e) {
+  chooseImage: function (e) {
     var that = this;
     wx.chooseImage({
       sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
-      success: function(res) {
+      success: function (res) {
         console.log(res)
         if (res.tempFiles[0].size >= 5 * 1024 * 1024) {
           wx.showModal({
@@ -128,14 +128,14 @@ Page({
     })
   },
 
-  previewImage: function(e) {
+  previewImage: function (e) {
     wx.previewImage({
       current: e.currentTarget.id, // 当前显示图片的http链接
       urls: this.data.img // 需要预览的图片http链接列表
     })
   },
 
-  delImg: function(e) {
+  delImg: function (e) {
     var index = e.currentTarget.id;
     var imgs = this.data.img;
     var newImgs = util.delImg(imgs, index);
@@ -144,21 +144,21 @@ Page({
     });
   },
 
-  tapYes: function() {
+  tapYes: function () {
     this.setData({
       belong_creator: 1,
-      appeal_visiable:false
+      appeal_visiable: false
     })
   },
 
-  tapNo: function() {
+  tapNo: function () {
     this.setData({
       belong_creator: 0,
       appeal_visiable: true
     })
   },
 
-  formSubmit: function(e) {
+  formSubmit: function (e) {
     var that = this;
     var formData = e.detail.value;
     formData.longitude = that.data.longitude;
@@ -179,12 +179,14 @@ Page({
     }
     console.log(formData);
     for (var key in formData) {
-      if (formData[key] === "" || formData[key] === null) {
-        wx.showModal({
-          title: '提示',
-          content: '请填写必填项',
-        })
-        return false;
+      if (key != "mobile" && key != "sms_code") {
+        if (formData[key] === "" || formData[key] === null) {
+          wx.showModal({
+            title: '提示',
+            content: '请填写必填项',
+          })
+          return false;
+        }
       }
     }
     wx.showLoading({
@@ -196,14 +198,14 @@ Page({
       method: "POST",
       header: util.header(),
       data: formData,
-      success: function(res) {
+      success: function (res) {
         if (res.data.status) {
           var repair_id = res.data.data.repair_id;
           wx.hideLoading();
           wx.showModal({
             title: '提示',
             content: '添加成功,后台审核通过之后,您将获取10个积分',
-            success: function(res) {
+            success: function (res) {
               for (var i = 0; i < that.data.img.length; i++) {
                 uploadFile(repair_id, that.data.img[i]);
               }
@@ -213,10 +215,11 @@ Page({
             }
           })
         } else {
-          util.falseHint(res.data.msg);
+          console.log(res.data);
+          util.falseHint('添加失败');
         }
       },
-      fail: function() {
+      fail: function () {
         util.failHint();
       }
     })
@@ -232,7 +235,7 @@ function uploadFile(repair_id, img) {
     formData: {
       repair_id: repair_id
     },
-    success: function(res) {
+    success: function (res) {
       var data = JSON.parse(res.data);
       if (data.status == true) {
         console.log("上图片上传成功");
@@ -240,7 +243,7 @@ function uploadFile(repair_id, img) {
         console.log("图片上传失败");
       }
     },
-    fail: function(res) {
+    fail: function (res) {
       console.log("图片上传失败");
     }
   })
@@ -248,10 +251,10 @@ function uploadFile(repair_id, img) {
 
 function login(latitude, longitude) {
   wx.login({
-    success: function(loginRes) {
+    success: function (loginRes) {
       var js_code = loginRes.code;
       wx.getUserInfo({
-        success: function(userRes) {
+        success: function (userRes) {
           userRes.userInfo.js_code = js_code;
           userRes.userInfo.latitude = latitude;
           userRes.userInfo.longitude = longitude;
@@ -263,24 +266,24 @@ function login(latitude, longitude) {
             },
             method: "POST",
             data: userRes.userInfo,
-            success: function(res) {
+            success: function (res) {
               console.log(userRes);
               wx.setStorageSync('member', res.data.data);
             }
           })
         },
-        fail: function(userRes) {
+        fail: function (userRes) {
           wx.showModal({
             title: '提示',
             content: '若不授权用户信息，无法正常使用功能，点击授权则可重新使用；若不点击，后续还要用小程序，需在微信【发现】-【小程序】-删除【电动帮】，重新授权，方可使用',
             cancelText: "不授权",
             confirmText: "授权",
-            success: function(confirmRes) {
+            success: function (confirmRes) {
               if (confirmRes.confirm) {
                 wx.openSetting({
-                  success: function() {
+                  success: function () {
                     wx.getUserInfo({
-                      success: function(userRes) {
+                      success: function (userRes) {
                         userRes.userInfo.js_code = js_code;
                         userRes.userInfo.latitude = latitude;
                         userRes.userInfo.longitude = longitude;
@@ -292,7 +295,7 @@ function login(latitude, longitude) {
                           },
                           method: "POST",
                           data: userRes.userInfo,
-                          success: function(res) {
+                          success: function (res) {
                             wx.setStorageSync('member', res.data.data);
                           }
                         })
@@ -311,7 +314,7 @@ function login(latitude, longitude) {
         }
       })
     },
-    fail: function(loginRes) {
+    fail: function (loginRes) {
       console.log("wx接口login请求错误");
       console.log(loginRes);
     }

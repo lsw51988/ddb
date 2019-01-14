@@ -1,15 +1,15 @@
 <view class='avatar-area'>
-  <view wx:if="{{member.avatarUrl==null}}">
+  <view wx:if="{{member.avatar_url==null}}">
     <image src="/img/default_avatar.jpg" class='avatar' bindtap='goto_member_avatar'></image>
   </view>
   <view wx:else>
     <image src="{{avatarUrl}}" class='avatar' bindtap='goto_member_avatar'></image>
   </view>
-  <view wx:if="{{member.nickName==null}}">
+  <view wx:if="{{member.nick_name==null || member.nick_name=='' || member.nick_name==undefined}}">
     <view class='nick-name'>骑行侠</view>
   </view>
   <view wx:else>
-    <view class='nick-name'>{{member.nickName}}</view>
+    <view class='nick-name'>{{member.nick_name}}</view>
   </view>
 </view>
 <view class='detail'>

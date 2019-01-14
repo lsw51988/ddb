@@ -2,14 +2,15 @@ const app = getApp();
 var util = require("../../utils/util.js");
 Page({
   data: {
-    appeal_text: "求助记录"
+    appeal_text: "求助记录",
+    avatarUrl: ''
   },
 
   onShareAppMessage: function() {
     return util.share(this);
   },
 
-  onLoad: function(options) {
+  onShow: function(options) {
     var that = this;
     wx.showLoading({
       title: '请稍后...',
@@ -22,7 +23,17 @@ Page({
         if (res.data.status == true) {
           wx.hideLoading();
           var resData = res.data.data;
+          wx.setStorageSync('member', resData.member);
+          if (resData.member.avatar_url == '') {
+            that.data.avatarUrl = '/img/default_avatar.jpg';
+          } else if ((/wx.qlogo.cn/.test(resData.member.avatar_url))) {
+            that.data.avatarUrl = resData.member.avatar_url;
+          } else {
+            that.data.avatarUrl = app.globalData.host + '/wechat/avatar?path=' + resData.member.avatar_url
+          }
           that.setData({
+            'member': wx.getStorageSync('member'),
+            'avatarUrl': that.data.avatarUrl,
             //'level': resData.level,
             'point': resData.point,
             'appeal_times': resData.appeal_times,
@@ -45,25 +56,9 @@ Page({
       that.data.appeal_text = "应助记录";
     }
 
-    if ((/wx.qlogo.cn/.test(wx.getStorageSync('member').avatarUrl))) {
-      that.data.avatarUrl = wx.getStorageSync('member').avatarUrl;
-    } else {
-      that.data.avatarUrl = app.globalData.host + '/wechat/avatar?path=' + wx.getStorageSync('member').avatarUrl
-    }
     that.setData({
-      'member': wx.getStorageSync('member'),
-      'avatarUrl': that.data.avatarUrl,
       'imgUrl': app.globalData.host + "/wechat/qr_code",
       'appeal_text': that.data.appeal_text
-    });
-  },
-
-  onShow: function() {
-    var that = this;
-    that.setData({
-      'member': wx.getStorageSync('member'),
-      'avatarUrl': that.data.avatarUrl,
-      'imgUrl': app.globalData.host + "/wechat/qr_code"
     });
   },
 

@@ -109,7 +109,6 @@ function improveUserInfo(data) {
         var member = wx.getStorageSync("member");
         member.union_flag = true;
         wx.setStorageSync("member", member)
-        console.log(wx.getStorageSync("member"));
         wx.navigateTo({
           url: '../member_detail/member_detail',
         })

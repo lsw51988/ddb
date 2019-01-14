@@ -92,7 +92,12 @@
       </view>
       <view class="weui-cell__bd">
         <picker mode="date" value="{{last_change_time}}" fields="month" start="2010-01" bindchange="batteryChangeTime" name="last_change_time">
-          <view class="weui-input">{{last_change_time}}</view>
+          <view wx:if="{{last_change_time==null || last_change_time==''}}">
+            <view class='weui-input'>未曾更换</view>
+          </view>
+          <view wx:else>
+            <view class="weui-input">{{last_change_time}}</view>
+          </view>
         </picker>
       </view>
     </view>

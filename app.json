@@ -43,6 +43,11 @@
     "pages/about/about",
     "pages/recommend/recommend"
   ],
+  "permission": {
+    "scope.userLocation": {
+      "desc": "您的位置信息将用于您当前所在位置"
+    }
+  },
   "window": {
     "backgroundTextStyle": "light",
     "navigationBarBackgroundColor": "#fff",

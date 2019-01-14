@@ -27,11 +27,11 @@ Page({
     appeal_id: ""
   },
 
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     return util.share(this);
   },
 
-  onLoad: function(options) {
+  onLoad: function (options) {
     var that = this;
     if (wx.getStorageSync("member").mobile != undefined) {
       wx.showLoading({
@@ -41,7 +41,7 @@ Page({
         url: app.globalData.host + '/wechat/appeal/create',
         method: "GET",
         header: util.header(),
-        success: function(res) {
+        success: function (res) {
           if (res.data.status == true) {
             wx.hideLoading();
             that.setData({
@@ -72,7 +72,7 @@ Page({
             wx.showModal({
               title: '提示',
               content: '您尚未认证,请先去认证',
-              success: function(res) {
+              success: function (res) {
                 wx.redirectTo({
                   url: '../member_detail/member_detail',
                 })
@@ -80,13 +80,13 @@ Page({
             })
           }
         },
-        fail: function(res) {
+        fail: function (res) {
           util.failHint();
         }
       })
     }
     wx.getSystemInfo({
-      success: function(res) {
+      success: function (res) {
         that.setData({
           controls: [{
             id: 0,
@@ -104,7 +104,7 @@ Page({
     })
     wx.getLocation({
       type: "gcj02",
-      success: function(res) {
+      success: function (res) {
         that.data.longitude = res.longitude;
         that.data.latitude = res.latitude;
         that.setData({
@@ -116,7 +116,7 @@ Page({
     that.data.mapCtx = wx.createMapContext("map", that);
   },
 
-  onShow: function(options) {
+  onShow: function (options) {
     var that = this;
     if (wx.getStorageSync("member").mobile != undefined) {
       wx.showLoading({
@@ -126,7 +126,7 @@ Page({
         url: app.globalData.host + '/wechat/appeal/create',
         method: "GET",
         header: util.header(),
-        success: function(res) {
+        success: function (res) {
           if (res.data.status == true) {
             wx.hideLoading();
             that.setData({
@@ -146,7 +146,7 @@ Page({
             wx.showModal({
               title: '提示',
               content: '您尚未认证,请先去认证',
-              success: function(res) {
+              success: function (res) {
                 wx.redirectTo({
                   url: '../member_detail/member_detail',
                 })
@@ -154,38 +154,38 @@ Page({
             })
           }
         },
-        fail: function(res) {
+        fail: function (res) {
           util.failHint();
         }
       })
     }
   },
 
-  problemChange: function(e) {
+  problemChange: function (e) {
     this.setData({
       problem_index: e.detail.value
     })
   },
 
-  getCaptcha: function() {
+  getCaptcha: function () {
     util.getCaptcha(this);
   },
 
-  model_cancel: function(e) {
+  model_cancel: function (e) {
     this.setData({
       modalFlag: true
     });
   },
 
-  model_confirm: function(e) {
+  model_confirm: function (e) {
     util.verifyCaptcha(this);
   },
 
-  captchaBlur: function(e) {
+  captchaBlur: function (e) {
     this.data.captcha = e.detail.value;
   },
 
-  freshCaptcha: function() {
+  freshCaptcha: function () {
     util.freshCaptcha(this);
   },
 
@@ -199,25 +199,32 @@ Page({
   //         }
   //     });
   // },
-  controltap: function(e) {
+  controltap: function (e) {
     //重新定位
     var that = this;
     this.data.mapCtx.moveToLocation();
     this.data.mapCtx.getCenterLocation({
-      success: function(e) {
+      success: function (e) {
         that.data.latitude = e.latitude;
         that.data.longitude = e.longitude;
       }
     })
   },
 
-  formSubmit: function(e) {
+  formSubmit: function (e) {
     var that = this;
     var formData = e.detail.value;
     formData.method = e.detail.target.dataset.id;
     formData.longitude = that.data.longitude;
     formData.latitude = that.data.latitude;
-    formData.mobile = that.data.mobile;
+    //formData.mobile = that.data.mobile;
+    if (formData.desc == '') {
+      wx.showModal({
+        title: '提示',
+        content: '请描述您的问题'
+      })
+      return;
+    }
     if (that.data.appeal_id != "") {
       formData.appeal_id = that.data.appeal_id;
     }
@@ -236,7 +243,7 @@ Page({
         wx.showModal({
           title: '提示',
           content: '该求助方式将消耗您10个积分,且无法回撤,您确定吗?',
-          success: function(res) {
+          success: function (res) {
             if (res.confirm) {
               help(that, formData)
             }
@@ -261,7 +268,7 @@ function help(_this, formData) {
     method: "POST",
     header: util.header(),
     data: formData,
-    success: function(res) {
+    success: function (res) {
       if (res.data.status == true) {
         wx.hideLoading();
         console.log(res.data.data);
@@ -278,20 +285,14 @@ function help(_this, formData) {
         }
       } else {
         wx.hideLoading();
-        if (res.data.msg.no_repairs != undefined) {
-          wx.showModal({
-            title: '提示',
-            content: '附近没有记录的维修点,您如果看到可手动添加,获得很多积分哦'
-          })
-        } else {
-          wx.showModal({
-            title: '提示',
-            content: res.data.msg
-          })
-        }
+        console.log(res);
+        wx.showModal({
+          title: '提示',
+          content: res.data.msg
+        })
       }
     },
-    fail: function(res) {
+    fail: function (res) {
       util.failHint();
     }
   })
