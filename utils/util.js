@@ -1,5 +1,5 @@
-var host = "https://www.njddb.com";
-//var host = "http://local.ddb.com";
+//var host = "https://www.njddb.com";
+var host = "http://local.ddb.com";
 const formatTime = date => {
     const year = date.getFullYear()
     const month = date.getMonth() + 1

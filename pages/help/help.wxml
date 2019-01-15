@@ -42,7 +42,7 @@
         <input type='number' class="weui-input" placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
       </view>
     </view> -->
-
+    <view class='hint'>此次求助将花费您10个积分</view>
     <view class="weui-btn-area">
       <button formType="submit" class='near-mt' data-id="1">查看附近维修点</button>
       <!-- <button formType="submit" class='search-help' data-id="2">无法移动,寻求帮助</button> -->

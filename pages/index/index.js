@@ -152,9 +152,7 @@ Page({
         })
         break;
       case 4:
-        wx.navigateTo({
-          url: '../add-mts/add-mts',
-        })
+        util.memberAuth('../add-mts/add-mts');
         break;
     }
   }

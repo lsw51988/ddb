@@ -3,7 +3,7 @@
   text-align: center;
   height: 200rpx;
   line-height: 200rpx;
-  margin-top: 250rpx;
+  margin-top: 220rpx;
 }
 
 .row-1 {

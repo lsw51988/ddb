@@ -118,13 +118,25 @@ Page({
           }
         } else {
           wx.hideLoading();
-          wx.showModal({
-            title: '提示',
-            content: res.data.msg,
-            success: function(res) {
-              wx.navigateBack()
-            }
-          })
+          if (res.data.msg=='积分不足'){
+            wx.showModal({
+              title: '提示',
+              content: res.data.msg,
+              success: function (res) {
+                wx.navigateTo({
+                  url: '../point/point',
+                })
+              }
+            })
+          }else{
+            wx.showModal({
+              title: '提示',
+              content: res.data.msg,
+              success: function (res) {
+                wx.navigateBack()
+              }
+            })
+          }
         }
       },
       fail: function(res) {

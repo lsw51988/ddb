@@ -88,6 +88,10 @@ Page({
 
   goto_privilege: function() {
     util.memberAuth('../privilege/privilege');
+  },
+
+  goto_add_mts:function(){
+    util.memberAuth('../add-mts/add-mts');
   }
 })
 
