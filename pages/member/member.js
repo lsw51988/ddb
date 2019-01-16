@@ -35,7 +35,6 @@ Page({
             'member': wx.getStorageSync('member'),
             'avatarUrl': that.data.avatarUrl,
             //'level': resData.level,
-            'point': resData.point,
             'appeal_times': resData.appeal_times,
             'deal_times': resData.deal_times,
           })
