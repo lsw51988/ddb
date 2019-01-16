@@ -13,22 +13,20 @@ Page({
     max_page: 1
   },
 
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     return util.share(this);
   },
 
-  onLoad: function(options) {
+  onLoad: function (options) {
     this.data.region = [];
     if (options.self_flag) {
       this.data.search['self_flag'] = true;
     }
-    this.data.search['city'] = wx.getStorageSync("member").location[1];
-    this.data.search['district'] = wx.getStorageSync("member").location[2];
     this.data.search['current_page'] = this.data.current_page;
     getList(this, this.data.search);
   },
 
-  timeChange: function(e) {
+  timeChange: function (e) {
     this.data.search['time'] = e.detail.value;
     this.setData({
       "time_index": e.detail.value
@@ -36,7 +34,7 @@ Page({
     getList(this, this.data.search);
   },
 
-  addrChange: function(e) {
+  addrChange: function (e) {
     this.data.search['district'] = e.detail.value[2];
     this.data.search['city'] = e.detail.value[1];
     this.setData({
@@ -45,7 +43,7 @@ Page({
     getList(this, this.data.search);
   },
 
-  priceChange: function(e) {
+  priceChange: function (e) {
     this.data.search['price'] = e.detail.value;
     this.setData({
       "price_index": e.detail.value
@@ -53,14 +51,14 @@ Page({
     getList(this, this.data.search);
   },
 
-  gotoShbDetail: function(e) {
+  gotoShbDetail: function (e) {
     var id = e.currentTarget.dataset.id;
     wx.navigateTo({
       url: '../shb-detail/shb-detail?id=' + id,
     })
   },
 
-  onReachBottom: function() {
+  onReachBottom: function () {
     var that = this;
     if (that.data.max_page > that.data.current_page) {
       that.data.search['current_page'] = that.data.current_page + 1;
@@ -78,7 +76,7 @@ function getList(_this, search) {
     method: "GET",
     header: util.header(),
     data: search,
-    success: function(res) {
+    success: function (res) {
       console.log(res.data.data);
       if (res.data.status == true) {
         wx.hideLoading();
@@ -92,7 +90,7 @@ function getList(_this, search) {
         util.falseHint(res.data.msg);
       }
     },
-    fail: function() {
+    fail: function () {
       util.failHint();
     }
   })

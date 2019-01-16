@@ -10,7 +10,8 @@ Page({
     bikeImgs: [],
     status: 1,
     detail_addr: "",
-    last_change_time: "未更换"
+    last_change_time: "未更换",
+    choose_bike:1
   },
 
   onShareAppMessage: function() {
@@ -83,6 +84,7 @@ Page({
         last_change_time = "未更换";
       }
       that.setData({
+        "choose_bike":1,
         "voltage_index": index,
         "brand_name": memberData["brand_name"],
         "number": memberData["number"],
@@ -94,12 +96,13 @@ Page({
       });
     } else {
       that.setData({
+        "choose_bike": 2,
         "voltage_index": 0,
         "brand_name": "",
         "number": "",
         "price": "",
         "buy_date": "",
-        "last_change_time": ""
+        "last_change_time": "未更换"
       });
     }
   },
@@ -164,13 +167,6 @@ Page({
       return;
     }
     var data = e.detail.value;
-    if (data['voltage'] == 0) {
-      wx.showModal({
-        title: '提示',
-        content: '请选择电压',
-      })
-      return;
-    }
 
     for (var key in data) {
       if (key != 'last_change_time' && key != 'remark' && (data[key] === "" || data[key] === null)) {
