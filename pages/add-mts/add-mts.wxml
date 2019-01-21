@@ -45,7 +45,7 @@
       <view class="weui-cell__bd">
         <view class="belong_creator_{{belong_creator==1}}" bindtap='tapYes'>是</view>
         <view class="belong_creator_{{belong_creator==0}}" bindtap='tapNo'>否</view>
-        <input style='display:none' name="belong_creator" value="{{belong_creator}}" />
+        <input type='hidden' style='display:none' name="belong_creator" value="{{belong_creator}}" />
       </view>
     </view>
     <view class="weui-cell weui-cell_input" hidden="{{appeal_visiable}}" style='padding-right:0;'>

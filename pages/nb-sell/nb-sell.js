@@ -134,6 +134,16 @@ Page({
                 })
               }
             })
+          }else{
+            wx.showModal({
+              title: '提示',
+              content: res.data.msg,
+              success: function () {
+                wx.navigateTo({
+                  url: '../add-mts/add-mts?is_self=1',
+                })
+              }
+            })
           }
         }
       },

@@ -1,28 +1,29 @@
 {
   "pages": [
-    
     "pages/index/index",
+    "pages/use_guide/use_guide",
+    
+    "pages/nb-list/nb-list",
+    
     "pages/shb-manage/shb-manage",
     "pages/nb-manage/nb-manage",
-    
+    "pages/nb-sell/nb-sell",
     "pages/shb-list/shb-list",
     "pages/shb-index/shb-index",
     "pages/nb-index/nb-index",
     "pages/privilege/privilege",
     "pages/point/point",
     "pages/guide/guide",
+    
     "pages/ans-help/ans-help",
     "pages/suggestion/suggestion",
     "pages/shb-manage-detail/shb-manage-detail",
     "pages/nb-manage-detail/nb-manage-detail",
     "pages/shb-sell/shb-sell",
     
-    
-    "pages/nb-list/nb-list",
-    
     "pages/shb-detail/shb-detail",
     "pages/nb-detail/nb-detail",
-    "pages/nb-sell/nb-sell",
+    
     "pages/near-mts/near-mts",
     "pages/must-know/must-know",
     "pages/coop/coop",

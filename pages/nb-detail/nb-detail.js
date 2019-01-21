@@ -80,10 +80,7 @@ Page({
           })
         },
         fail: function() {
-          wx.showModal({
-            title: '提示',
-            content: '好像出错了,请重试',
-          })
+          
         }
       })
     }

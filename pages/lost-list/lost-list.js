@@ -18,8 +18,6 @@ Page({
 
   onLoad: function(options) {
     this.data.region = [];
-    this.data.search['city'] = wx.getStorageSync("member").location[1];
-    this.data.search['district'] = wx.getStorageSync("member").location[2];
     this.data.search['current_page'] = this.data.current_page;
     getList(this, this.data.search);
   },

@@ -1,0 +1,26 @@
+<view class='title'>1.抛锚求助</view>
+<view class='items'>
+  <view class='item'>当您在路上车辆抛锚情况下，可以点击求组查看附近的维修点，甚至会有师傅主动联系您哦!<view bindtap='goto_help' class='experience'>理解体验》》</view></view>
+</view>
+
+<view class='title'>2.丢失求助</view>
+<view class='items'>
+  <view class='item'>当您的车辆不幸丢失，可以发布丢失悬赏求助，让大家都帮你找.<view bindtap='goto_lost_help' class='experience'>理解体验》》</view></view>
+</view>
+
+<view class='title'> 3.二手车转手/买卖</view>
+<view class='items'>
+  <view class='item'>1.当您不再需要您的电动车，您可以发布转手信息，更快的卖出您的车辆</view>
+  <view class='item'>2.当您想买卖二手车,寻找合适车辆，省时省心。<view bindtap='goto_shb' class='experience'>理解体验》》</view></view>
+</view>
+
+<view class='title'> 4.新车买卖</view>
+<view class='items'>
+  <view class='item'>1.当您一辆新的电动车查看很多车辆，足不出户，更容易选到心仪车辆</view>
+  <view class='item'>2.作为维修点老板，您可以在这里免费发布新车信息，增加获客渠道<view bindtap='goto_new' class='experience'>理解体验》》</view></view>
+</view>
+
+<view class='title'> 5.严选商城-即将强势登陆</view>
+<view class='items'>
+  <view class='item'>您可以在这里选到我们精心为您挑选的商品，质量保证</view>
+</view>

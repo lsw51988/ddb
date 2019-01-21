@@ -17,15 +17,27 @@ Page({
     type: ["电动车维修点", "电动车维修兼销售点", "便民开锁点"],
     type_index: 0,
     belong_creator: 0,
-    appeal_visiable: true
+    appeal_visiable: true,
+    is_self:0
   },
 
   onShareAppMessage: function () {
     return util.share(this);
   },
 
-  onLoad: function () {
+  onLoad: function (options) {
     var that = this;
+    if (options.is_self!=undefined){
+      that.data.is_self = options.is_self;
+    }
+    if(that.data.is_self==1){
+      that.data.belong_creator=1;
+      that.data.appeal_visiable = false;
+      that.setData({
+        belong_creator:1,
+        appeal_visiable: false
+      });
+    }
     wx.getSystemInfo({
       success: function (res) {
         that.setData({

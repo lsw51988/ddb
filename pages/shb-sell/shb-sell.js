@@ -200,7 +200,7 @@ Page({
             content: '添加成功',
             success: function() {
               wx.redirectTo({
-                url: '../shb-list/shb-list?self_flag=true',
+                url: '../shb-index/shb-index',
               })
             }
           })

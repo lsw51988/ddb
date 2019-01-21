@@ -106,7 +106,8 @@
     </view>
 
     <view class='hint'>
-      温馨提示:发布信息永久有效。
+      <view>温馨提示: 1.发布信息永久有效。</view>
+      <view>2.只有自己有修理点才可以发布新车。</view>
     </view>
   </view>
   <button class='submit' formType="submit">提交</button>
