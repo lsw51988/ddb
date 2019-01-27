@@ -61,9 +61,9 @@ Page({
     });
   },
 
-  goto_guide: function() {
+  goto_use_guide: function() {
     wx.navigateTo({
-      url: '../guide/guide',
+      url: '../use_guide/use_guide',
     })
   },
 

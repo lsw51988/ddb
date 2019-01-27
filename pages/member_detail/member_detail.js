@@ -5,7 +5,7 @@ Page({
     voltage: ["48V", "60V", "72V", "96V", "其他"],
     voltage_index: 0,
     modalFlag: true,
-    imageUrl: app.globalData.host + "/wechat/captcha",
+    imageUrl: app.globalData.host + "/wechat/captcha?token=" + wx.getStorageSync('member').token,
     captcha: "",
     cap_btn_text: "获取验证码",
     cap_btn_status: false,

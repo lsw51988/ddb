@@ -49,5 +49,5 @@
   <view class='block-item' bindtap='goto_shop'>严选商城</view>
   <!-- <view class='block-item' bindtap='goto_insure'>我的保险</view> -->
   <!-- <view class='block-item' bindtap='goto_member_log'>使用指南</view> -->
-  <view class='block-item' bindtap='goto_guide'>使用指南</view>
+  <view class='block-item' bindtap='goto_use_guide'>使用指南</view>
 </view>
