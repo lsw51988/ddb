@@ -42,7 +42,8 @@ Page({
         method: "GET",
         header: util.header(),
         success: function (res) {
-          if (res.data.status == true) {
+          console.log(res.data)
+          if (res.data.status) {
             wx.hideLoading();
             that.setData({
               "mobile": res.data.data.mobile,
@@ -67,7 +68,8 @@ Page({
                 return;
               }
             }
-          } else {
+          } 
+          else {
             wx.hideLoading();
             wx.showModal({
               title: '提示',
