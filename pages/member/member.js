@@ -140,5 +140,9 @@ Page({
       title: '提示',
       content: '即将开放',
     })
+  },
+
+  goto_points_detail:function(){
+    util.memberAuth("../member_points/member_points")
   }
 })

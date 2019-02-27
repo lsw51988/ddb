@@ -20,7 +20,7 @@
   <view class='member'>
     <view class='line'>
       <label>积分：</label>
-      <view>{{member.points}}分</view>
+      <view>{{member.points}}<span style="margin-left:20rpx;color:#3367d6;" bindtap="goto_points_detail">明细</span></view>
     </view>
     <!-- <view class='line'>
       <label>会员等级：</label>

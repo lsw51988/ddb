@@ -1,0 +1,18 @@
+<!--用户积分记录列表-->
+<view wx:if='{{log_list.length == 0}}'>
+  <view class='no-data'>暂无数据</view>
+</view>
+<view wx:else>
+  <view class='list-item'>
+    <view class='type'>类型</view>
+    <view class='date'>积分</view>
+    <view class='value'>时间</view>
+  </view>
+  <view wx:for="{{log_list}}">
+    <view class='list-item'>
+      <view class='type'>{{item.type_desc}}</view>
+      <view class='value'>{{item.value}}</view>
+      <view class='date'>{{item.created_at}}</view>
+    </view>
+  </view>
+</view>

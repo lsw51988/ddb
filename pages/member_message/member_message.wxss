@@ -1,0 +1,28 @@
+.list-item {
+  height: 90rpx;
+  line-height:90rpx;
+  width: 99.5%;
+  font-size: 26rpx;
+  margin-top: 10rpx;
+  border: 2rpx solid #2a2d32;
+  border-radius: 10rpx;
+}
+
+.content {
+  width:60%;
+  padding-left: 20rpx;
+  text-align: center;
+  float: left;
+  display: inline-block;
+}
+
+.date {
+  display: inline-block;
+  width: 35%;
+  text-align: center;
+}
+
+.no-data {
+  width: 100%;
+  text-align: center;
+}

@@ -35,7 +35,7 @@ Page({
             },
             {
               id: 2,
-              iconPath: '/img/news.png',
+              iconPath: '/img/news1.png',
               position: {
                 left: res.windowWidth - 32,
                 top: 5,
@@ -87,7 +87,6 @@ Page({
           confirmText: "授权",
           success: function(res) {
             if (res.confirm) {
-              console.log('shouquan');
               wx.openSetting({
                 success: function(res) {
                   //重新获取地理位置权限
@@ -102,7 +101,6 @@ Page({
                 }
               })
             } else {
-              console.log('bu shouquan');
               wx.showModal({
                 title: '提示',
                 content: '您已拒绝授权地理位置，无法正常使用程序功能，需在微信【发现】-【小程序】-删除【电动帮】，重新授权，方可使用'
@@ -141,10 +139,10 @@ Page({
   controltap: function(e) {
     switch (e.controlId) {
       case 1:
-
+        util.memberAuth('../member_avatar/member_avatar');
         break;
       case 2:
-
+        util.memberAuth('../member_message/member_message');
         break;
       case 3:
         wx.navigateTo({
