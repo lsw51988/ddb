@@ -197,3 +197,13 @@ image {
   border-radius: 18rpx;
   margin-top: 20rpx;
 }
+
+.hint{
+  width:100%;
+  padding-left:20rpx;
+  font-size:30rpx;
+  line-height: 50px;
+  height:50px;
+  background: #3367D6;
+  color:white;
+}

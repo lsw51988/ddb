@@ -1,6 +1,7 @@
 <map id="map" longitude="{{longitude}}" latitude="{{latitude}}" scale="18" class='map' markers="{{markers}}" bindregionchange="regionChange" controls='{{controls}}' bindcontroltap="controltap" show-location>
   <cover-image class='position-ab' src='/img/person-position.png'></cover-image>
 </map>
+<view class='hint'>温馨提示：实际定位可能有误差，移动小红人微调</view>
 
 <form bindsubmit="formSubmit" style='z-index:0'>
   <view class="weui-cells weui-cells_after-title">
