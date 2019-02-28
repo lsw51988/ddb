@@ -197,7 +197,7 @@ Page({
           }
           wx.showModal({
             title: '提示',
-            content: '添加成功',
+            content: '添加成功，等待后台审核通过即可展示',
             success: function() {
               wx.redirectTo({
                 url: '../shb-index/shb-index',

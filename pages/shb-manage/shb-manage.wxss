@@ -7,7 +7,7 @@
 
 .list-item {
   height: 120rpx;
-  width: 99%;
+  width: 99.5%;
   font-size: 28rpx;
   margin-top: 10rpx;
   border: 2rpx solid #2a2d32;

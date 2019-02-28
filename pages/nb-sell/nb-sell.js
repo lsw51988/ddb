@@ -18,7 +18,7 @@ Page({
       title: '请稍后...',
     })
     wx.request({
-      url: app.globalData.host + '/wechat/member/auth',
+      url: app.globalData.host + '/wechat/nb/canCreate',
       header: util.header(),
       success: function(res) {
         if (res.data.status == true) {
@@ -30,7 +30,20 @@ Page({
             "real_name": that.data.memberData['real_name']
           });
         } else {
-          util.falseHint();
+          if (res.data.msg =='请先添加您的维修点店铺'){
+            wx.hideLoading();
+            wx.showModal({
+              title: '提示',
+              content: res.data.msg,
+              success:function(){
+                wx.redirectTo({
+                  url: '/pages/add-mts/add-mts',
+                })
+              }
+            })
+          }else{
+            util.falseHint(res.data.msg);
+          }
         }
       },
       fail: function() {
