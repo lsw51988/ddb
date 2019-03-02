@@ -74,6 +74,20 @@ swiper {
   line-height: 95rpx;
 }
 
+.submit-half {
+  color: white;
+  width: 50%;
+  display: inline-block;
+  background: #3367d6;
+  border-radius: 0;
+  height: 95rpx;
+  line-height: 95rpx;
+}
+
+.danger{
+  background: red;
+}
+
 .mb-10 {
   margin-bottom: 10rpx;
 }

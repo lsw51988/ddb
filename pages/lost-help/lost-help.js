@@ -46,7 +46,7 @@ Page({
               address: data.lostBike.address,
               memo: data.lostBike.memo,
               rewards: data.lostBike.rewards,
-              btnText: "更新",
+              btnText: "刷新",
               lostBikeId: data.lostBike.id
             });
           }
@@ -74,6 +74,8 @@ Page({
   },
 
   formSubmit: function(e) {
+    console.log(e);
+    return;
     var that = this;
     var data = e.detail.value;
     for (var key in data) {
@@ -98,6 +100,7 @@ Page({
       data: data,
       success: function(res) {
         if (res.data.status == true) {
+          console.log(res.data);
           wx.hideLoading();
           if (that.data.btnText == "提交") {
             wx.showModal({

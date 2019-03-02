@@ -69,9 +69,18 @@
   </view>
   <view class="weui-cells__tips mb-10">
     温馨提示：
-    <view class='ti-20'>1.悬赏金额将用于当面交易给找到您车的人,不会经过电动帮平台</view>
-    <view class='ti-20'>2.有效展示时间为2周,每天在该页面刷新可以让排名靠前更容易被别人看到哦.</view>
-    <view class='ti-20'>3.发布丢失信息将会扣除您10个积分,且不可回撤,更新不会消耗积分.</view>
+    <view class='ti-20'>1.悬赏金额将用于当面交易给找到您车的人,不会经过平台</view>
+    <view class='ti-20'>2.有效展示时间为2周,适当刷新更容易被别人看到哦.</view>
+    <view class='ti-20'>3.发布将消耗20积分,刷新将消耗10积分,每日免费刷新3次.</view>
   </view>
-  <button formType="submit" class='submit'>{{btnText}}</button>
+
+  <view wx:if="{{lostBikeId==''}}">
+    <input type='hidden' name='type' value='create'></input>
+    <button formType="submit" class='submit'>免费发布</button>
+  </view>
+  <view wx:else>
+    <button formType="submit" class='submit-half' data-type='fresh'>刷新</button>
+    <button formType="submit" class='submit-half danger' data-type='revoke'>撤回发布</button>
+  </view>
+  
 </form>

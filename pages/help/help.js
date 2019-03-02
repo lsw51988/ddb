@@ -257,7 +257,6 @@ Page({
     } else {
       help(that, formData)
     }
-
   }
 })
 
