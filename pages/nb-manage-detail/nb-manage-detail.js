@@ -4,10 +4,8 @@ Page({
   data: {
     region: [],
     customItem: '全部',
-    voltage: ["48V", "60V", "72V", "96V", "其他"],
+    voltage: ["请选择","48V", "60V", "72V", "96V", "其他"],
     voltage_index: 0,
-    show_days: ['请选择', '一周-7天', '二周-14天', '一个月-30天', '三个月-90天', '半年-180天', '一年-365天'],
-    show_days_index: 0,
     memberData: [],
     bikeImgs: [],
     status: "",
@@ -17,8 +15,7 @@ Page({
     reason: "",
     battery_brand: "",
     guarantee_period: "",
-    distance: "",
-    left_days: ''
+    distance: ""
   },
 
   onShareAppMessage: function() {
@@ -64,8 +61,7 @@ Page({
             "bikeImgs": memberData["imgUrls"],
             "battery_brand": memberData["battery_brand"],
             "guarantee_period": memberData["guarantee_period"],
-            "distance": memberData["distance"],
-            "left_days": memberData["left_days"]
+            "distance": memberData["distance"]
           });
         } else {
           util.falseHint();
@@ -168,12 +164,6 @@ Page({
     })
   },
 
-  showDayChange: function(e) {
-    this.setData({
-      show_days_index: e.detail.value
-    })
-  },
-
   formSubmit: function(e) {
     var that = this;
     var formType = e.detail.target.dataset.type;
@@ -183,13 +173,20 @@ Page({
     var data = e.detail.value;
     data.id = that.data.id;
     for (var key in data) {
-      if (key != 'show_days_index' && key != 'remark' && (data[key] === "" || data[key] === null)) {
+      if (key != 'remark' && (data[key] === "" || data[key] === null)) {
         wx.showModal({
           title: '提示',
           content: '请填写必填项',
         })
         return false;
       }
+    }
+    if (data['voltage'] == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '请选择电压',
+      })
+      return;
     }
     wx.showLoading({
       title: '请稍后...',
@@ -200,7 +197,7 @@ Page({
         method: "POST",
         header: util.header(),
         data: data,
-        success: function(res) {
+        success: function (res) {
           if (res.data.status == true) {
             wx.hideLoading();
             for (var i = 0; i < that.data.bikeImgs.length; i++) {
@@ -211,78 +208,126 @@ Page({
             wx.showModal({
               title: '提示',
               content: '更新成功',
-              success: function() {
+              success: function () {
                 wx.redirectTo({
                   url: '../nb-manage/nb-manage?self_flag=true',
                 })
               }
             })
           } else {
-            wx.hideLoading();
             if (res.data.msg == "积分不足") {
+              wx.hideLoading();
               //转入积分充值页面
               wx.showModal({
                 title: '提示',
                 content: '积分不足,请先充值',
-                success: function() {
+                success: function () {
                   wx.navigateTo({
                     url: '../point/point',
                   })
                 }
               })
+            } else {
+              utl.falseHint(res.data.msg);
             }
           }
         },
-        fail: function(res) {
+        fail: function (res) {
           util.failHint();
         }
       })
-    } else {
+    }
+    if (formType == 'refresh') {
       wx.request({
-        url: app.globalData.host + '/wechat/nb/repub',
-        method: "POST",
+        url: app.globalData.host + '/wechat/member/flush',
+        method: "GET",
         header: util.header(),
-        data: data,
-        success: function(res) {
+        data: {
+          'bike_id': that.data.id,
+          'type': 1
+        },
+        success: function (res) {
           if (res.data.status == true) {
             wx.hideLoading();
-
-            for (var i = 0; i < that.data.bikeImgs.length; i++) {
-              if (that.data.bikeImgs[i].indexOf(app.globalData.host) == -1) {
-                uploadFile(that.data.id, that.data.bikeImgs[i]);
-              }
+            var count = res.data.data;
+            if (count > 0) {
+              var okmsg = '该条记录今天还可免费刷新' + count + '次';
+            } else {
+              var okmsg = '刷新成功';
             }
             wx.showModal({
               title: '提示',
-              content: '更新成功',
-              success: function() {
-                wx.redirectTo({
-                  url: '../nb-manage/nb-manage?self_flag=true',
-                })
-              }
+              content: okmsg,
             })
           } else {
-            wx.hideLoading();
-            if (res.data.msg == "积分不足") {
-              //转入积分充值页面
+            if (res.data.msg = '积分不足') {
+              wx.hideLoading();
               wx.showModal({
                 title: '提示',
-                content: '积分不足,请先充值',
-                success: function() {
+                content: '积分不足',
+                success: function () {
                   wx.navigateTo({
                     url: '../point/point',
                   })
                 }
               })
+            } else {
+              util.falseHint(res.data.msg);
             }
           }
         },
-        fail: function(res) {
+        fail: function () {
           util.failHint();
         }
       })
     }
 
+    if (formType == 'repub') {
+      wx.request({
+        url: app.globalData.host + '/wechat/nb/repub',
+        method: "POST",
+        header: util.header(),
+        data: data,
+        success: function (res) {
+          if (res.data.status == true) {
+            wx.hideLoading();
+            for (var i = 0; i < that.data.bikeImgs.length; i++) {
+              if (that.data.bikeImgs[i].indexOf(app.globalData.host) == -1) {
+                uploadFile(that.data.id, that.data.bikeImgs[i]);
+              }
+            }
+            wx.showModal({
+              title: '提示',
+              content: '更新成功',
+              success: function () {
+                wx.redirectTo({
+                  url: '../nb-manage/nb-manage?self_flag=true',
+                })
+              }
+            })
+          } else {
+            if (res.data.msg == "积分不足") {
+              wx.hideLoading();
+              //转入积分充值页面
+              wx.showModal({
+                title: '提示',
+                content: '积分不足,请先充值',
+                success: function () {
+                  wx.navigateTo({
+                    url: '../point/point',
+                  })
+                }
+              })
+            }else{
+              util.falseHint(res.data.msg);
+            }
+          }
+        },
+        fail: function (res) {
+          util.failHint();
+        }
+      })
+    }
   },
 
   model_cancel: function() {
@@ -352,8 +397,7 @@ function uploadFile(shb_id, img) {
       second_bike_id: shb_id
     },
     success: function(res) {
-      var data = JSON.parse(res.data);
-      if (data.status == true) {
+      if (res.data.status == true) {
         console.log("上图片上传成功");
       } else {
         console.log("图片上传失败");

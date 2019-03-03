@@ -13,8 +13,8 @@
 </view>
 <view wx:else>
   <view wx:for="{{bike_list}}">
-    <view class='list-item' data-id="{{item.id}}">
-      <view class='item-content' bindtap='gotoNbDetail'>
+    <view class='list-item'>
+      <view class='item-content' bindtap='gotoNbDetail' data-id="{{item.id}}">
         <view class='li-top'>
           <view class='status'>
             <view wx:if="{{item.status ==1}}"> 待审核 </view>
@@ -31,7 +31,12 @@
           <view class='price'>{{item.price}}</view>
         </view>
       </view>
-      <view class='flush-btn' bindtap='flush' data-id="{{item.id}}">刷新</view>
+      <view wx:if="{{item.status=='2'}}" class='flush-btn'>
+        <view bindtap='flush' data-id="{{item.id}}">刷新</view>
+      </view>
+      <view wx:else class='flush-btn'>
+        <view data-id="{{item.id}}" bindtap='gotoNbDetail'>更新</view>
+      </view>
     </view>
   </view>
 </view>

@@ -4,7 +4,7 @@ Page({
   data: {
     region: [],
     customItem: '全部',
-    voltage: ["48V", "60V", "72V", "96V", "其他"],
+    voltage: ["请选择","48V", "60V", "72V", "96V", "其他"],
     voltage_index: 0,
     memberData: [],
     bikeImgs: [],
@@ -164,6 +164,13 @@ Page({
     var that = this;
     console.log(e.detail.value);
     if (!util.validateImgCount(that.data.bikeImgs)) {
+      return;
+    }
+    if (data['voltage'] == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '请选择电压',
+      })
       return;
     }
     var data = e.detail.value;

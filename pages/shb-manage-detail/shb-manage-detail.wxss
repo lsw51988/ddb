@@ -1,6 +1,6 @@
 .submit {
   color: white;
-  width: 33%;
+  width: 50%;
   background: #3367d6;
   border-radius: 0;
   float: left;
@@ -18,18 +18,10 @@
 
 .revoke {
   color: white;
-  width: 33%;
+  width: 50%;
   background: #8d8d8d;
   border-radius: 0;
   float: right;
-  display: inline-block;
-}
-
-.deal {
-  color: white;
-  width: 34%;
-  background: #ff4900;
-  border-radius: 0;
   display: inline-block;
 }
 

@@ -4,10 +4,8 @@ Page({
   data: {
     region: [],
     customItem: '全部',
-    voltage: ["48V", "60V", "72V", "96V", "其他"],
+    voltage: ["请选择","48V", "60V", "72V", "96V", "其他"],
     voltage_index: 0,
-    show_days: ['请选择', '一周-7天', '二周-14天', '一个月-30天', '三个月-90天', '半年-180天', '一年-365天'],
-    show_days_index: 0,
     memberData: [],
     bikeImgs: [],
     status: "",
@@ -61,6 +59,7 @@ Page({
             "voltage_index": index,
             "brand_name": memberData["brand_name"],
             "number": memberData["number"],
+            "in_status": memberData["in_status"],
             "status": memberData["status"],
             "in_price": memberData["in_price"],
             "buy_date": memberData["buy_date"].substring(0, 7),
@@ -83,15 +82,10 @@ Page({
 
   statusChange: function(e) {
     this.setData({
-      'status': e.detail.value
+      'in_status': e.detail.value
     });
   },
 
-  showDayChange: function(e) {
-    this.setData({
-      show_days_index: e.detail.value
-    })
-  },
 
   buyTimeChange: function(e) {
     this.setData({
@@ -186,8 +180,16 @@ Page({
     }
     var data = e.detail.value;
     data.id = that.data.id;
+    data.in_status = that.data.in_status;
+    if (data['voltage'] == 0) {
+      wx.showModal({
+        title: '提示',
+        content: '请选择电压',
+      })
+      return;
+    }
     for (var key in data) {
-      if (key != 'last_change_time' && key != 'show_days_index' && key != 'remark' && (data[key] === "" || data[key] === null)) {
+      if (key != 'last_change_time' && key != 'remark' && (data[key] === "" || data[key] === null)) {
         wx.showModal({
           title: '提示',
           content: '请填写必填项',
@@ -198,8 +200,8 @@ Page({
     wx.showLoading({
       title: '请稍后...',
     })
+
     if (formType == 'update') {
-      console.log(data);
       wx.request({
         url: app.globalData.host + '/wechat/shb/update',
         method: "POST",
@@ -235,6 +237,8 @@ Page({
                   })
                 }
               })
+            }else{
+              util.falseHint(res.data.msg);
             }
           }
         },
@@ -242,13 +246,63 @@ Page({
           util.failHint();
         }
       })
-    } else {
+    } 
+
+    if (formType =='refresh'){
+      var id = that.data.id;
+      wx.showLoading({
+        title: '请稍后...',
+      })
+      wx.request({
+        url: app.globalData.host + '/wechat/member/flush',
+        method: "GET",
+        header: util.header(),
+        data: {
+          'bike_id': id,
+          'type': 2
+        },
+        success: function (res) {
+          if (res.data.status == true) {
+            var count = res.data.data;
+            if (count > 0) {
+              var okmsg = '该条记录今天还可免费刷新' + count + '次';
+            } else {
+              var okmsg = '刷新成功';
+            }
+            wx.hideLoading();
+            wx.showModal({
+              title: '提示',
+              content: okmsg,
+            })
+          } else {
+            if (res.data.msg = '积分不足') {
+              wx.showModal({
+                title: '提示',
+                content: '积分不足',
+                success: function () {
+                  wx.navigateTo({
+                    url: '../point/point',
+                  })
+                }
+              })
+            } else {
+              util.falseHint(res.data.msg);
+            }
+          }
+        },
+        fail: function () {
+          util.failHint();
+        }
+      })
+    }
+
+    if (formType =='repub'){
       wx.request({
         url: app.globalData.host + '/wechat/shb/repub',
         method: "POST",
         header: util.header(),
         data: data,
-        success: function(res) {
+        success: function (res) {
           if (res.data.status == true) {
             wx.hideLoading();
 
@@ -259,8 +313,8 @@ Page({
             }
             wx.showModal({
               title: '提示',
-              content: '更新成功',
-              success: function() {
+              content: '操作成功',
+              success: function () {
                 wx.redirectTo({
                   url: '../shb-manage/shb-manage',
                 })
@@ -273,7 +327,7 @@ Page({
               wx.showModal({
                 title: '提示',
                 content: '积分不足,请先充值',
-                success: function() {
+                success: function () {
                   wx.navigateTo({
                     url: '../point/point',
                   })
@@ -282,12 +336,11 @@ Page({
             }
           }
         },
-        fail: function(res) {
+        fail: function (res) {
           util.failHint();
         }
       })
     }
-
   },
 
   model_cancel: function() {
@@ -300,9 +353,9 @@ Page({
     this.data.reason = e.detail.value;
   },
 
+/*
   deal: function() {
     var that = this;
-
     wx.showModal({
       title: '提示',
       content: '确定操作吗',
@@ -342,6 +395,7 @@ Page({
       }
     })
   },
+  */
 
   revoke: function() {
     this.setData({

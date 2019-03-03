@@ -128,24 +128,6 @@
         <input type="number" class="weui-input" placeholder="请输入期望售价" name="out_price" value="{{out_price}}" />
       </view>
     </view>
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">剩余有效期</view>
-      </view>
-      <view class="weui-cell__bd">
-        <view class="item">{{left_days}}天</view>
-      </view>
-    </view>
-    <view class="weui-cell weui-cell_input">
-      <view class="weui-cell__hd">
-        <view class="weui-label">增加展示天数</view>
-      </view>
-      <view class="weui-cell__bd">
-        <picker mode="selector" range="{{show_days}}" value='{{show_days_index}}' bindchange="showDayChange" name="show_days_index">
-          <view class="weui-input">{{show_days[show_days_index]}}</view>
-        </picker>
-      </view>
-    </view>
 
     <view class="weui-cells weui-cells_after-title">
       <view class="weui-cell">
@@ -188,16 +170,17 @@
       温馨提示:更新信息不需要支付积分。
     </view>
   </view>
-  <view wx:if="{{status=='1'}}">
+  <view wx:if="{{status==1}}">
     <button class='submit' formType="submit" data-type="update">更新</button>
-    <button class='deal' data-type="deal" bindtap='deal'>已成交</button>
+    <!-- <button class='deal' data-type="deal" bindtap='deal'>已成交</button> -->
     <button class='revoke' data-type="revoke" bindtap='revoke'>撤销</button>
   </view>
-  <view wx:if="{{status=='2'}}">
-    <button class='repub' formType="submit" data-type="repub">重新发布</button>
+  <view wx:if="{{status==2}}">
+    <button class='submit' formType="submit" data-type="refresh">刷新</button>
+    <button class='revoke' data-type="revoke" bindtap='revoke'>撤销</button>
   </view>
-  <view wx:if="{{status=='3'}}">
-    <button class='repub'>交易完成</button>
+  <view wx:if="{{status==3 || status==4}}">
+    <button class='repub' formType="submit" data-type="repub">重新发布</button>
   </view>
 </form>
 

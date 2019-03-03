@@ -25,7 +25,12 @@
           <view class='price'>{{item.out_price}}</view>
         </view>
       </view>
-      <view class='flush-btn' data-id="{{item.id}}" bindtap='flush'>刷新</view>
+      <view wx:if="{{item.status=='2'}}" class='flush-btn'>
+        <view data-id="{{item.id}}" bindtap='flush'>刷新</view>
+      </view>
+      <view wx:else class='flush-btn'>
+        <view data-id="{{item.id}}" bindtap='gotoShbDetail'>更新</view>
+      </view>
     </view>
   </view>
 </view>

@@ -32,8 +32,9 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "lost-help",
-					"pathName": "pages/lost-help/lost-help",
+					"name": "shb",
+					"pathName": "pages/shb-manage-detail/shb-manage-detail",
+					"query": "",
 					"scene": null
 				}
 			]

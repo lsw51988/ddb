@@ -30,6 +30,7 @@ Page({
 
   gotoNbDetail: function(e) {
     var id = e.currentTarget.dataset.id;
+    console.log(id);
     wx.navigateTo({
       url: '../nb-manage-detail/nb-manage-detail?id=' + id,
     })
