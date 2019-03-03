@@ -12,7 +12,6 @@ Page({
     region: [],
     lost_date: "",
     address: "",
-    btnText: "提交",
     lostBikeId: ""
   },
 
@@ -46,7 +45,6 @@ Page({
               address: data.lostBike.address,
               memo: data.lostBike.memo,
               rewards: data.lostBike.rewards,
-              btnText: "刷新",
               lostBikeId: data.lostBike.id
             });
           }
@@ -74,10 +72,9 @@ Page({
   },
 
   formSubmit: function(e) {
-    console.log(e);
-    return;
     var that = this;
     var data = e.detail.value;
+    var submit_type = e.detail.target.dataset.type;
     for (var key in data) {
       if (data[key] === "" || data[key] === null) {
         wx.showModal({
@@ -87,64 +84,155 @@ Page({
         return false;
       }
     }
-    wx.showLoading({
-      title: '请稍后...',
-    })
+
     if (that.data.lostBikeId != "") {
       data.lostBikeId = that.data.lostBikeId;
     }
-    wx.request({
-      url: app.globalData.host + '/wechat/lost/create',
-      method: "POST",
-      header: util.header(),
-      data: data,
-      success: function(res) {
-        if (res.data.status == true) {
-          console.log(res.data);
+    if (submit_type == 'create') {
+      wx.showLoading({
+        title: '请稍后...',
+      })
+      wx.request({
+        url: app.globalData.host + '/wechat/lost/create',
+        method: "POST",
+        header: util.header(),
+        data: data,
+        success: function(res) {
           wx.hideLoading();
-          if (that.data.btnText == "提交") {
+          if (res.data.status == true) {
             wx.showModal({
               title: '提示',
-              content: '发布成功,记得每天到此页面刷新哦,祝愿您早日找回.',
+              content: '发布成功,等待后台审核.',
               success: function(res) {
                 wx.navigateBack()
               }
             })
           } else {
-            wx.showModal({
-              title: '提示',
-              content: '刷新成功.',
-              success: function(res) {
-                wx.navigateBack()
-              }
-            })
+            if (res.data.msg == '积分不足') {
+              wx.showModal({
+                title: '提示',
+                content: res.data.msg,
+                success: function(res) {
+                  wx.navigateTo({
+                    url: '../point/point',
+                  })
+                }
+              })
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: res.data.msg,
+                success: function(res) {
+                  wx.navigateBack()
+                }
+              })
+            }
           }
-        } else {
+        },
+        fail: function(res) {
+          util.failHint();
+        }
+      })
+    }
+
+    if (submit_type == 'refresh') {
+      wx.showLoading({
+        title: '请稍后...',
+      })
+      wx.request({
+        url: app.globalData.host + '/wechat/lost/refresh',
+        method: "POST",
+        header: util.header(),
+        data: data,
+        success: function(res) {
           wx.hideLoading();
-          if (res.data.msg=='积分不足'){
-            wx.showModal({
-              title: '提示',
-              content: res.data.msg,
-              success: function (res) {
-                wx.navigateTo({
-                  url: '../point/point',
+          if (res.data.status == true) {
+            if (res.data.data.left_refresh_count>0){
+              wx.showModal({
+                title: '提示',
+                content: '刷新成功,今日还可免费刷新' + res.data.left_refresh_count+'次'
+              })
+            }else{
+              wx.showModal({
+                title: '提示',
+                content: '刷新成功'
+              })
+            }
+          } else {
+            if (res.data.msg == '积分不足') {
+              wx.showModal({
+                title: '提示',
+                content: res.data.msg,
+                success: function(res) {
+                  wx.navigateTo({
+                    url: '../point/point',
+                  })
+                }
+              })
+            } else {
+              wx.showModal({
+                title: '提示',
+                content: res.data.msg,
+                success: function(res) {
+                  wx.navigateBack()
+                }
+              })
+            }
+          }
+        },
+        fail: function(res) {
+          util.failHint();
+        }
+      })
+    }
+
+    if (submit_type == 'revoke') {
+      wx.showModal({
+        title: '提示',
+        content: '是否已经找到丢失车辆',
+        showCancel: true,
+        cancelText: '否',
+        confirmText: '是',
+        success: function(res) {
+          if (res.confirm) {
+            data.status = 3;
+          } else {
+            data.status = 4;
+          }
+          wx.showLoading({
+            title: '请稍后...',
+          })
+          wx.request({
+            url: app.globalData.host + '/wechat/lost/revoke',
+            method: "POST",
+            header: util.header(),
+            data: data,
+            success: function(res) {
+              wx.hideLoading();
+              if (res.data.status == true) {
+                wx.showModal({
+                  title: '提示',
+                  content: '操作成功',
+                  success: function(res) {
+                    wx.navigateBack()
+                  }
+                })
+              } else {
+                wx.showModal({
+                  title: '提示',
+                  content: res.data.msg,
+                  success: function(res) {
+                    wx.navigateBack()
+                  }
                 })
               }
-            })
-          }else{
-            wx.showModal({
-              title: '提示',
-              content: res.data.msg,
-              success: function (res) {
-                wx.navigateBack()
-              }
-            })
-          }
+            },
+            fail: function(res) {
+              util.failHint();
+            }
+          })
         }
-      },
-      fail: function(res) {
-        util.failHint();
-      }
-    })
+      })
+    }
   }
 })

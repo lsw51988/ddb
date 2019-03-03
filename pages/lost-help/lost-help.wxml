@@ -79,7 +79,7 @@
     <button formType="submit" class='submit'>免费发布</button>
   </view>
   <view wx:else>
-    <button formType="submit" class='submit-half' data-type='fresh'>刷新</button>
+    <button formType="submit" class='submit-half' data-type='refresh'>刷新</button>
     <button formType="submit" class='submit-half danger' data-type='revoke'>撤回发布</button>
   </view>
   
