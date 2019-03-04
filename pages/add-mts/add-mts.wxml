@@ -54,7 +54,7 @@
         <view class="weui-label">维修点手机</view>
       </view>
       <view class="weui-cell__bd">
-        <input type='number' class="weui-input" placeholder="请输入店主手机号" name="mobile" bindblur='getMobile' />
+        <input type='number' class="weui-input" placeholder="请输入店主手机号" name="mobile" bindinput='getMobile' />
       </view>
       <view class="weui-cell__ft">
         <button class="weui-vcode-btn get-capture" name="captcha" bindtap='getCaptcha' disabled='{{cap_btn_status}}' loading='{{cap_loading_status}}'>{{cap_btn_text}}</button>
@@ -65,7 +65,7 @@
         <view class="weui-label">短信验证码</view>
       </view>
       <view class="weui-cell__bd">
-        <input class="weui-input" placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' />
+        <input class="weui-input" placeholder="请输入短信验证码" name="sms_code" disabled='{{sms_code_flag}}' type='number'/>
       </view>
     </view>
     <view class="weui-cells weui-cells_after-title des">
@@ -103,6 +103,6 @@
   </view>
 </form>
 <modal hidden="{{modalFlag}}" title="请输入验证码" confirm-text="提交" cancel-text="取消" bindcancel="model_cancel" bindconfirm="model_confirm">
-  <input type='text' placeholder="请输入验证码" class='captcha-input' type='number' bindblur="captchaBlur" />
+  <input type='text' placeholder="请输入验证码" class='captcha-input' type='number' bindinput="captchaBlur" />
   <image src="{{imageUrl}}" class='captcha' bindtap='freshCaptcha'></image>
 </modal>

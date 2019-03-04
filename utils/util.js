@@ -1,5 +1,5 @@
-//var host = "https://www.njddb.com";
-var host = "http://local.ddb.com";
+var host = "https://www.njddb.com";
+//var host = "http://local.ddb.com";
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -158,10 +158,10 @@ function falseHint(msg) {
 
 //判断图片数量
 function validateImgCount(img) {
-  if (img.length < 3) {
+  if (img.length < 1) {
     wx.showModal({
       title: '提示',
-      content: '电动车照片至少上传3张',
+      content: '电动车照片至少上传1张',
     });
     return false;
   }

@@ -14,7 +14,7 @@ Page({
     cap_btn_text: "获取验证码",
     cap_loading_status: false,
     cap_btn_status: false,
-    imageUrl: app.globalData.host + "/api/member/captcha",
+    imageUrl: app.globalData.host + "/wechat/captcha" + "?token=" + wx.getStorageSync("member").token + "&_t=" + new Date().getTime(),
     latitude: "",
     longitude: "",
     mapCtx: "",

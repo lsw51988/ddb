@@ -2,10 +2,10 @@ var util = require("../../utils/util.js");
 const app = getApp()
 Page({
   data: {
-    voltage: ["48V", "60V", "72V", "96V", "其他"],
+    voltage: ["请选择","48V", "60V", "72V", "96V", "其他"],
     voltage_index: 0,
     modalFlag: true,
-    imageUrl: app.globalData.host + "/wechat/captcha?token=" + wx.getStorageSync('member').token,
+    imageUrl: app.globalData.host + "/wechat/captcha?token=" + "?token=" + wx.getStorageSync("member").token + "&_t=" + new Date().getTime(),
     captcha: "",
     cap_btn_text: "获取验证码",
     cap_btn_status: false,
@@ -60,12 +60,6 @@ Page({
       fail: function(res) {
         util.failHint();
       }
-    })
-  },
-
-  brandChange: function(e) {
-    this.setData({
-      brand_index: e.detail.value
     })
   },
 
@@ -139,6 +133,13 @@ Page({
         })
         return false;
       }
+    }
+    if (that.data.voltage==0){
+      wx.showModal({
+        title: '提示',
+        content: '请选择电压'
+      });
+      return false;
     }
     wx.showLoading({
       title: '请稍后...',

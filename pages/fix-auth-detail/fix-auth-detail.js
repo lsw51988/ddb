@@ -13,7 +13,7 @@ Page({
     windowWidth: wx.getSystemInfoSync().windowWidth,
     mobile: "",
     modalFlag: true,
-    imageUrl: app.globalData.host + "/wechat/captcha",
+    imageUrl: app.globalData.host + "/wechat/captcha" + "?token=" + wx.getStorageSync("member").token + "&_t=" + new Date().getTime(),
     captcha: "",
     cap_btn_text: "获取验证码",
     cap_btn_status: false,
@@ -82,28 +82,28 @@ Page({
     this.data.mapCtx = wx.createMapContext("near_map", this);
   },
 
-  regionChange: function(e) {
-    var that = this;
-    wx.showModal({
-      title: '提示',
-      content: '您确定要改变当前位置吗?',
-      success: function(res) {
-        if (res.confirm) {
-          that.data.mapCtx.getCenterLocation({
-            success: function(res) {
-              that.data.longitude = res.longitude;
-              that.data.latitude = res.latitude;
-            }
-          });
-        } else {
-          that.setData({
-            longitude: that.data.longitude,
-            latitude: that.data.latitude,
-          });
-        }
-      }
-    })
-  },
+  // regionChange: function(e) {
+  //   var that = this;
+  //   wx.showModal({
+  //     title: '提示',
+  //     content: '您确定要改变当前位置吗?',
+  //     success: function(res) {
+  //       if (res.confirm) {
+  //         that.data.mapCtx.getCenterLocation({
+  //           success: function(res) {
+  //             that.data.longitude = res.longitude;
+  //             that.data.latitude = res.latitude;
+  //           }
+  //         });
+  //       } else {
+  //         that.setData({
+  //           longitude: that.data.longitude,
+  //           latitude: that.data.latitude,
+  //         });
+  //       }
+  //     }
+  //   })
+  // },
 
   controltap: function(e) {
     //重新定位
@@ -116,6 +116,7 @@ Page({
       }
     })
   },
+
   previewRpairImage: function(e) {
     wx.previewImage({
       current: e.currentTarget.dataset.src, // 当前显示图片的http链接
@@ -169,9 +170,12 @@ Page({
       bikeImgs: newImgs
     });
   },
+
   getMobile: function(e) {
+    console.log(e);
     this.data.mobile = e.detail.value;
   },
+
   getCaptcha: function() {
     util.getCaptcha(this);
   },
@@ -197,7 +201,7 @@ Page({
   chooseImage: function() {
     var that = this;
     wx.chooseImage({
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function(res) {
         console.log(res);
@@ -208,6 +212,7 @@ Page({
       }
     })
   },
+
   previewAuthImage: function(e) {
     wx.previewImage({
       current: e.currentTarget.dataset.src, // 当前显示图片的http链接
@@ -218,17 +223,25 @@ Page({
   formSubmit: function(e) {
     var that = this;
     var data = e.detail.value;
-    data.longitude = that.data.longitude;
-    data.latitude = that.data.latitude;
-    for (var key in data) {
-      if (data[key] === "" || data[key] === null) {
-        wx.showModal({
-          title: '提示',
-          content: '请填写必填项',
-        })
-        return false;
-      }
+    // data.longitude = that.data.longitude;
+    // data.latitude = that.data.latitude;
+    // for (var key in data) {
+    //   if (data[key] === "" || data[key] === null) {
+    //     wx.showModal({
+    //       title: '提示',
+    //       content: '请填写必填项',
+    //     })
+    //     return false;
+    //   }
+    // }
+    if (that.data.imgs.length>3){
+      wx.showModal({
+        title: '提示',
+        content: '最多上传3张照片',
+      })
+      return false;
     }
+
     wx.showLoading({
       title: '请稍后...',
     })
@@ -249,7 +262,7 @@ Page({
           }
           wx.showModal({
             title: '提示',
-            content: '操作成功',
+            content: '操作成功,等待后台审核',
             success: function() {
               wx.navigateBack()
             }

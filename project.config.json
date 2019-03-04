@@ -28,13 +28,19 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": 1,
 			"list": [
 				{
 					"id": -1,
 					"name": "shb",
 					"pathName": "pages/shb-manage-detail/shb-manage-detail",
 					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "界面微调",
+					"pathName": "pages/fix-auth-detail/fix-auth-detail",
 					"scene": null
 				}
 			]
