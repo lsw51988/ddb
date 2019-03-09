@@ -25,6 +25,12 @@ Page({
     return util.share(this);
   },
 
+  typeChange: function (e) {
+    this.setData({
+      type_index: e.detail.value
+    })
+  },
+
   onLoad: function (options) {
     var that = this;
     if (options.is_self!=undefined){
@@ -120,7 +126,7 @@ Page({
   chooseImage: function (e) {
     var that = this;
     wx.chooseImage({
-      sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
+      sizeType: ['compressed'], // 可以指定是原图还是压缩图，默认二者都有
       sourceType: ['camera'], // 可以指定来源是相册还是相机，默认二者都有
       success: function (res) {
         console.log(res)

@@ -94,7 +94,7 @@ Page({
   chooseImage: function() {
     var that = this;
     wx.chooseImage({
-      sizeType: ['original', 'compressed'],
+      sizeType: ['compressed'],
       sourceType: ['camera'],
       success: function(res) {
         that.setData({
