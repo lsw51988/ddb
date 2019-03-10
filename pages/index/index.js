@@ -152,23 +152,30 @@ Page({
         })
         break;
       case 4:
-        wx.request({
-          url: app.globalData.host + '/wechat/member/checkNearMts',
-          method: "POST",
-          header: util.header(),
-          data: {
-            longitude: that.data.longitude,
-            latitude: that.data.latitude
-          },
+        wx.getLocation({
+          type: "gcj02",
           success: function (res) {
-            if (res.data.status) {
-              util.memberAuth('../fix-auth/fix-auth');
-            } else {
-              util.memberAuth('../add-mts/add-mts');
-            }
-          },
-          fail: function () {
-            util.failHint();
+            var longitude = res.longitude;
+            var latitude = res.latitude;
+            wx.request({
+              url: app.globalData.host + '/wechat/member/checkNearMts',
+              method: "POST",
+              header: util.header(),
+              data: {
+                longitude: longitude,
+                latitude: latitude
+              },
+              success: function (res) {
+                if (res.data.status) {
+                  util.memberAuth('../fix-auth/fix-auth');
+                } else {
+                  util.memberAuth('../add-mts/add-mts');
+                }
+              },
+              fail: function () {
+                util.failHint();
+              }
+            })
           }
         })
         break;
