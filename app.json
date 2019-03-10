@@ -1,12 +1,13 @@
 {
   "pages": [
-    
     "pages/index/index",
+    "pages/member/member",
+   
     "pages/member_message/member_message",
     "pages/member_points/member_points",
     "pages/use_guide/use_guide",
     "pages/nb-list/nb-list",
-    "pages/member/member",
+   
     "pages/shb-manage/shb-manage",
     "pages/nb-manage/nb-manage",
     "pages/nb-sell/nb-sell",

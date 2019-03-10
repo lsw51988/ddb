@@ -23,7 +23,7 @@
     </view>
     <view class="weui-cell weui-cell_input">
       <view class="weui-cell__hd">
-        <view class="weui-label">维修点师傅</view>
+        <view class="weui-label">维修师傅</view>
       </view>
       <view class="weui-cell__bd">
         <input class="weui-input" placeholder="请输入维修点师傅名字或姓氏" name="belonger_name" value='维修点师傅'/>
