@@ -76,6 +76,8 @@ Page({
       success: function(res) {
         wx.setStorageSync("latitude", res.latitude)
         wx.setStorageSync("longitude", res.longitude)
+        that.data.latitude = res.latitude
+        that.data.longitude = res.longitude
         locationData(res, that);
         login(res.latitude, res.longitude, that);
       },
@@ -150,7 +152,25 @@ Page({
         })
         break;
       case 4:
-        util.memberAuth('../add-mts/add-mts');
+        wx.request({
+          url: app.globalData.host + '/wechat/member/checkNearMts',
+          method: "POST",
+          header: util.header(),
+          data: {
+            longitude: that.data.longitude,
+            latitude: that.data.latitude
+          },
+          success: function (res) {
+            if (res.data.status) {
+              util.memberAuth('../fix-auth/fix-auth');
+            } else {
+              util.memberAuth('../add-mts/add-mts');
+            }
+          },
+          fail: function () {
+            util.failHint();
+          }
+        })
         break;
     }
   }
