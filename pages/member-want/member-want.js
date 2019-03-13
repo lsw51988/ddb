@@ -6,11 +6,11 @@ Page({
     'prvilegeText': '成为会员'
   },
 
-  onShareAppMessage: function() {
+  onShareAppMessage: function () {
     return util.share(this);
   },
 
-  onLoad: function(opts) {
+  onLoad: function (opts) {
     if (wx.getStorageSync('member').is_privilege) {
       this.setData({
         'prvilegeText': '续费会员'
@@ -18,18 +18,18 @@ Page({
     }
   },
 
-  onGotUserInfo: function(e) {
+  onGotUserInfo: function (e) {
     if (!wx.getStorageSync("member").union_flag) {
       //拒绝授权
       if (e.detail.errMsg == 'getUserInfo:fail auth deny') {
         wx.openSetting({
-          success: function(res) {
+          success: function (res) {
             if (res.authSetting['scope.userInfo']) {
               wx.showLoading({
                 title: '请稍后...',
               })
               wx.getUserInfo({
-                success: function(userRes) {
+                success: function (userRes) {
                   var data = {};
                   data.encryptedData = userRes.encryptedData;
                   data.iv = userRes.iv;
@@ -67,31 +67,63 @@ Page({
     }
   },
 
-  goto_fix_auth: function() {
+  goto_fix_auth: function () {
     util.memberAuth('../fix-auth/fix-auth');
   },
 
-  goto_help: function() {
+  goto_help: function () {
     util.memberAuth('../help/help');
   },
-  goto_lost_help: function() {
+  goto_lost_help: function () {
     util.memberAuth('../lost-help/lost-help');
   },
 
-  goto_point: function() {
+  goto_point: function () {
     util.memberAuth('../point/point');
   },
 
-  signin: function() {
+  signin: function () {
     util.memberAuth('../member-sign/member-sign');
   },
 
-  goto_privilege: function() {
+  goto_privilege: function () {
     util.memberAuth('../privilege/privilege');
   },
 
-  goto_add_mts:function(){
-    util.memberAuth('../add-mts/add-mts');
+  goto_add_mts: function () {
+    //加入附近是否有维修点的判断，如果有，则先跳到认领页面
+    wx.getLocation({
+      type: "gcj02",
+      success: function (res) {
+        var longitude = res.longitude;
+        var latitude = res.latitude;
+        wx.request({
+          url: app.globalData.host + '/wechat/member/checkNearMts',
+          method: "POST",
+          header: util.header(),
+          data: {
+            longitude: longitude,
+            latitude: latitude
+          },
+          success: function (res) {
+            if (res.data.status) {
+              wx.showModal({
+                title: '提示',
+                content: '附近有未认领店铺，请先查看哦',
+                success: function () {
+                  util.memberAuth('../fix-auth/fix-auth');
+                }
+              })
+            } else {
+              util.memberAuth('../add-mts/add-mts');
+            }
+          },
+          fail: function () {
+            util.failHint();
+          }
+        })
+      },
+    })
   }
 })
 
@@ -101,7 +133,7 @@ function improveUserInfo(data) {
     method: "POST",
     header: util.header(),
     data: data,
-    success: function(res) {
+    success: function (res) {
       wx.hideLoading();
       if (!res.data.status) {
         wx.showModal({
@@ -118,7 +150,7 @@ function improveUserInfo(data) {
         })
       }
     },
-    fail: function() {
+    fail: function () {
       wx.hideLoading();
       wx.showModal({
         title: '提示',
