@@ -152,6 +152,7 @@ Page({
         })
         break;
       case 4:
+      console.log(123);
         wx.getLocation({
           type: "gcj02",
           success: function (res) {

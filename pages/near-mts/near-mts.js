@@ -8,7 +8,7 @@ Page({
     latitude: "",
     markers: [],
     mts_list: [],
-    appeal_id: "",
+    appeal_id: '',
     scale: 18,
     current_item_id: ""
   },
@@ -44,7 +44,8 @@ Page({
           header: util.header(),
           data: {
             longitude: that.data.longitude,
-            latitude: that.data.latitude
+            latitude: that.data.latitude,
+            scale: that.data.scale
           },
           success: function(res) {
             if (res.data.status == true) {
@@ -93,6 +94,7 @@ Page({
     })
     this.data.mapCtx = wx.createMapContext("near_map", this);
   },
+
   controltap: function(e) {
     //重新定位
     var that = this;
@@ -170,5 +172,58 @@ Page({
       scale: 19,
       markers: that.data.markers
     });
+  },
+
+  regionchange: function(e) {
+    var that = this;
+    if (e.type == 'end' && e.causedBy == 'scale') {
+      that.data.mapCtx.getScale({
+        success: function(e) {
+          var scale = e.scale;
+          wx.request({
+            url: app.globalData.host + '/wechat/repair/near_mts',
+            method: "POST",
+            header: util.header(),
+            data: {
+              longitude: that.data.longitude,
+              latitude: that.data.latitude,
+              scale: scale
+            },
+            success: function(res) {
+              if (res.data.status == true) {
+                var data = res.data.data;
+                var markers = [];
+                for (var i = 0; i < data.length; i++) {
+                  var marker = {};
+                  marker.id = data[i].id;
+                  marker.latitude = data[i].latitude;
+                  marker.longitude = data[i].longitude;
+                  marker.width = 20;
+                  marker.height = 20;
+                  marker.iconPath = "/img/mt.png";
+                  markers[i] = marker;
+                }
+                that.setData({
+                  markers: markers,
+                  mts_list: res.data.data
+                });
+              } else {
+                wx.showModal({
+                  title: '提示',
+                  content: res.data.msg,
+                })
+              }
+            },
+            fail: function(res) {
+              wx.showModal({
+                title: '提示',
+                content: "服务器内部错误",
+              })
+            }
+          })
+        }
+      })
+    }
+
   }
 })

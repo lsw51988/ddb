@@ -1,6 +1,12 @@
 <!--我要-->
 <view class='row-0'>
-  <button class='mr-40' open-type='getUserInfo' bindgetuserinfo="onGotUserInfo">完善资料</button>
+  <view wx:if='{{status==2 || status==3}}' class='mr-40' style='display:inline-block'>
+    <button  bindtap='goto_member_detail'>完善资料</button>
+  </view>
+  <view wx:else class='mr-40' style='display:inline-block'>
+    <button open-type='getUserInfo' bindgetuserinfo="onGotUserInfo">完善资料</button>
+  </view>
+
   <button bindtap='goto_fix_auth'>修理者认证</button>
 </view>
 <view class='row-1'>
@@ -12,6 +18,6 @@
   <button bindtap='goto_privilege'>{{prvilegeText}}</button>
 </view>
 <view class='row-1'>
-<button class='mr-40' bindtap='signin'>签到</button>
+  <button class='mr-40' bindtap='signin'>签到</button>
   <button bindtap='goto_add_mts'>新增维修点</button>
 </view>

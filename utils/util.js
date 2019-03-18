@@ -233,7 +233,7 @@ function memberAuth(targetUrl) {
           title: '提示',
           content: '您尚未认证,请先去认证',
           success: function(res) {
-            wx.redirectTo({
+            wx.navigateTo({
               url: '../member_detail/member_detail',
             })
           }

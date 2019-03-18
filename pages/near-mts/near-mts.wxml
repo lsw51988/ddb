@@ -1,4 +1,4 @@
-<map id="near_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" class='map' markers="{{markers}}" controls='{{controls}}' bindcontroltap="controltap" show-location>
+<map id="near_map" longitude="{{longitude}}" latitude="{{latitude}}" scale="{{scale}}" class='map' markers="{{markers}}" controls='{{controls}}' bindcontroltap="controltap" show-location bindregionchange='regionchange'>
   <!-- <cover-image class='position-ab' src='/img/person-position.png'></cover-image> -->
 </map>
 <scroll-view scroll-y class='mts'>

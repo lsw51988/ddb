@@ -28,7 +28,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 1,
+			"current": 3,
 			"list": [
 				{
 					"id": -1,
@@ -41,6 +41,20 @@
 					"id": -1,
 					"name": "界面微调",
 					"pathName": "pages/fix-auth-detail/fix-auth-detail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "coop",
+					"pathName": "pages/coop/coop",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "near-mts",
+					"pathName": "pages/near-mts/near-mts",
 					"scene": null
 				}
 			]

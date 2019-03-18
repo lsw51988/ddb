@@ -16,6 +16,9 @@ Page({
         'prvilegeText': '续费会员'
       });
     }
+    this.setData({
+      'status': wx.getStorageSync('member').status
+    });
   },
 
   onGotUserInfo: function (e) {
@@ -65,6 +68,12 @@ Page({
         url: '../member_detail/member_detail',
       })
     }
+  },
+
+  goto_member_detail: function () {
+    wx.navigateTo({
+      url: '../member_detail/member_detail',
+    })
   },
 
   goto_fix_auth: function () {
